@@ -1,0 +1,136 @@
+\documentclass[11pt,titlepage]{article}
+\usepackage{amsmath,amssymb,amstext,mathtools,amsthm}
+\usepackage{amssymb}
+\usepackage{xcolor}
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+\usepackage[paper=a4paper,left=25mm,right=25mm,top=25mm,bottom=25mm]{geometry}
+
+\usepackage{dsfont}
+\usepackage{xfrac}
+\usepackage{tikz}
+
+\usetikzlibrary{positioning}
+\usetikzlibrary{arrows}
+
+\theoremstyle{definition}
+\newtheorem{theorem}{Satz}[section]
+\newtheorem{corollary}[theorem]{Folgerung}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Beispiel}
+\newtheorem*{axiom}{Axiom}
+\newtheorem{remark}{Bemerkung}
+
+\theoremstyle{remark}
+\newtheorem*{repetition}{Wiederholung}
+\newtheorem*{remind}{Erinnerung}
+
+\title{Funktionentheorie}
+\author{Jannis Klingler}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section{Holomorphe und analytische Funktionen}
+
+	\subsection{Analytische Funktionen}
+	
+	\begin{repetition}
+		Setze $\mathbb{C}=\mathbb{R}^2$. Für $z=(x,y)$, $w=(u,v)$ definiere:
+		\begin{eqnarray*}
+			z+w&=&(x+u,y+v) \quad\text{Vektoraddition} \\
+			z\cdot w&=&(x\cdot u-y\cdot v,x\cdot v+y\cdot u) \\
+			0&=&(0,0) \qquad\text{neutrales Element $(+)$}\\
+			1&=&(1,1) \qquad\text{neutrales Element $(\cdot )$}\\
+			i&=&(0,1)
+		\end{eqnarray*}
+		Komplexe Konjugation: $z\to \overline{z} =(x,-y)$ ist ein Automorphismus, dh.
+		\begin{eqnarray*}
+			\overline{z+w} &=& \overline{z} +\overline{w} \\
+			\overline{z\cdot w} &=& \overline{z} \cdot \overline{w} \\
+			\overline{0} &=& 0\\
+			\overline{1} &=& 1 \\
+			\overline{i} &=& (0,1)
+		\end{eqnarray*}
+		Mit diesen Operationen ist $\mathbb{C}$ ein Körper.
+		\begin{eqnarray*}
+			-z=(-x,-y) \qquad \qquad \frac{1}{z}=\frac{\overline{z}}{z\cdot \overline{z}}=\left(
+			\frac{x}{x^2 +y^2}-\frac{y}{x^2 +y^2} \right)
+		\end{eqnarray*}
+		wir definieren einen Absolutbetrag $|z| = \sqrt{z\overline{z}}\in \mathbb{R}$, denn 
+		$z\cdot\overline{z} \in \mathbb{R} =\{ z\in \mathbb{C} \mid z=\overline{z} \} =
+		\{ (x,0)\mid x\in\mathbb{R} \} \subset \mathbb{C}$ \\
+		Jetzt können wir schreiben $z=(x,y)=(x,0)+(y,0)=(x,0)+i\cdot (y,0)=x+iy$ \\
+		Graphische Darstellung ("Gaußsche Zahlenebene").
+	\end{repetition}
+	
+	\textbf{\underline{Zur Erinnerung}:}
+	
+	\begin{definition}[Topologischer Raum]
+		Ein topologischer Raum heißt zusammenhängend, wenn er nicht als disjunkte Vereinigung zweier 
+		nichtleerer, offener Teilmengen geschrieben werden kann.
+	\end{definition}
+	
+	\begin{definition}[Wegzusammenhängend]
+		Ein topologischer Raum $X$ heißt wegzusammenhängend, wenn es zu je zwei Punkten 
+		$p,q\in X$ eine stetige Abbildung $\gamma :[0,1]\to X$ mit $\gamma (0)=p$, $\gamma (1)=q$ 
+		gibt.
+	\end{definition}
+	
+	\begin{theorem}
+		Eine offene Teilmenge von $\mathbb{C}$ ist genau dann zusammenhängend, wenn sie 
+		wegzusammenhängend ist.
+	\end{theorem}
+	\begin{proof}
+		$"\Leftarrow"$: Sei $X$ wegzusammenhängend. Seien $U,V\subset X$ offen, $X=U\cup V$, 
+		$p\in U$, $q\in V$ (also $U,V$ nicht leer). Dann existiert $\gamma :[0,1]\to X$ stetig mit 
+		$\gamma (0)=p$, $\gamma (1)=q$. Dann sind $\gamma ^{-1}(U),\ \gamma^{-1}(V)\subset 
+    		[0,1]$ offen. Da $[0,1]$ zusammenhängend ist und $0\in \gamma^{-1}(U)$, 
+		$1\in \gamma^{-1}(V)$, \\
+		$\gamma^{-1}(U)\cup\gamma^{-1}(V)=\gamma^{-1}(U\cup V)=\gamma^{-1}(X)=[0,1]$ folgt 
+		$\gamma^{-1}(U)\cap \gamma^{-1}(V) \neq \emptyset$. \\Also existiert $t\in \gamma^{-1}(U)
+		\cap\gamma^{-1}(V)$ und $\gamma(t)\in U\cap V$. Da das für alle offenen, nichtleeren 
+		Teilmengen $U,V$ mit $U\cup V=X$ gilt, ist X zusammenhängend.\\
+		$"\Rightarrow"$: Sei $X\subset \mathbb{C}$ (offen) zusammenhängend. \\Sei $p\in X$ und sei 
+		$U=\{ q\in X \mid \exists \gamma :[0,1]\to X \text{ stetig}:\gamma(0)=p,\ \gamma(1)=q \}$\\
+		Behauptung: $U$ ist offen, also existiert $\varepsilon>0$, sd. $B_{\varepsilon}(q)\subset X$. 
+		Sei $q'\in B_{\varepsilon}(q)$. Dann existiert $\gamma':[0,1]\to X$, sd. 
+		\[ \gamma'(t)= \begin{dcases} \gamma(2t) & 0\leq t\leq \frac{1}{2} \\ (2-2t)q + (2t-1)q' & 
+			\frac{1}{2} \leq t\leq 1 \end{dcases} \]
+		$\Rightarrow$ $B_{\varepsilon}(q)\subset U$ $\Rightarrow$ $U$ offen.\\
+		Behauptung: $X\setminus U$ ist offen: \\
+		Sei $q\in X\setminus U$. Da $X$ offen, existiert $\varepsilon >0$ mit 
+		$B_{\varepsilon}(q)\subset X$. Wäre $B_{\varepsilon}(q)\cap U \neq \emptyset$, so existiert 
+		$q'\in B_{\varepsilon}(q)\cap U$, ein Weg $\gamma$ von $p$ nach $q$ in $X$ und mit einer 
+		ähnlichen Konstruktion auch eine Kurve $\gamma'$ von $p$ nach $q$. Also auch 
+		$X\setminus U = \emptyset$.\\
+		$\Rightarrow$ $X$ ist wegzusammenhängend.	
+	\end{proof}
+	
+	\begin{definition}[Gebiet]
+		Ein Gebiet ist eine offene, zusammenhängende Teilmenge von $\mathbb{C}$.
+	\end{definition}
+	
+	\begin{remind}
+		Eine (komplexe) Potenzreihe ist ein Ausdruck der Form $R(z)=\sum^{\infty}_{n=0} a_n z^n$ mit 
+		$a_n \in \mathbb{C}$ für alle $n$. Sie hat den Konvergenzradius $\rho = \left( limsup_{n\to\infty}
+		\sqrt[n]{|a_n |}\right)^{-1} \in [0,\infty]$. Dann:
+		\begin{eqnarray*}
+			R(z)\text{ konvergiert für alle $z$ mit }|z|< \rho \\
+			R(z)\text{ divergiert für alle $z$ mit }|z|> \rho 
+		\end{eqnarray*}
+		wenn $\rho>0$ ist, heißt $R(z)$ konvergent und $B_{\rho}(0)\subset \mathbb{C}$ der 
+		Konvergenzkreis.
+	\end{remind}
+	
+	\begin{definition}[Analytische Funktion]
+		Es sei $\Omega\in\mathbb{C}$ ein Gebiet und $f:\Omega\to\mathbb{C}$ eine Abbildung. 
+		Dann heißt $f$ eine analytische Funktion (auf $\Omega$), wenn es zu jedem Punkt 
+		$z_0 \in \Omega$ eine Potenzreihe $R(z)$ mit Konvergenzradius $\rho>0$ existiert, sd. 
+		$f(z)=R(z-z_0 )$ für alle $z\in \Omega\cap B_{\rho}(z_0)$.
+	\end{definition}
+\end{document}

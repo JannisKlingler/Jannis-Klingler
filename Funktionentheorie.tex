@@ -95,6 +95,14 @@
 		$\gamma^{-1}(U)\cap \gamma^{-1}(V) \neq \emptyset$. \\Also existiert $t\in \gamma^{-1}(U)
 		\cap\gamma^{-1}(V)$ und $\gamma(t)\in U\cap V$. Da das für alle offenen, nichtleeren 
 		Teilmengen $U,V$ mit $U\cup V=X$ gilt, ist X zusammenhängend.\\
+		Einfacher: \\
+		Angenommen $X$ ist nicht zusammenhängend. Dann existieren offene, nicht-leere Teilmengen 
+		$U,V\subset X$ mit $U\cup V=X$, $U\cap V=\emptyset$. Dann existiert eine stetige Funktion 
+		$f:X\to \mathbb{R}$ mit 
+		\[ f(x)= \begin{dcases} 0 & x\in U \\ 1& x\in V \end{dcases} \]
+		Wähle jetzt $p\in U$, $q\in V$. Gäbe es einen Weg $\gamma : [0,1]\to X$ mit $\gamma(0)=p$, 
+		$\gamma(1)=q$, dann wäre $f\circ \gamma :[0,1]\to \mathbb{R}$ stetig, im Widerspruch zum 
+		Zwischenwertsatz. \\
 		$"\Rightarrow"$: Sei $X\subset \mathbb{C}$ (offen) zusammenhängend. \\Sei $p\in X$ und sei 
 		$U=\{ q\in X \mid \exists \gamma :[0,1]\to X \text{ stetig}:\gamma(0)=p,\ \gamma(1)=q \}$\\
 		Behauptung: $U$ ist offen, also existiert $\varepsilon>0$, sd. $B_{\varepsilon}(q)\subset X$. 
@@ -133,4 +141,159 @@
 		$z_0 \in \Omega$ eine Potenzreihe $R(z)$ mit Konvergenzradius $\rho>0$ existiert, sd. 
 		$f(z)=R(z-z_0 )$ für alle $z\in \Omega\cap B_{\rho}(z_0)$.
 	\end{definition}
+	
+	\begin{example}
+		Betrachte die Exponentialreihe
+		\begin{eqnarray*}
+			e^z = \sum_{n=0}^{\infty} \frac{z^n}{n!} 
+		\end{eqnarray*}
+		$\limsup \sqrt[n]{|\frac{1}{n!}|} =0 \quad \Rightarrow$ Konvergenzradius ist $\rho=\infty$.
+		Mit dem Umordnungssatz zeigt man 
+		\begin{eqnarray*}
+			e^{z+w} =e^z \cdot e^w
+		\end{eqnarray*}
+		Da die Exponentialreihe reelle Koeffizienten hat, gilt
+		\[ \overline{e^z} =\sum_{n=0}^{\infty} \overline{\left( \frac{z^n}{n!} \right)} = 
+		\sum_{n=0}^{\infty} \frac{ \overline{z}^n}{n!} = e^{\overline{z}} \]
+		Sei jetzt $z=x+iy$, dann gilt 
+		\[e^z = e^x \cdot e^{iy} \]
+		und $|e^{iy}|^2 = e^{iy} \cdot \overline{e^{iy}} = e^{iy} \cdot e^{-iy} = e^0 = 1$. \\
+		Also definiere $e^{iy}=\cos(y)+i\sin (y)$.\\
+		Jetzt kann man komplexe Multiplikation in Polarkoordinaten verstehen. \\
+		Schreibe $z=r\cdot e^{i\varphi}$, $w=s\cdot e^{i\varphi}$ dann heißt $r=|z|$ der Absolutbetrag
+		 und 
+		$\varphi\in \mathbb{R}\setminus 2\pi \mathbb{Z}$ das Argument. \\
+		Wir repräsentieren $\varphi$ durch die Funktion $arg:\mathbb{C}^{\times} =\mathbb{C}\setminus 
+		\{ 0\} \to (-\pi ,\pi]$. \\
+		$z\cdot w= r\cdot e^{i\varphi} \cdot s \cdot e^{i\psi} = (rs)\cdot e^{i(\varphi+\psi)}$.
+	\end{example}
+	
+	\begin{theorem}[Identitätssatz für Potenzreihen]
+		Es sei $\Omega \subset \mathbb{C}$ Gebiet und $f:\Omega\to \mathbb{C}$ analytisch. 
+		Falls es $z_0 \in \Omega$ und eine Folge $(z_n)_{n\in \mathbb{N}}$ in $\Omega\setminus\{
+		z_0\}$ mit $\lim_{n\to \infty} z_n = z_0$ gibt, sd. $f(z_n)=0$ für alle $n$, dann ist $f=0$ konstant.
+	\end{theorem}
+	
+	\begin{corollary}
+		Seien $f,g$ zwei analytische Funktionen auf $\Omega$, $z_0$, $(z_n)_{n\in\mathbb{N}}$ wie 
+		oben, aber mit $f(z_n)=g(z_n)$ für alle $n$, dann folgt $f=g$ auf ganz $\Omega$.
+	\end{corollary}
+	
+	\begin{definition}
+		$f$ heißt analytisch auf $\Omega$, wenn es zu jedem Punkt $z\in \Omega$ eine Umgebung 
+		$U\subset\Omega$ von $z$ und eine Potenzreihe $R$ um $z$ gibt, die auf ganz $U$ 
+		konvergiert, sd. $R(\omega)=f(\omega)$ für alle $\omega\in\Omega$.
+	\end{definition}
+	
+	\begin{proof}
+		Sei zunächst $U$ Umgebung von $z$, auf der $f$ mit einer Potenzreihe $R(z)=\sum_{n=0}^
+		{\infty} a_n (z-z_n)$ übereinstimmt. \\
+		Ohne Einschränkung sei $z_0 =0$. Da $R$ konvergiert, gilt $\rho >0$, also $\infty > \frac{1}{\rho}
+		=\limsup_{n\to\infty} \sqrt[n]{|a_n|}$. Also existiert $n_0\in \mathbb{N}_0$ und $C>\frac{1}{\rho}$, 
+		sd. $|a_n|< C^n$ für alle $n\geq n_0$. Da nur endlich viele $n\leq n_0$ existieren, können wir 
+		$C$ ggf. etwas größer wählen, sd. $|a_n|<C^n$ für alle $n$. Wir beweisen indirekt, dass alle 
+		$a_n =0$ sind, dh. wir nehmen an, es gäbe $n$ mit $a_n \neq 0$. Es sei $n_0$ das kleinste $n$ 
+		mit $a_{n_{0}}\neq 0$, dh. $a_n =0$ für $n<n_0$. 
+		Wir suchen $r>0$, sd. $|a_n z^{n_0} | > \sum_{n=n_0 +1}^{\infty} |a_n z^n | \left(\geq | \sum_{n=
+		n_0 +1}^{\infty} a_n z^n |\right)$ für alle $z\in \mathbb{C}$ mit $0<|z|<r$. Denn dann folgt 
+		$R(z)=a_{n_0} z^{n_0} +\sum_{a_n}^{z^n} \neq 0$ für $z$ wie oben, also auch für unendlich 
+		viele der Folgenglieder $z_n$ aus unserer Annahme.
+		\[ \sum_{n=n_0 +1}^{\infty} |a_n z^n| \leq \sum_{n=n_0 +1}^{\infty} C^n |z^n| \underset{\text{
+		geometrische Reihe}}{=} \frac{C^{n+1}|z|^{n+1}}{1-C|z|} \]
+		Wir suchen also $r>0$, sd.
+		\begin{eqnarray*}
+			|a_{n_0}|r^{n_0} > \underbrace{\frac{C^{n+1}|z|^{n+1}}{1-Cr}}_{\text{$>0$, für 
+			$r>\frac{1}{C}$}} &\Leftrightarrow & |a_n| (r^{n_0} - Cr^{n_0 +1} ) > C^{n_0 +1} r^{n_0 +1} \\
+			& \Leftrightarrow & |a_{n_0}| > r (C^{n_0 +1}+|a_{n_0}|C) \\
+			& \Leftrightarrow & r>\frac{|a_{n_0}|}{C^{n_0 +1} + |a_{n_0}|C}
+		\end{eqnarray*}
+		Jetzt folgt für alle $z$ mit $0< |z|<r$, dass $R(z)\neq 0$ wie gewünscht, Widerspruch! \\
+		Also folgt $R=0$ und somit $f|_U =0$.
+		Definiere $W=\{ z\in\Omega \mid z\text{ hat Umgebung $U$ mit $f|_U =0$} \}$ \\
+		$\Rightarrow$ $W$ ist offen und nichtleer. \\
+		Behauptung: $W$ ist auch abgeschlossen. Falls nicht, existiert ein Häufungspunkt $z_0$ von 
+		$W$ in $\Omega$ mit $z_0 \in W$. Dann existiert $(z_n)_n$ Folge in $W\setminus \{z_0\}$ mit 
+		$\lim_{n\to\infty} z_n =z_0$ und $f(z_n)=0$ für alle $n$. Mit den obigen Argumenten folgt: 
+		$z_0$ hat Umgebung $U\subset \Omega$ mit $f|_U =0$, somit $z_0 \in W$. \\
+		$W$ offen, abgeschlossen und nichtleer $\Rightarrow$ (da $\Omega$ zusammenhängend ist) 
+		$\Omega = W$, also $f=0$.
+	\end{proof}
+	
+	(Proposition im Kurzskript zum Rechnen mit Potenzreihen)...
+	
+	\subsection{Komplexe Differenzierbarkeit}
+	
+	\begin{definition}
+		Eine $\mathbb{R}$-lineare Abbildung $A:\mathbb{C}\to \mathbb{C}$ heißt $\mathbb{C}$-
+		antilinear, wenn
+		\[ A(zw)=\overline{z} \cdot A(w) \quad \forall w,z\in\mathbb{C}. \]
+		Jede $\mathbb{R}$-lineare Abbildung lässt sich zerlegen als $A=A'+A''$ mit 
+		$A'(z)=a'\cdot z$ und $A''(z)=a''\cdot\overline{z}$, dabei heißen $A'$ der Linearteil und $A''$ 
+		der Antilinearteil von $A$.\\
+		Insbesondere ist $A$ genau dann $\mathbb{C}$-linear, wenn $A''=0$.
+	\end{definition}
+	
+	\begin{proof}
+		Setze $A'(z)=\frac{A(z)-i\cdot A(iz)}{2}$, $A''(z)=\frac{A(z)+i\cdot A(iz)}{2}$. Daraus folgt 
+		\[ A'(z) + A''(z)=\frac{A(z)-i\cdot A(iz)}{2}+\frac{A(z)+i\cdot A(iz)}{2}=A(z) \]
+		\begin{eqnarray*}
+			A'((u+iv)\cdot z)&=&\frac{A(uz)+A(ivz)-iA(iuz)-iA(-vz)}{2} \\
+			&=& \frac{uA(z)\overbrace{-iviA(iz)}^{=+vA(iz)}-iuA(iz)+ivA(z)}{2} \\
+			&=&\frac{(u+iv)(A(z)-iA(iz))}{2} \\
+			&=& (u+iv)A'(z)
+		\end{eqnarray*}
+		Analog dazu ist $A''$ $\mathbb{C}$-antilinear. Es folgt $A'(z)=A'(z\cdot 1)=z\cdot \underbrace{
+		A'(1)}_{a'}$,\\$A''(z)=A''(z\cdot 1)=\overline{z}\cdot\underbrace{A''(1)}_{a''}$.
+	\end{proof}
+	
+	\begin{remind}
+		Sei $U\subset\mathbb{C}$ offen, $f:U\to\mathbb{C}\sim\mathbb{R}^2$ eine Funktion. $f$ 
+		heißt total differenzierbar bei $z_0\in U$, falls eine $\mathbb{R}$-lineare Abbildung 
+		$A:\mathbb{C}\to\mathbb{C}$ existiert, sd. \[ \lim_{z\to z_0} \frac{f(z)-f(z_0)-A(z-z_0)}
+		{|z-z_0 |}=0. \]
+		Dann ist $f$ auch partiell differenzierbar und die partiellen Ableitungen sind gerade die Einträge 
+		der reellen $2\times 2$-Matrix $A$.
+	\end{remind}
+	
+	\begin{definition}[Komplexe Differenzierbarkeit]
+		Es sei $U\subset \mathbb{C}$ offen. Eine Funktion $f:U\to \mathbb{C}$ heißt komplex 
+		differenzierbar bei $z_0\in U$, falls $\lim_{z\to z_0} \frac{f(z)-f(z_0)}{z-z_0}$ existiert. Dieser 
+		Grenzwert heißt dann die komplexe Ableitung $f'(z_0)\in\mathbb{C}$. Wenn $f$ auf ganz 
+		$U$ differenzierbar ist, heißt $f$ auch holomorph auf $U$.
+	\end{definition}
+	
+	\begin{definition}
+		Sei $f:U\to\mathbb{C}$ eine Funktion, $U\subset\mathbb{C}$ offen. Schreibe $f=u+iv$ für 
+		Funktionen $u,v:U\to\mathbb{R}$, sowie $z=x+iy$. \\
+		Definiere die Wirtinger-Ableitungen 
+		\[ \frac{\partial f}{\partial z}=\frac{1}{2}\frac{\partial f}{\partial x} -\frac{i}{2}\frac{\partial f}{\partial y} 
+		=\frac{1}{2} \left(\frac{\partial u}{\partial x}+\frac{\partial v}{\partial y}\right)+\frac{i}{2}\left(
+		\frac{\partial v}{\partial x}-\frac{\partial u}{\partial y}\right) \]
+		\[ \frac{\partial f}{\partial \overline{z}}=\frac{1}{2} \frac{\partial f}{\partial x} +\frac{i}{2}
+		\frac{\partial f}{\partial y}=\frac{1}{2}\left( \frac{\partial u}{\partial x}-\frac{\partial v}{\partial y}\right)
+		+\frac{i}{2}\left(\frac{\partial v}{\partial x}+\frac{\partial u}{\partial y}\right) \]
+	\end{definition}
+	
+	\begin{example}
+		$\frac{\partial z}{\partial z}=1$, $\frac{\partial z}{\partial \overline{z}}=0$, 
+		$\frac{\partial\overline{z}}{\partial z}=0$, $\frac{\partial\overline{z}}{\partial\overline{z}}=1$
+	\end{example}
+	
+	\begin{lemma}
+		Es sei $U\subset\mathbb{C}$ offen, $f:U\to\mathbb{C}$ eine Funktion, $z_0\in U$. Dann sind 
+		äquivalent
+		\begin{enumerate}
+			\item $f$ ist komplex differenzierbar bei $z_0$
+			\item Es existiert eine stetige Funktion $\varphi:U\to\mathbb{C}$ mit $f(z)=f(z_0)+\varphi(z)
+			\cdot (z-z_0)$
+			\item $f$ ist bei $z_0$ reell, total differenzierbar mit $\mathbb{C}$-linearer Ableitung
+			\item $f$ ist bei $z_0$ reell, total differenzierbar und $\frac{\partial f}{\partial \overline{z}}|_
+			{z_0}=0$
+			\item $f$ ist bei $z_0$ reell, total differenzierbar und es gelten die Cauchy-Riemann-
+			Differentialgleichungen: $\frac{\partial u}{\partial x}|_{z_0}=\frac{\partial v}{\partial y}|_{z_0}$ 
+			und $\frac{\partial u}{\partial y}|_{z_0}=-\frac{\partial v}{\partial x}|_{z_0}$, wobei wieder 
+			$f=u+iv$ gelte.
+		\end{enumerate}
+		Insbesondere ist $f$ dann auch bei $z_0$ stetig.
+	\end{lemma}
 \end{document}

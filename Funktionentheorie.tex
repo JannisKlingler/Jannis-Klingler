@@ -125,7 +125,7 @@
 	
 	\begin{remind}
 		Eine (komplexe) Potenzreihe ist ein Ausdruck der Form $R(z)=\sum^{\infty}_{n=0} a_n z^n$ mit 
-		$a_n \in \mathbb{C}$ für alle $n$. Sie hat den Konvergenzradius $\rho = \left( limsup_{n\to\infty}
+		$a_n \in \mathbb{C}$ für alle $n$. Sie hat den Konvergenzradius $\rho = \left( \limsup_{n\to\infty}
 		\sqrt[n]{|a_n |}\right)^{-1} \in [0,\infty]$. Dann:
 		\begin{eqnarray*}
 			R(z)\text{ konvergiert für alle $z$ mit }|z|< \rho \\
@@ -246,14 +246,14 @@
 		A'(1)}_{a'}$,\\$A''(z)=A''(z\cdot 1)=\overline{z}\cdot\underbrace{A''(1)}_{a''}$.
 	\end{proof}
 	
-	\begin{remind}
+	\begin{repetition}
 		Sei $U\subset\mathbb{C}$ offen, $f:U\to\mathbb{C}\sim\mathbb{R}^2$ eine Funktion. $f$ 
 		heißt total differenzierbar bei $z_0\in U$, falls eine $\mathbb{R}$-lineare Abbildung 
 		$A:\mathbb{C}\to\mathbb{C}$ existiert, sd. \[ \lim_{z\to z_0} \frac{f(z)-f(z_0)-A(z-z_0)}
 		{|z-z_0 |}=0. \]
 		Dann ist $f$ auch partiell differenzierbar und die partiellen Ableitungen sind gerade die Einträge 
 		der reellen $2\times 2$-Matrix $A$.
-	\end{remind}
+	\end{repetition}
 	
 	\begin{definition}[Komplexe Differenzierbarkeit]
 		Es sei $U\subset \mathbb{C}$ offen. Eine Funktion $f:U\to \mathbb{C}$ heißt komplex 
@@ -279,7 +279,7 @@
 		$\frac{\partial\overline{z}}{\partial z}=0$, $\frac{\partial\overline{z}}{\partial\overline{z}}=1$
 	\end{example}
 	
-	\begin{lemma}
+	\begin{lemma}[Definition]
 		Es sei $U\subset\mathbb{C}$ offen, $f:U\to\mathbb{C}$ eine Funktion, $z_0\in U$. Dann sind 
 		äquivalent
 		\begin{enumerate}
@@ -290,10 +290,132 @@
 			\item $f$ ist bei $z_0$ reell, total differenzierbar und $\frac{\partial f}{\partial \overline{z}}|_
 			{z_0}=0$
 			\item $f$ ist bei $z_0$ reell, total differenzierbar und es gelten die Cauchy-Riemann-
-			Differentialgleichungen: $\frac{\partial u}{\partial x}|_{z_0}=\frac{\partial v}{\partial y}|_{z_0}$ 
+			Differentialgleichungen (C-R-DGL): 
+			$\frac{\partial u}{\partial x}|_{z_0}=\frac{\partial v}{\partial y}|_{z_0}$ 
 			und $\frac{\partial u}{\partial y}|_{z_0}=-\frac{\partial v}{\partial x}|_{z_0}$, wobei wieder 
 			$f=u+iv$ gelte.
 		\end{enumerate}
 		Insbesondere ist $f$ dann auch bei $z_0$ stetig.
 	\end{lemma}
+	
+	\begin{proof}
+		(1)$\Rightarrow$(2): Setze 
+		\[ \varphi(z)=\begin{dcases} \frac{f(z)-f(z_0)}{z-z_0} & z\neq z_0 \\ f'(z_0) & z=z_0 \end{dcases}\]
+		Stetigkeit bei $z_0$ folgt aus der komplexen Differenzierbarkeit.\\
+		(2)$\Rightarrow$(3): Schreibe
+		\begin{eqnarray*}
+			\lim_{z\to z_0} \frac{f(z)-f(z_0)-\varphi(z_0)\cdot (z-z_0)}{|z-z_0|} = 
+			\lim_{z\to z_0} \underbrace{(\varphi(z)-\varphi(z_0))}_{\to \ 0\text{, da $\varphi$ stetig in 
+			$z_0$.}} \underbrace{\frac{z-z_0}{|z-z_0|}}_{\text{beschränkt (Norm $1$)}} =0
+		\end{eqnarray*}
+		$\Rightarrow$ $f$ ist bei $z_0$ total-reell-differenzierbar. Die Ableitung ist die $\mathbb{C}$-
+		lineare Abbildung $\omega\mapsto \varphi(z_0)\cdot \omega$.\\
+		(3)$\Rightarrow$(4): Da die reelle Ableitung $\mathbb{C}$-linear ist, folgt 
+		$\frac{\partial f}{\partial \overline{z}}(z_0)=0$ ( was nach Definition gerade der Antilinearteil 
+		der Ableitung ist)\\
+		(4)$\Rightarrow$(5):
+		\begin{eqnarray*}
+			0=\underbrace{\frac{\partial f}{\partial \overline{z}}(z_0)}_{\in \mathbb{C}} \underset{\text{
+			Def. 1.12}}{=} \underbrace{\frac{1}{2} \left( \frac{\partial u}{\partial x} -
+			\frac{\partial v}{\partial y} \right)}_{\text{Realteil}}(z_0) + \frac{i}{2} \underbrace{
+			\left( \frac{\partial v}{\partial x}+\frac{\partial u}{\partial y}\right)}_{\text{Imaginärteil}}(z_0)
+		\end{eqnarray*}
+		hieraus lassen sich die C-R-DGL direkt ablesen.\\
+		(5)$\Rightarrow$(1): Schreibe $z=z_0 +x+iy$ dann gilt
+		\begin{eqnarray*}
+			f(z) &=& f(z_0) +\frac{\partial u}{\partial x} x +\frac{\partial u}{\partial y} y +
+			 \frac{\partial v}{\partial x} ix + \frac{\partial v}{\partial y} iy +R(x,y) \\
+			&\overset{\text{C-R-DGL}}{=}& f(z_0) +\frac{\partial u}{\partial x} (x+iy) -\frac{\partial v}
+			{\partial x}(y-ix)+R(x,y) \\
+			&=& f(z_0) +\left(\frac{\partial u}{\partial x}+i \frac{\partial v}{\partial x}\right)\cdot
+			(x+iy)+R(x,y)
+		\end{eqnarray*}
+		mit $R(x,y)=o(|(x,y)|)$, das heißt $\lim_{(x,y)\to 0} \frac{R(x,y)}{|(x,y)|}=0$ (der Restterm geht 
+		schneller gegen Null als $(x,y)$). Es folgt 
+		\begin{eqnarray*}
+			\lim_{z\to z_0}\frac{f(z)-f(z_0)}{z-z_0} &=& \lim_{z\to z_0}\frac{\left(\frac{\partial u}{\partial x}
+			+i\frac{\partial v}{\partial x}\right)\cdot (z-z_0)+R(x,y)}{z-z_0} \\
+			&=&\frac{\partial u}{\partial x}+i\frac{\partial v}{\partial x} +\lim_{z\to z_=}
+			\underbrace{\frac{R(x,y)}{|z-z_0|}}_{\to\  0}\cdot \underbrace{\frac{|z-z_0|}{z-z_=}}_{\text{
+			beschränkt}}\\
+			&=& \frac{\partial u}{\partial x}+i\frac{\partial v}{\partial x} \in\mathbb{C}
+		\end{eqnarray*}
+	\end{proof}
+	
+	\begin{example}
+		Die komplexe Exponentialfunktion ist holomorph auf ganz $\mathbb{C}$ (Begründung folgt)
+	\end{example}
+	
+	\begin{proposition}
+		Es gelten folgende Differentiationsregeln:
+		\begin{enumerate}
+			\item \underline{Linearität:} Seien $f,g:\Omega\to\mathbb{C}$ holomorph, $a,b\in\mathbb{C}
+			$, dann ist $a\cdot f+b\cdot g$ holomorph mit $(a\cdot f+b\cdot g)'(z)=a\cdot f'(z)+b\cdot 
+			g'(z)$.
+			\item \underline{Kettenregel:} Sei $f:\Omega\to\Omega'$, $g:\Omega'\to\mathbb{C}$ 
+			holomorph, dann ist $g\circ f:\Omega\to\mathbb{C}$ holomorph mit 
+			$(g\circ f)'(z)=f'(g(z))\cdot g'(z)$.
+			\item \underline{Produktregel:} Seien $f,g:\Omega\to\mathbb{C}$ holomorph, dann ist 
+			$f\cdot g$ holomorph mit Ableitung $(f\cdot g)'(z)= f'(z)\cdot g(z)+f(z)\cdot g'(z)$.
+		\end{enumerate}
+	\end{proposition}
+	
+	\begin{proof}
+		(1): Additivität ist klar. Multiplikativität siehe (3) \\
+		(2): Übung\\
+		(3): Schreibe $f=u+iv$, $g=r+is$, $u,v,r,s:\Omega\to\mathbb{R}$, dann ist 
+		$f\cdot g=(u\cdot r-v\cdot s)+i\cdot(u\cdot s+v\cdot r)$. Jetzt setzen wir mit den reellen 
+		Produktregeln fort und sind fertig.
+	\end{proof}
+	
+	\begin{theorem}
+		Es sei $R(z)=\sum_{n=0}^{\infty} a_n \cdot z^n $ konvergente Potenzreihe mit 
+		Konvergenzradius $\rho >0$, dann ist $R(z)$ auf $B_{\rho}(0)$ holomorph mit Ableitung 
+		\[R'(z)=\sum_{n=0}^{\infty} a_n \cdot n\cdot z^{n-1} =\sum_{m=0}^{\infty}a_{m+1}(m+1)z^m,\quad
+		n-1=m.\]
+	\end{theorem}
+	
+	\begin{proof}
+		Siehe Analysis, beruht auf folgendem Satz: Sei $(f_n)_{n\in\mathbb{N}}$ Folge differenzierbarer 
+		Funktionen auf $U$, sd. $(f_n)_n$ punktweise und $(f'_n)_n$ lokal-gleichmäßig konvergiert. \\
+		$\Rightarrow$ $(\lim_{n\to\infty} f_n)'=\lim_{n\to\infty}f'_n$
+	\end{proof}
+	
+	\subsection{Das komplexe Kurvenintegral}
+	
+	\begin{definition}
+		Eine stückweise $C^1$-Kurve $\gamma:[a,b]\to\mathbb{C}$ ist eine stetige Abbildung, sd. 
+		$a=t_0 < t_1 <\ldots<t_n=b$ existieren, für die $\gamma |_{ [t_{i-1},t_i]}\in C^1$ für 
+		$i=1,\ldots ,n$. \\
+		Für $t\neq t_i$, $t\in [a,b]$, sei $\dot{\gamma}(t)=\frac{\mathrm{d}\gamma}{\mathrm{d}t}(t)$ der 
+		Geschwindigkeitsvektor. $\gamma$ heißt geschlossen, wenn \[\gamma(a)=\gamma(b).\]
+	\end{definition}
+	
+	\begin{definition}[Kurvenintegral]
+		Sei $\Omega\subset\mathbb{C}$ ein Gebiet, $\gamma:[a,b]\to\Omega$ stückweise $C^1$, sei 
+		$f:\Omega\to\mathbb{C}$ stetig. Definiere das komplexe Kurvenintegral
+		\[ \int_{\gamma} f(z)\mathrm{d}z :=\int_a^b f(\gamma(t))\cdot \dot{\gamma}(t) 
+		\mathrm{d}t \in \mathbb{C}. \]
+		Dazu bilden wir rechts Real- und Imaginärteil des Integranden und 
+		integrieren diese seperat mit dem Riemann-/ Regel-/ Lesegueintegral.
+		\[ \int_{\gamma} f(z)\mathrm{d}z =\int_a^b \underbrace{(u(\gamma(t))+i\cdot v(\gamma(t)))}_{f(z)}
+		\cdot \underbrace{(\dot{x}(t)+i\cdot \dot{y}(t))\mathrm{d}t}_{\mathrm{d}z} \]
+		,wobei $f=u+iv$, $u,v:\Omega\to\mathbb{R}$ und $\gamma =x+iy$, $x,y:[a,b]\to\mathbb{R}$ 
+		(ausmultiplizieren vgl Kurzskript).  Mithin ist $f(z)=f(\gamma(t))$ der $"$Integrand$"$ und 
+		$\mathrm{d}z=\mathrm{d}(\gamma(t))=\dot{\gamma}(t)\mathrm{d}t$ das 
+		$"$Tangentenelement$"$ des Kurvenintegrals.
+	\end{definition}
+	
+	\begin{remark}
+		\[\overset{\text{ausmult.}}{=} \int_a^b (u(\gamma(t))\cdot \dot{x}(t)-v(\gamma(t))\cdot\dot{y}(t)
+		\mathrm{d}t+i\cdot \int_a^b (u(\gamma(t))\cdot \dot{y}(t)+v(\gamma(t))\cdot\dot{x}(t))\mathrm{d}t\]
+		Der Realteil ist das Kurvenintegral über $\overline{f}=u-iv$ aus der Analysis (aufgefasst als 
+		Vektorfeld $\begin{pmatrix} \text{Re}\ f \\ \text{Im}\ f \end{pmatrix}$) und der Imaginärteil 
+		das entsprechende $"$normale$"$ Kurvenintegral.
+	\end{remark}
+	
+	\begin{remark}
+		Wir möchten uns das komplexe Kurvenintegral als Umkehrung der komplexen Ableitung 
+		vorstellen. Wir sehen im nächsten Abschnitt, für welche Funktionen das geht.
+	\end{remark}
 \end{document}

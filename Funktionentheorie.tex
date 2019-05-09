@@ -414,8 +414,155 @@
 		das entsprechende $"$normale$"$ Kurvenintegral.
 	\end{remark}
 	
+	\begin{proposition}
+		Es sei $\gamma:[a,b]\to\Omega$ eine stückweise $C^1$-Kurve und $\varphi:[c,d]\to[a,b]$ ein 
+		stückweiser $C^1$-Diffeomorphismus, dann ist $\gamma\circ\varphi:[c,d]\to\Omega$ eine 
+		stückweise $C^1$-Kurve. $sign(\dot{\varphi})$ lässt sich zu einer konstanten Funktion auf 
+		$[c,d]$ fortsetzen und für alle stetigen Funktionen $f:\Omega\to\mathbb{C}$ gilt
+		\[ \int_{\gamma} f(z)\mathrm{d}z =sign(\dot{\varphi})\int_{\gamma\circ\varphi} f(\omega)
+		\mathrm{d}\omega \]
+	\end{proposition}
+	
+	\begin{proof}
+		Übung mit Substitutionsformel. \\
+		(Ein stückweise $C^1$-Diffeomorphismus $\varphi:[c,d]\to[a,b]$ ist ein Homomorphismus, sd. 
+		ein $m\in\mathbb{N}$ und $c=s_0 <s_1 <\ldots <s_m =d$ existieren mit 
+		$\varphi |_{[s_{i-1},s_i]}\in C^1 ([s_{i-1},s_i])$ für $i=1,\ldots ,m$)
+	\end{proof}
+	
+	\begin{corollary}[aus Hauptsatz der Differential- und Integralrechnung]
+		Es sei $\Omega\subset\mathbb{C}$ ein Gebiet, $\gamma:[a,b]\to\Omega$ eine stückweise 
+		$C^1$-Kurve und $f:\Omega\to\mathbb{C}$ holomorph. Dann gilt der 
+		Hauptsatz der Differential- und Integralrechnung
+		\[ \int_{\gamma} f'(z)\mathrm{d}z=f(\gamma(t))|_{t=a}^b =f(\gamma(b))-f(\gamma(a)) \]
+	\end{corollary}
+	
+	\begin{proof}
+		Es sei $a=t_0 <t_1 <\ldots <t_n =b$, sd. $\gamma_i =\gamma|_{[t_{i-1},t_i]}\in C^1 
+		([t_{i-q},t_i])$ für $i=1,\ldots ,n$.
+		\[ [t_{i-1},t_i]\overset{\gamma_i}{\to}\Omega\overset{f}{\to}\mathbb{C} \]
+		\begin{eqnarray*}
+			\int_{\gamma_i} f'(z)\mathrm{d}z = \int_{t_{i-1}}^{t_i}f'(\gamma_i (t))\cdot \dot{\gamma_i}(t)
+			\mathrm{d}t &=& \int_{t_{i-1}}^{t_i} (f\circ \gamma_i)'(t)\mathrm{d}t \\
+			&=&(f\circ \gamma_i)(t_i)-(f\circ \gamma_i)(t_{i-1})
+		\end{eqnarray*}
+		\begin{eqnarray*}
+			\Rightarrow\ \int_{\gamma} f'(z)\mathrm{d}z 
+			&=& (f(\gamma(t_1))-f(\gamma(t_0)))+(f(\gamma(t_2))-f(\gamma(t_1)))+\ldots +
+			(f(\gamma(t_n))-f(\gamma(t_{n-1}))) \\
+			&=& f(\gamma(b))-f(\gamma(a))
+		\end{eqnarray*}
+	\end{proof}
+	
 	\begin{remark}
 		Wir möchten uns das komplexe Kurvenintegral als Umkehrung der komplexen Ableitung 
 		vorstellen. Wir sehen im nächsten Abschnitt, für welche Funktionen das geht.
 	\end{remark}
+	
+	\subsection{Der Cauchy-Integralsatz}
+	
+	\begin{definition}[stückweise $C^1$-Homotopie]
+		Eine stückweise $C^1$-Homotopie, in einem Gebiet $\Omega\subset\mathbb{C}$, zwischen 
+		zwei stückweisen $C^1$-Kurven $\gamma_0,\gamma_1:[a,b]\to\Omega$ mit $\gamma_0 (a)=
+		\gamma_1 (a)=p$, $\gamma_0 (b)=\gamma_1 (b)=q$ ist eine stetige Abbildung 
+		$h:[a,b]\times [0,1]\to\Omega$, sd. $m,n\in\mathbb{N}$, $a=t_0 <t_1 <\ldots <t_n =b$, 
+		$0=s_0 <\ldots <s_m =1$ existieren, sd. $h|_{[t_{j-1},t_j]\times [s_{k-1},s_k]}\in C^1$ ist 
+		(auch auf den jeweiligen Randstücken) und $h(t,l)=\gamma_l (t)$ für $l\in [0,1]$, $t\in [a,b]$ und 
+		$h(a,s)=p$, $h(b,s)=q$ für alle $s\in [0,1]$.
+	\end{definition}
+	
+	\begin{definition}[homotope Kurve]
+		Eine (stückweise $C^1$-) Kurve $\gamma_0 :[a,b]\to\Omega$ heißt zu einer 
+		(stückweisen $C^1$-) Kurve $\gamma_1 :[a,b]\to\Omega$, mit gleichem Anfangs- und Endpunkt, 
+		(stückweise $C^1$-) homotop in $\Omega$, wenn es eine stückweise $C^1$-Homotopie 
+		zwischen ihnen in $\Omega$ gibt.
+	\end{definition}
+	
+	\begin{definition}[nullhomotope Kurve]
+		Eine geschlossene (stückweise $C^1$-) Kurve $\gamma$ heißt (stückweise $C^1$-) nullhomotop 
+		in $\Omega$, wenn sie $C^1$-homotop zu einer konstanten Kurve ist.
+	\end{definition}
+	
+	\begin{definition}[einfach zusammenhängend]
+		Das Gebiet $\Omega$ heißt einfach zusammenhängend, wenn jede geschlossene (stückweise 
+		$C^1$-) Kurve in $\Omega$ (stückweise $C^1$-) nullhomotop in $\Omega$ ist.
+	\end{definition}
+	
+	\begin{remark}[Einschub zu Kurvenintegral]
+		Sei $\gamma:[a,b]\to\mathbb{C}$ eine stückweise $C^1$-Kurve, dann definieren wir die 
+		Bogenlänge (bzw. Länge) als
+		\[ L(\gamma)=\int_a^b |\dot{\gamma}(t)|\mathrm{d}t =\sup_{n,a=t_0 <\ldots <t_n =b} 
+		\sum_{j=1}^n |\gamma(t_j)-\gamma(t_{j-1})| \]
+		Dann gilt
+		\begin{eqnarray*}
+			\left|\int_{\gamma} f(z)\mathrm{d}z \right| = \left|\int_a^b f(\gamma(t))\cdot 
+			\dot{\gamma}(t)\mathrm{d}t \right| 
+			&\leq& \int_a^b |f(\gamma(t))\cdot \dot{\gamma}(t) |\mathrm{d}t \\
+			&=& \int_a^b |f(\gamma(t))|\cdot \dot{\gamma}(t)\mathrm{d}t \\
+			&\leq& \sup_{t\in [a,b]} |f(\gamma(t))| \cdot L(\gamma).
+		\end{eqnarray*}
+	\end{remark}
+	
+	\begin{theorem}[Cauchy-Integralsatz]
+		Es sei $\Omega\subset\mathbb{C}$ ein Gebiet, $f:\Omega\to\mathbb{C}$ holomorph und 
+		$\gamma:[a,b]\to\Omega$ eine stückweise $C^1$-Kurve, die in $\Omega$ stückweise 
+		$C^1$-nullhomotop ist. Dann gilt 
+		\[ \int_{\gamma} f(z) \mathrm{d}z =0 \]
+	\end{theorem}
+	
+	\begin{proof}
+		Es reich zu zeigen, dass für jede stückweise $C^1$-Abbildung $h:\underbrace{[a,b]\times [0,1]}_
+		{R}\to\Omega$ gilt
+		\[ \int_{h(\partial R)} f(z) \mathrm{d}z =0. \]
+		Dabei ist $\int_{h(\partial R)}\quad$ eine Abkürzung für $\int_{h(\partial R)}\quad =
+		\int_{h_1}\quad +\int_{h_2}\quad +\int_{h_3}\quad +\int_{h_4}\quad$, wobei 
+		$h_1 (t)=h(t,0)$, $h_2 (s)=h(b,s)$, $h_3 (t)=h(a+b-t,1)$, $h_4 (s)=h(a,1-s)$. \\
+		Setze das zu einer stückweisen $C^1$-Kurve mit Namen $h(\partial R)$ zusammen. \\
+		\underline{Annahme:} Es gebe eine solche Abbildung $h:[a,b]\times [0,1]\to \Omega$, sd. 
+		$\int_{h(\partial R)} f(z)\mathrm{d}z \neq 0$. \\
+		Wir zerlegen das Rechteck $R$ in vier gleich große Teile $R_1 ,\ldots,R_4$ und sehen, dass
+		\[ \int_{h(\partial R)} f(z)\mathrm{d}z = \int_{h(\partial R_1)} f(z)\mathrm{d}z +\ldots +
+		\int_{h(\partial R_4)} f(z)\mathrm{d}z. \]
+		Da sich die zusätzlichen Integrale über Strecken im Inneren von $R$ wegen Proposition 1.21 
+		wegheben. \\
+		Jetzt wählen wir das Teilrechteck aus, für den das jeweilige Kurvenintegral über den Rand den 
+		größten Absolutbetrag hat, nenne es $R_1$. Es folgt 
+		\[ \left| \int_{h(\partial R_1}f(z)\mathrm{d}z\right| \geq \frac{1}{4} \left|\int_{h(\partial R)}f(z)
+		\mathrm{d}z \right| \]
+		Wir zerlegen weiter und erhalten so eine Folge von Rechtecken $R_1 \supset R_2 \supset\ldots 
+		,R_n$ mit Seitenlängen von $R_n$ proportional zu $2^{-n}$, sd.
+		\[ \left| \int_{h(\partial R_n)} f(z)\mathrm{d}z \right| \geq 2^{-n} \left| \int_{h(\partial R)}f(z)
+		\mathrm{d}z \right|. \]
+		Nach dem Satz über die Invervallverschachtelung (Analysis) existiert ein eindeutiger Punkt 
+		$(t_0,s_0)\in\mathbb{R}^2$ mit $(t_0,s_0)\in  \bigcap_{n\in\mathbb{N}}R_n$. \\
+		Es sei $z_0 =h(t_0,s_0)\in\Omega$.\\
+		\underline{Beachte:} Da $h$ stückweise $C^1$ ist, erhalten wir für jedes der endlich vielen 
+		Rechtecke aus Definition 1.22 eine obere Schranke für $|\frac{\partial h}{\partial t}|$, 
+		$|\frac{\partial h}{\partial s}|$ (wegen der Kompaktheit). 
+		Da es nur endlich viele dieser Rechtecke gibt, folgt $|\frac{\partial h}{\partial t}|\leq C$, 
+		$|\frac{\partial h}{\partial s}| \leq C$ auf ganz $R=R_0$, für ein festes $C>0$. \\
+		Schreibe nahe $z_0$ die Funktion $f$ als $f(z)=f(z_0)+f'(z_0)\cdot (z-z_0)+r(z-z_0)$, wobei \\
+		$\lim_{z\to z_0} |\frac{r(z-z_0)}{z-z_0}|=0$, da $f$ holomorph ist (vgl. Lemma 1.14).\\
+		Da $f(z_0)+f'(z_0)\cdot (z-z_0)$ das Differential der holomorphen Funktion
+		$z\mapsto f(z_0)\cdot (z-z_0)+\frac{1}{2}f'(z_0)\cdot (z-z_0)^2$ ist, folgt mit Bemerkung 2, dass 
+		das Integral von $f(z_0)+f'(z_0)\cdot (z-z_0)$ über die geschlossenen Kurven $h(\partial R_n)$ 
+		verschwindet. Die Länge $L$ von $h(\partial R_n)$, $L(h(\partial R_n))$ können wir abschätzen 
+		durch $4\cdot 2^{-n}\cdot C$. Es folgt
+		\begin{eqnarray*}
+			\left| \int_{h(\partial R)}f(z)\mathrm{d}z \right| 
+			&\leq& \lim_{n\to\infty} 2^{2n} \left| \int_{h(\partial R_n)}f(z)\mathrm{d}z \right| \\
+			&\overset{(I)}{=}& \lim_{n\to\infty} 2^{2n} \left|\int_{h(\partial R_n)}
+			r(z-z_0)\mathrm{d}z \right| \\
+			&\leq& \lim_{n\to\infty} \left( 2^{2n} \cdot \sup_{h(\partial R_n)}|r(z-z_0)|\cdot 
+			\underbrace{L(h(\partial R_n))}_{\leq 4\cdot C\cdot 
+			2^{-n}}\right) \\
+			&\leq& \lim_{n\to\infty} \left(2^n \cdot 4\cdot C \cdot \sup_{h(\partial R_n)} |r(z-z_0)| \cdot 
+			\frac{|z-z_0|}{|z-z_0|}\right) \\
+			&\underset{|z-z_0|\leq 2^{-n}\cdot 2\cdot C}{\leq}& \lim_{n\to\infty} \left(8\cdot C^2 \cdot
+			\sup_{h(\partial R_n)} \frac{|r(z-z_0)|}{|z-z_0|}\right) \\
+			&=& \underbrace{\lim_{z\to z_0} \frac{|r(z-z_0)|}{|z-z_0|}}_{=0}\cdot 8\cdot C^2 \\
+			&=&0.
+		\end{eqnarray*}
+		Also gilt $| \int_{h(\partial R)}f(z)\mathrm{d}z |=0$ im Widerspruch zur Annahme.
+	\end{proof}
 \end{document}

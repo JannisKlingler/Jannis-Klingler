@@ -511,7 +511,7 @@
 	\end{theorem}
 	
 	\begin{proof}
-		Es reich zu zeigen, dass für jede stückweise $C^1$-Abbildung $h:\underbrace{[a,b]\times [0,1]}_
+		Es reicht zu zeigen, dass für jede stückweise $C^1$-Abbildung $h:\underbrace{[a,b]\times [0,1]}_
 		{R}\to\Omega$ gilt
 		\[ \int_{h(\partial R)} f(z) \mathrm{d}z =0. \]
 		Dabei ist $\int_{h(\partial R)}\quad$ eine Abkürzung für $\int_{h(\partial R)}\quad =
@@ -564,5 +564,148 @@
 			&=&0.
 		\end{eqnarray*}
 		Also gilt $| \int_{h(\partial R)}f(z)\mathrm{d}z |=0$ im Widerspruch zur Annahme.
+	\end{proof}
+	
+	\begin{corollary}
+		Es sei $\Omega\subset\mathbb{C}$ Gebiet, $\gamma_0$, $\gamma_1$ zwei stückweise 
+		$C^1$-Kurven in $\Omega$ von $p$ nach $q$, die stückweise $C^1$-homotop sind. 
+		Dann gilt
+		\[ \int_{\gamma_0} f(z)\mathrm{d}z=\int_{\gamma_1}f(z)\mathrm{d}z \]
+	\end{corollary}
+	
+	\begin{proof}
+		Sei $h$ eine stückweise $C^1$-Homotopie zwischen $\gamma_0$ und $\gamma_1$ in 
+		$\Omega$. \\
+		Betrachte $k:[0,1]^2 \to[a,b]\times[0,1]$ mit
+		\[ k(u,v)=\begin{dcases} (a+(1-v)4u(b-a),0) & u\in[0,\frac{1}{4}] \\
+		(a+(1-v)(b-a),4u-1) & u\in[\frac{1}{4},\frac{1}{2}] \\
+		(a+(1-v)(3-4u)(b-a),1) & u\in [\frac{1}{2},\frac{3}{4}] \\
+		(a,4-4u)& u\in[\frac{3}{4},1]
+		\end{dcases} \]
+		Die Kurve $(h\circ k)(\cdot,0):[0,1]\to\Omega$ ist geschlossen und wegen der Invarianz des 
+		Kurvenintegrals unter Umparametrisierung erhalten wir 
+		\begin{eqnarray*}
+			\int_{(h\circ k)(\cdot,0)}f(z)\mathrm{d}z &=& \int_{\gamma_0}f(z)\mathrm{d}z +
+			\underbrace{\int_q f(z)\mathrm{d}z}_{0} +\int_{\gamma_1 (-\cdot)}f(z)\mathrm{d}z +
+			\int_p f(z)\mathrm{d}z \\
+			&=&\int_{\gamma_0}f(z)\mathrm{d}z-\int_{\gamma_1}f(z)\mathrm{d}z
+		\end{eqnarray*}
+		$(h\circ k)$ ist eine Nullhomotopie dieser Kurve. also verschwindet der obige Ausdruck.
+	\end{proof}
+	
+	\begin{theorem}[erweiterter Cauchy-Integralsatz]
+		Sei $f:\Omega\to\mathbb{C}$ stetig differenzierbar und $\gamma:[0,1]\to\Omega$ umlaufe eine 
+		einfach zusammenhängende Teilmenge $A\subset\Omega$ im mathematischen Drehsinn.
+		Dann gilt
+		\[\int_{\gamma}f(z)\mathrm{d}z =2i \int_A \frac{\partial f}{\partial \overline{z}}(z)
+		\underbrace{\mathrm{d}A(z)}_{\text{Flächenelement}} \]
+		(Vergleiche mit dem Satz von Stokes oder dem Gaußschen Divergenzsatz)
+	\end{theorem}
+	
+	\begin{proof}
+		Beweisskizze: Da $A$ einfach zusammenhängend ist, ist $\gamma$ in $A$ nullhomotop. \\
+		Sei $h:[0,1]^2 \to A\subset\Omega$ eine Nullhomotopie. Annahme:
+		\[ \left| \int_{\gamma}f(z)\mathrm{d}z -2i \int_A \frac{\partial f}{\partial \overline{z}}\mathrm{d} A(z)
+		\right| =\varepsilon >0. \]
+		Zerlege $[0,1]^2$ in vier gleich große Quadrate $R' ,\ldots ,R''''$. Dann gilt für eins der 
+		Quadrate:
+		\[ \left| \int_{h(\partial R^? )} f(z)\mathrm{d}z -2i \int_{h(R^?)}
+		\frac{\partial f}{\partial \overline{z}}\mathrm{d} A(z) \right| \geq \frac{\varepsilon}{4} \]
+		Nenne es $R_1$ und zerlege weiter. Erhalte eine Intervallverschachtelung mit Grenzpunkt 
+		$(t_0, s_0)\in[0,1]^2$; sei $h(t_0,s_0) =:z_0\in\Omega$. Schreibe
+		\[f(z)=f(z_0)+\frac{\partial f}{\partial z} (z_0)\cdot (z-z_0) +\frac{\partial f}{\partial \overline{z}}
+		(z_0)\cdot \overline{(z-z_0)} +r(z-z_0). \]
+		mit $\lim_{z\to z_0} \frac{r(z-z_0)}{|z-z_0|}=0$. Wir wissen, dass 
+		\[ \int_{h(\partial R^n)} \left( f(z_0)+\frac{\partial f}{\partial z} (z_0)(z-z_0) \right) \mathrm{d}z =0. \]
+		In einer Übung berechnen wir 
+		\[ \int_{h(\partial R^n)}\frac{\partial f}{\partial \overline{z}}(z_0)\overline{(z-z_0)}\mathrm{d}z =
+		2i\cdot A(h(R^n)) \]
+		(falls $h(R^n)$ ein Parallelogramm ist — da $h$ stückweise $C^1$ ist, ist $h(R^n)$ $"$fast$"$ 
+		ein Parallelogramm, sd. die obige Behauptung bis auf einen ausreichend kleinen Rest stimmt.)
+		Außerdem gilt
+		\[ \lim_{n\to\infty} \left| \int_{h(R^n)} \frac{\partial f}{\partial \overline{z}} \mathrm{d} A(z) - 
+		\int_{h(R^n)} \frac{\partial f}{\partial \overline{z}}(z_0)\mathrm{d}A(z) \right| \cdot 2^{2n} =0 \]
+		da $\frac{\partial f}{\partial \overline{z}}$ stetig ist. $\frac{\partial f}{\partial \overline{z}}(z_0) 
+		\cdot A(h(R^n))$ Also erhalten wir einen Widerspruch genau wie im Beweis des Integralsatzes.
+	\end{proof}
+	
+	\subsection{Die Potenzreihendarstellung}
+	
+	\underline{Ziel:} \begin{itemize} \item $"$holomorph$"$ und $"$ analytisch$"$ sind gleichbedeutend. 
+	\item Man kann Ableitungen als Integrale schreiben.
+	\item Funktionen haben Stammfunktionen genau dann, wenn sie holomorph sind.
+	\end{itemize}
+	
+	\begin{theorem}[Cauchy-Formel]
+		Es sei $\Omega\subset\mathbb{C}$ ein Gebiet. $f:\Omega\to\mathbb{C}$ holomorph, 
+		$z_0\in\Omega$, $r>0$ sei so gewählt, dass $\overline{B_r (z_0)}\subset\Omega$. 
+		$\gamma$ beschreibe den Rand von $B_r (z_0)$ im mathematische Drehsinn. Dann gilt 
+		für all $z\in B_r (z_0)$, dass 
+		\[ f(z)= \frac{1}{2 \pi i} \int_{\gamma} \frac{f(\zeta)}{\zeta -z}\mathrm{d}\zeta. \]
+	\end{theorem}
+	
+	\begin{proof}
+		$\frac{f(\zeta )}{\zeta -z}$ ist in $\zeta$ holomorph in $\Omega\setminus \{ z\}$. 
+		Wähle $\varepsilon >0$ hinreichend klein, sd. $B_{\varepsilon}(z)\subset B_r (z_0)$. 
+		Dann lässt sich eine in $\Omega\setminus \{ z \}$ nullhomotope Kurve $\varphi$ finden, sd.
+		\[ 0= \int_{\varphi} \frac{f(\zeta)}{\zeta -z}\mathrm{d}\zeta = 
+		\int_{\gamma}\frac{f(\zeta)}{\zeta -z} \mathrm{d}\zeta - \int_{\partial B_{\varepsilon}(z) }
+		\frac{f(\zeta)}{\zeta - z}\mathrm{d}\zeta \]
+		Berechne jetzt für $\varepsilon >0$ klein 
+		\begin{eqnarray*}
+			\int_{\partial B_{\varepsilon}(z)} \frac{f(\zeta)}{\zeta -z}\mathrm{d}\zeta &=& 
+			\int_0^1 f(\underbrace{z+\varepsilon \cdot e^{2\pi it} }_{\zeta})\cdot 
+			\frac{1}{\varepsilon \cdot e^{2\pi it}} \underbrace{2\pi i \varepsilon \cdot e^{2 \pi it}}_{=
+			\dot{\varphi}(t)} \mathrm{d}t \\
+			&=& 2\pi i \int_0^1 f(\underbrace{f(z)+R(\varepsilon e^{2\pi i t})}_{\text{da $f$ stetig ist, gilt 
+			$R\to0$ für $\varepsilon\to 0$}})\mathrm{d}t
+		\end{eqnarray*}
+		$\lim_{\varepsilon\to 0} \int_{\partial B_{\varepsilon} (z)} \frac{f(\zeta)}{\zeta -z} \mathrm{d}\zeta
+		=2\pi i f(z)$.
+	\end{proof}
+	
+	\begin{corollary}[Mittelwertsatz]
+		Es seien $\Omega$, $f$, $z_0$, $r$ wie oben, dann gilt 
+		\[ f(z_0)= \int_0^1 f(z_0+r\cdot e^{2\pi it})\mathrm{d}t \]
+		Kein Kurvenintegral und das hier ist nicht der Mittelwertsatz aus Ana 1.
+	\end{corollary}
+	
+	\begin{proof}
+		Setze $z=z_0$ in der Integralformel 
+		\[ f(z_0)= \frac{1}{2\pi i} \int_0^1 f(z_0+r\cdot e^{2\pi it})\cdot \frac{1}{r e^{2\pi it}} r\cdot 2\pi i \cdot 
+		e^{2\pi it}\mathrm{d}t \]
+	\end{proof}
+	
+	\begin{example}
+		Wähle $\Omega=\mathbb{C}$, $f(z)=e^z$ $z_0 =0$, $r=1$. Dann gilt
+		\begin{eqnarray*}
+			1&=& e^0 = \int_0^1 e^{\cos(2\pi t)+i\sin (2\pi t)}\mathrm{d}t \quad \varphi=2\pi t \\
+			&=& \frac{1}{2\pi} \underbrace{\int_0^{2\pi} e^{\cos(\varphi)}\cdot \cos(\sin(\varphi)) 
+			\mathrm{d}\varphi }_{2\pi} +\frac{1}{2\pi i} \underbrace{\int_0^{2\pi}e^{\cos(\varphi)}\cdot 
+			\sin(\sin(\varphi))\mathrm{d}\varphi}_{0}
+		\end{eqnarray*}
+	\end{example}
+	
+	\begin{theorem}[Potenzreihenentwicklung]
+		Es sei $f:\Omega\to\mathbb{C}$ holomorph und $z_0\in\Omega$. Dann konvergiert die 
+		Potenzreihe $\sum_{n=0}^{\infty} a_n \cdot (z-z_0)^n$ mit $a_n = \frac{1}{2\pi i} \int_{\partial B_r 
+		(z_0)} \frac{f(z)}{(z-z_0)^{n+1}}\mathrm{d}z$ (für ein $r>0$, sd. $\overline{B_r (z_0)}
+		\subset\Omega$) mit Konvergenzradius $\varphi \geq \sup\{r|\overline{B_r (z_0)}
+		\subset\Omega\}$ und stellt auf $B_r (z_0)$ die Funktion $f$ dar.
+	\end{theorem}
+	
+	\begin{proof}
+		\begin{eqnarray*}
+			f(z) &=& \frac{1}{2\pi i} \int_{\partial B_r (z_0)} \frac{f(\zeta)}{\zeta -z}\mathrm{d}\zeta 
+			= \frac{1}{2\pi i}\int_{\partial B_r (z_0)} \frac{f(\zeta)}{(\zeta - z_0)-(z-z_0)}\mathrm{d}\zeta \\
+			&=& \frac{1}{2\pi i} \int_{\partial B_r (z_0)} f(\zeta)\cdot \underbrace{\sum_{n=0}^{\infty} 
+			\frac{(z-z_0)^n}{(\zeta - z_0)^{n+1}}}_{\frac{1}{\zeta -z_0}\cdot\frac{1}{1-\frac{z-z_0}
+			{\zeta -z_0}}}\mathrm{d}\zeta 
+			= \sum_{n=0}^{\infty} (z-z_0)^n \cdot \frac{1}{2\pi i} \int_{\partial B_r (z_0)} 
+			\frac{f(\zeta)}{(\zeta -z_0)^{n+1}} \mathrm{d}\zeta.
+		\end{eqnarray*}
+		Wir dürfen Summation und Integration vertauschen, falls $|z-z_0|<|\zeta -z_0|=r$, da dann 
+		Summe und Integral absolut konvergieren. Der Konvergenzradius ist daher mindestens $r$. 
+		Und zwar für jedes $r$ mit $\overline{B_r (z_0)}\subset\Omega$.
 	\end{proof}
 \end{document}

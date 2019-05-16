@@ -5,6 +5,8 @@
 \usepackage[utf8]{inputenc}
 \usepackage[ngerman]{babel}
 \usepackage[paper=a4paper,left=25mm,right=25mm,top=25mm,bottom=25mm]{geometry}
+\usepackage{hyperref}
+\hypersetup{bookmarksnumbered}
 
 \usepackage{dsfont}
 \usepackage{xfrac}
@@ -279,7 +281,7 @@
 		$\frac{\partial\overline{z}}{\partial z}=0$, $\frac{\partial\overline{z}}{\partial\overline{z}}=1$
 	\end{example}
 	
-	\begin{lemma}[Definition]
+	\begin{lemma}[Definition]\label{lem:komplexdiffbar}
 		Es sei $U\subset\mathbb{C}$ offen, $f:U\to\mathbb{C}$ eine Funktion, $z_0\in U$. Dann sind 
 		äquivalent
 		\begin{enumerate}
@@ -346,7 +348,7 @@
 		Die komplexe Exponentialfunktion ist holomorph auf ganz $\mathbb{C}$ (Begründung folgt)
 	\end{example}
 	
-	\begin{proposition}
+	\begin{proposition}\label{prop:Rechenregeln}
 		Es gelten folgende Differentiationsregeln:
 		\begin{enumerate}
 			\item \underline{Linearität:} Seien $f,g:\Omega\to\mathbb{C}$ holomorph, $a,b\in\mathbb{C}
@@ -430,7 +432,7 @@
 		$\varphi |_{[s_{i-1},s_i]}\in C^1 ([s_{i-1},s_i])$ für $i=1,\ldots ,m$)
 	\end{proof}
 	
-	\begin{corollary}[aus Hauptsatz der Differential- und Integralrechnung]
+	\begin{corollary}[aus Hauptsatz der Differential- und Integralrechnung]\label{Haupsatz}
 		Es sei $\Omega\subset\mathbb{C}$ ein Gebiet, $\gamma:[a,b]\to\Omega$ eine stückweise 
 		$C^1$-Kurve und $f:\Omega\to\mathbb{C}$ holomorph. Dann gilt der 
 		Hauptsatz der Differential- und Integralrechnung
@@ -440,7 +442,7 @@
 	\begin{proof}
 		Es sei $a=t_0 <t_1 <\ldots <t_n =b$, sd. $\gamma_i =\gamma|_{[t_{i-1},t_i]}\in C^1 
 		([t_{i-q},t_i])$ für $i=1,\ldots ,n$.
-		\[ [t_{i-1},t_i]\overset{\gamma_i}{\to}\Omega\overset{f}{\to}\mathbb{C} \]
+		\[ [t_{i-1},t_i]\xrightarrow{\gamma_i}\Omega\xrightarrow{f}\mathbb{C} \]
 		\begin{eqnarray*}
 			\int_{\gamma_i} f'(z)\mathrm{d}z = \int_{t_{i-1}}^{t_i}f'(\gamma_i (t))\cdot \dot{\gamma_i}(t)
 			\mathrm{d}t &=& \int_{t_{i-1}}^{t_i} (f\circ \gamma_i)'(t)\mathrm{d}t \\
@@ -454,14 +456,14 @@
 		\end{eqnarray*}
 	\end{proof}
 	
-	\begin{remark}
+	\begin{remark}\label{Bemerkung2}
 		Wir möchten uns das komplexe Kurvenintegral als Umkehrung der komplexen Ableitung 
 		vorstellen. Wir sehen im nächsten Abschnitt, für welche Funktionen das geht.
 	\end{remark}
 	
 	\subsection{Der Cauchy-Integralsatz}
 	
-	\begin{definition}[stückweise $C^1$-Homotopie]
+	\begin{definition}[stückweise $C^1$-Homotopie]\label{def:Homotopie}
 		Eine stückweise $C^1$-Homotopie, in einem Gebiet $\Omega\subset\mathbb{C}$, zwischen 
 		zwei stückweisen $C^1$-Kurven $\gamma_0,\gamma_1:[a,b]\to\Omega$ mit $\gamma_0 (a)=
 		\gamma_1 (a)=p$, $\gamma_0 (b)=\gamma_1 (b)=q$ ist eine stetige Abbildung 
@@ -523,11 +525,11 @@
 		Wir zerlegen das Rechteck $R$ in vier gleich große Teile $R_1 ,\ldots,R_4$ und sehen, dass
 		\[ \int_{h(\partial R)} f(z)\mathrm{d}z = \int_{h(\partial R_1)} f(z)\mathrm{d}z +\ldots +
 		\int_{h(\partial R_4)} f(z)\mathrm{d}z. \]
-		Da sich die zusätzlichen Integrale über Strecken im Inneren von $R$ wegen Proposition 1.21 
-		wegheben. \\
+		Da sich die zusätzlichen Integrale über Strecken im Inneren von $R$ wegen Proposition 
+		\ref{Hauptsatz} wegheben. \\
 		Jetzt wählen wir das Teilrechteck aus, für den das jeweilige Kurvenintegral über den Rand den 
 		größten Absolutbetrag hat, nenne es $R_1$. Es folgt 
-		\[ \left| \int_{h(\partial R_1}f(z)\mathrm{d}z\right| \geq \frac{1}{4} \left|\int_{h(\partial R)}f(z)
+		\[ \left| \int_{h(\partial R_1)}f(z)\mathrm{d}z\right| \geq \frac{1}{4} \left|\int_{h(\partial R)}f(z)
 		\mathrm{d}z \right| \]
 		Wir zerlegen weiter und erhalten so eine Folge von Rechtecken $R_1 \supset R_2 \supset\ldots 
 		,R_n$ mit Seitenlängen von $R_n$ proportional zu $2^{-n}$, sd.
@@ -537,14 +539,16 @@
 		$(t_0,s_0)\in\mathbb{R}^2$ mit $(t_0,s_0)\in  \bigcap_{n\in\mathbb{N}}R_n$. \\
 		Es sei $z_0 =h(t_0,s_0)\in\Omega$.\\
 		\underline{Beachte:} Da $h$ stückweise $C^1$ ist, erhalten wir für jedes der endlich vielen 
-		Rechtecke aus Definition 1.22 eine obere Schranke für $|\frac{\partial h}{\partial t}|$, 
-		$|\frac{\partial h}{\partial s}|$ (wegen der Kompaktheit). 
+		Rechtecke aus Definition \ref{def:Homotopie} eine obere Schranke für 
+		$|\frac{\partial h}{\partial t}|$, $|\frac{\partial h}{\partial s}|$ (wegen der Kompaktheit). 
 		Da es nur endlich viele dieser Rechtecke gibt, folgt $|\frac{\partial h}{\partial t}|\leq C$, 
 		$|\frac{\partial h}{\partial s}| \leq C$ auf ganz $R=R_0$, für ein festes $C>0$. \\
 		Schreibe nahe $z_0$ die Funktion $f$ als $f(z)=f(z_0)+f'(z_0)\cdot (z-z_0)+r(z-z_0)$, wobei \\
-		$\lim_{z\to z_0} |\frac{r(z-z_0)}{z-z_0}|=0$, da $f$ holomorph ist (vgl. Lemma 1.14).\\
+		$\lim_{z\to z_0} |\frac{r(z-z_0)}{z-z_0}|=0$, da $f$ holomorph ist 
+		(vgl. Lemma \ref{lem:komplexdiffbar}).\\
 		Da $f(z_0)+f'(z_0)\cdot (z-z_0)$ das Differential der holomorphen Funktion
-		$z\mapsto f(z_0)\cdot (z-z_0)+\frac{1}{2}f'(z_0)\cdot (z-z_0)^2$ ist, folgt mit Bemerkung 2, dass 
+		$z\mapsto f(z_0)\cdot (z-z_0)+\frac{1}{2}f'(z_0)\cdot (z-z_0)^2$ ist, folgt mit Bemerkung 
+		\ref{Bemerkung2}, dass 
 		das Integral von $f(z_0)+f'(z_0)\cdot (z-z_0)$ über die geschlossenen Kurven $h(\partial R_n)$ 
 		verschwindet. Die Länge $L$ von $h(\partial R_n)$, $L(h(\partial R_n))$ können wir abschätzen 
 		durch $4\cdot 2^{-n}\cdot C$. Es folgt
@@ -566,7 +570,7 @@
 		Also gilt $| \int_{h(\partial R)}f(z)\mathrm{d}z |=0$ im Widerspruch zur Annahme.
 	\end{proof}
 	
-	\begin{corollary}
+	\begin{corollary}\label{coroll:homotop}
 		Es sei $\Omega\subset\mathbb{C}$ Gebiet, $\gamma_0$, $\gamma_1$ zwei stückweise 
 		$C^1$-Kurven in $\Omega$ von $p$ nach $q$, die stückweise $C^1$-homotop sind. 
 		Dann gilt
@@ -708,4 +712,184 @@
 		Summe und Integral absolut konvergieren. Der Konvergenzradius ist daher mindestens $r$. 
 		Und zwar für jedes $r$ mit $\overline{B_r (z_0)}\subset\Omega$.
 	\end{proof}
+	
+	\begin{corollary}\label{coroll:holo}
+		Holomorphe Funktionen sind (komplex) analytisch, insbesondere $C^{\infty}$.
+	\end{corollary}
+	
+	\begin{proof}
+		Sei $f:\Omega\to\mathbb{C}$ holomorph, $z_0 \in\Omega$, $r>0$, sd. $\overline{B_r (z_0)}
+		\subset\Omega$. Dann können wir $f$ auf $B_r (z_0)$ durch eine Potenzreihe darstellen.
+		Insbesondere ist $f$ auf $B_r (z_0)$ analytisch (und $C^{\infty}$). 
+		Da das für alle $z_0 \in\Omega$ geht, folgt die Behauptung.
+	\end{proof}
+	
+	Somit: $"$holomorph$"$ und $"$analytisch$"$ sind gleichbedeutend. \\
+	\underline{Grund:} $"$Holomorphie$"$ ist gleichbedeutend mit den 
+	Cauchy-Rieman-Differentialgleichungen (Lemma \ref{lem:komplexdiffbar}). 
+	Diese sind $"$elliptisch$"$ und Lösungen 
+	elliptischer Differentialgleichungen sind mindestens so oft differenzierbar, wie ihre 
+	Koeffizienten und ihre rechte Seite.\\
+	\underline{Zur Erinnerung:} Wir haben die Rechenregeln für Potenzreihen aus Proposition 1.7 
+	(Kurzskript)	
+	nicht bewiesen. Mit Folgerung \ref{coroll:holo} und Proposition \ref{prop:Rechenregeln} geht der 
+	Beweis recht einfach.
+	
+	\begin{corollary}\label{coroll:stammfkt}
+		Es sei $\Omega$ einfach zusammenhängend. Dann ist $f:\Omega\to\mathbb{C}$ genau dann 
+		holomorph, wenn $f$ eine Stammfunktion $F$ besitzt (das heißt $F$ ist holomorph mit 
+		$F'=f$).
+	\end{corollary}
+	
+	\begin{proof}
+		$"\Leftarrow"$ Sei $F$ Stammfunktion. Da $F$ holomorph ist, ist $F$ beliebig oft komplex 
+		differenzierbar, siehe Folgerung \ref{coroll:holo}. Also ist auch $f=F'$ beliebig oft komplex 
+		differenzierbar, also insbesondere auch holomorph. \\
+		$"\Rightarrow"$ Da $\Omega$ einfach zusammenhängend ist, sind je zwei Kurven 
+		$\gamma_0$, $\gamma_1$ von $z_0\in\Omega$ nach $z\in\Omega$ homotop. Somit gilt 
+		\[ \int_{\gamma_0} f(\zeta)\mathrm{d}\zeta =\int_{\gamma_1}f(\zeta)\mathrm{d}\zeta 
+		\quad \text{nach Folgerung \ref{coroll:homotop}} \]
+		Fixiere also $z_0$ und definiere $F=\int_{\gamma} f(\zeta)\mathrm{d}\zeta$ für eine Kurve 
+		$\gamma:[0,1]\to\Omega$ mit $\gamma(0)=z_0$ und $\gamma(1)=z$. 
+		Um $F'(z)$ zu berechnen, betrachte $\omega$ nahe $z$ und eine Kurve $\gamma$ von $z_0$ 
+		nach $\omega$ der Form (siehe Skizze Skriptum Niklas) \\
+		Dann gilt:
+		\begin{eqnarray*}
+			\lim_{\omega\to z}\frac{F(\omega)-F(z)}{\omega -z} &=&
+			\lim_{\omega\to z}\frac{1}{\omega -z}\left( \int_{\gamma_{\omega}}f(\zeta)\mathrm{d}\zeta -
+			\int_{\gamma_z}f(\zeta)\mathrm{d}\zeta \right) \\
+			&=&\lim_{\omega\to z}\frac{1}{\omega -z}\int_{\gamma_{\omega -z}}
+			f(\zeta)\mathrm{d}\zeta \\
+			&=&\lim_{\omega\to z}\frac{1}{\omega -z}\int_0^1 f(\gamma_{\omega -z}(t))
+			\underbrace{\omega -z}_{=\dot{\gamma}_{\omega -z}(t)}\mathrm{d}t \\
+			&=& f(z).
+		\end{eqnarray*}
+		$\Rightarrow$ $F$ ist eine Stammfunktion.
+	\end{proof}
+	
+	Zur Erinnerung: Identitätssatz für Potenzreihen.
+	
+	\begin{corollary}[Identitätssatz für holomorphe Funktionen]
+		Es sei $\Omega\subset\mathbb{C}$ ein Gebiet, $f,g:\Omega\to\mathbb{C}$ holomorph. Falls 
+		eine Teilmenge $A\subset\Omega$ mit Häufungspunkt $z\in\Omega$ existiert, sd. 
+		$f|_A =g|_A$, dann gilt $f=g$ auf ganz $\Omega$.
+	\end{corollary}
+	
+	\begin{proof} 
+		Nach Folgerung \ref{coroll:holo} sind $f$ und $g$ analytisch. \\
+		$"A$ hat Häufungspunkt $z"$ $\Leftrightarrow$ Es existiert eine Folge $(z_n)_{n\in\mathbb{N}}
+		\subset A\setminus\{ z\}$, sd. $z_n\xrightarrow{n\to\infty} z$. \\
+		Es folgt $(g-f)(z_n)=0$ für alle $n$ und nach dem Identitätssatz für Potenzreihen bzw. 
+		analytische Funktionen gilt somit $g-f=0$ auf ganz $\Omega$.
+	\end{proof}
+	
+	Der Identitätssatz ermöglicht es manche aus dem reellen bekannten Funktionen auf $\mathbb{C}$ 
+	zu übertragen und ihre Eigenschaften zu verstehen.
+	
+	\begin{example}\label{bsp:sin}
+		Es gilt für $x\in\mathbb{R}$, dass
+		\[ \sin(x)=\frac{e^{ix}-e^{-ix}}{2i}=\sum_{n=0}^{\infty}(-1)^n \frac{x^{2n+1}}{(2n+1)!} \]
+		Wir können $z\in\mathbb{C}$ in die Potenzreihenentwicklung einsetzen. Da der 
+		Konvergenzradius $\infty$ ist, erhalten wir eine Funktion $\sin:\mathbb{C}\to\mathbb{C}$. 
+		Da die Identitäten 
+		\begin{eqnarray}
+			\sin(z)&=&\frac{e^{iz}-e^{-iz}}{2i} \nonumber \\
+			\sin(z+w)&=&\sin(z)\cos(w)+\cos(z)\sin(w) \\
+			\sin''(z)&=&-\sin(z) \nonumber
+		\end{eqnarray}
+		für alle $x\in\mathbb{R}$ gelten, gelten sie nach dem Identitätssatz für alle $z$, $w$ aus 
+		$\mathbb{C}$. \\
+		Zu (1) [Additionstheorem]: Nehme zunächst $w\in\mathbb{R}$ als Konstante an, dann folgt das 
+		Additionstheorem für alle $z\in\mathbb{C}$, $w\in\mathbb{R}$. Nehme nun $z\in\mathbb{C}$ 
+		konstant an, erhalte Additionstheorem für alle $z$, $w\in\mathbb{C}$. \\
+		Definiere die Hyperbelfunktion $\cosh$, $\sinh$ durch
+		\begin{eqnarray*}
+			\cosh(z)&=&\cos(iz)=\frac{e^{-z}+e^z}{2} \\
+			\sinh(z)&=&\frac{\sin(iz)}{i}=\frac{e^{-z}-e^z}{-2} =\frac{e^z -e^{-z}}{2}
+		\end{eqnarray*}
+		Auf der anderen Seite verhindert der Identitätssatz die Existenz holomorpher Fortsetzungen 
+		von reellen Funktionen mit bestimmten Eigenschaften.
+	\end{example}
+	
+	\begin{example}
+		\begin{enumerate}
+			\item Es gibt kein Gebiet $\Omega$ mit $\mathbb{R}\setminus\{0\}\subset\Omega$ 
+			und sich die Funktion $x\mapsto |x|$ auf $\Omega$ fortsetzen ließe. \\
+			Denn: wäre $f$ eine Fortsetzung, dann wäre $f(z)=z$ auf $(0,\infty)\subset\mathbb{R}$ 
+			und daher auf ganz $\Omega$.
+			\item Betrachte 
+			\[ f(x)=\begin{dcases} 0 & x\leq 0 \\ e^{-\frac{1}{x}} & x>0. \end{dcases} \]
+			Diese Funktion ist $C^{\infty}$ und bei $x=0$ verschwinden alle Ableitungen. Sie ist nicht 
+			analytisch bei $x=0$ und hat daher keine holomorphe Fortsetzung.
+		\end{enumerate}
+	\end{example}
+	
+	\begin{theorem}[Morera]\label{thm:morera}
+		Es sei $\Omega\subset\mathbb{C}$ ein Gebiet und $f:\Omega\to\mathbb{C}$ stetig, sd. das 
+		Kurvenintegral von $f$ über den Rand eines jeden Dreiecks, das ganz in $\Omega$ liegt 
+		verschwindet. Dann ist $f$ holomorph.
+	\end{theorem}
+	
+	\begin{proof}
+		Benutze Folgerung \ref{coroll:stammfkt} auf kleinen Bällen $B_r (z_0)\subset\Omega$ für 
+		$z_0\in\Omega$ und $r>0$ ausreichend klein. \\
+		Definiere jetzt $F(z)=\int_{\gamma_z}f(\zeta)\mathrm{d}\zeta$, wobei $z\in B_r (z_0)$ und 
+		$\gamma (t)=z+t(\omega-z)$. Argumentiere wie in Folgerung \ref{coroll:stammfkt}, dass 
+		$F'(z)=f(z)$, allerdings benutzen wir diesmal:
+		\[ \int_{\gamma_{\omega}}f(\zeta)\mathrm{d}\zeta -\int_{\gamma_z}f(\zeta)\mathrm{d}\zeta 
+		=\int_{\gamma_z}f(\zeta)\mathrm{d}\zeta +\int_{\gamma_{\omega -z}}f(\zeta)\mathrm{d}\zeta 
+		-\int_{\gamma_z}f(\zeta)\mathrm{d}\zeta =\int_{\gamma_{\omega -z}}f(\zeta)\mathrm{d}\zeta. \]
+		$\Rightarrow$ $F'=f$ auf $B_r (z_0)$. \\
+		Da $z_0\in\Omega$ und $r>0$ beliebig waren, ist $f$ auf $\Omega$ holomorph.
+	\end{proof}
+	
+	\begin{theorem}[Schwarzsches Spiegelungsprinzip]
+		Es sei $\Omega\subset\mathbb{C}$ symmetrisch bezüglich $\mathbb{R}$ (dh. $z\in\Omega\ 
+		\Leftrightarrow\ \overline{z}\in\Omega$). Schreibe $\Omega_+ =\{z\in\Omega | \text{Im } z >0\}$, 
+		$\Omega_0 =\Omega\cap\mathbb{R}$ und $\Omega_- =\{z\in\Omega | \text{Im } z<0\}$.
+		Sei $f:\Omega_+ \cup \Omega_0 \to\mathbb{C}$ stetig, sd. $f|_{\Omega_+}$ holomorph 
+		und $f|_{\Omega_0}$ reellwertig ist. Dann existiert eine holomorphe Fortsetzung 
+		$f:\Omega\to\mathbb{C}$ mit $f(\overline{z})=\overline{f(z)}$.
+	\end{theorem}
+	
+	\begin{proof}
+		Definiere $f(z)=\overline{f(z)}$ für $z\in\Omega$, dann ist $f$ auf ganz $\Omega$ stetig. 
+		Zeige jetzt, dass die Voraussetzungen des Satzes von Morera gelten.
+		\begin{enumerate}
+			\item Für jedes Dreieck in $\Omega_+$ stimmt die Behauptung
+			\item Sei $\triangle\subset\Omega_+ \cup\Omega_0$ ein Dreieck. Dann betrachte 
+			Dreiecke $\triangle_n\subset\Omega_+$, die dagegen konvergieren. Da das Integral 
+			stetig vom Integranden abhängt (glm. stetig gilt, da $\triangle$-Fläche kompakt ist), ist 
+			auch das Integral über den Rand von $\triangle$ gleich $0$.
+			\item Falls $\triangle\subset\Omega\subset\Omega_- \cup\Omega_0$ liegt, berechne 
+			\begin{eqnarray*}
+				\int_{\gamma}f(z)\mathrm{d}z&=&\int_a^b f(\gamma(t))\dot{\gamma}(t)\mathrm{d}t =
+				\int_a^b \overline{f(\overline{\gamma(t)})} \ 
+				\overline{\dot{\overline{\gamma}}(t)}\mathrm{d}t \\
+				&=& \overline{\int_a^b f(\overline{\gamma(t)}) \dot{\overline{\gamma}}(t)\mathrm{d}t}
+				=0,
+			\end{eqnarray*}
+			falls $\gamma$ den Rand von $\triangle$ beschreibt.
+			\item $\triangle$ erstreckt sich über alle Dreiecke. Dann zerfällt $\triangle$ in höchstens 
+			3 Dreiecke vom Typ (1)-(3). Jetzt folgt Homotopie aus Satz \ref{thm:morera}.
+		\end{enumerate}
+	\end{proof}
+	
+	\begin{example}
+		$\sin$ aus Beispiel \ref{bsp:sin}.
+	\end{example}
+	
+	\begin{remark}
+		Es sei $g$ auf $\partial B_r (z_0)$ stetig. Dan können wir 
+		\[ f(z)=\frac{1}{2\pi i}\int_{\partial B_r (z_0)} \frac{g(\zeta)}{\zeta -z}\mathrm{d}\zeta \]
+		für alle $z\in B_r(z_0)$ definieren. \\
+		Frage: Setzt $f$ die Funktion $g$ stetig fort? \\
+		(Beachte: $\partial B_r(z_0)$ ist im schlimmsten Fall der Rand des Konvergenzkreises...) \\
+		Falls ja, wäre auch $f(z)\cdot(z-z_0)^k$ holomorph für alle $k\geq 0$ und somit hätten wir 
+		nach dem Integralsatz
+		\[\frac{1}{2\pi i}\int_{\partial B_r(z_0)}f(\zeta)\underbrace{(\zeta-z_0)^k}_{z_0 +re^{it}}
+		\mathrm{d}\zeta =0. \]
+		Das bedeutet, dass $"$ungefähr die Hälte$"$ der Fourierzerlegung von $t\mapsto 
+		g(z_0 +r\cdot e^{it})$ verschwindet.
+	\end{remark}
 \end{document}

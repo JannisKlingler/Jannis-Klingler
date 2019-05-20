@@ -892,4 +892,161 @@
 		Das bedeutet, dass $"$ungefähr die Hälte$"$ der Fourierzerlegung von $t\mapsto 
 		g(z_0 +r\cdot e^{it})$ verschwindet.
 	\end{remark}
+	
+	\section{Abbildungsverhalten holomorpher Funktionen}
+	
+	Aus der reellen Analysis: Zwischenwertsatz (Bilder von Invervallen sind Intervalle) lokaler 
+	Umkehrsatz für $f:U\to\mathbb{R}^n$, $U\subset\mathbb{R}^n$ 
+	\begin{enumerate}
+		\item Funktionen auf $\Omega\subset\{z_0\}$
+		\item Maximumsprinzip \& Satz von Liouville
+		\item lokaler Umkehrsatz / Blättersatz
+	\end{enumerate}
+	$\Omega$ ist stets ein Gebiet in $\mathbb{C}$ und $f$ (falls nicht anders gesagt) stets holomorph.
+	
+	\subsection{Nullstellen und isolierte Singularitäten}
+	
+	\begin{definition}[Nullstellen-Ordnung]
+		Für $z_0\in\Omega$ wende $f:\Omega\to\mathbb{C}$ in einer Umgebung $U\subset\Omega$ 
+		von $z_0$ dargestellt durch
+		\[ f(z)=\sum_{n=0}^{\infty} a_n (z-z_0)^n .\]
+		Die (Nullstellen-) Ordnung von $f$ bei $z_0$ ist die kleinste Natürliche $n_0 =ord_{z_0}(l)$, sd. 
+		$a_{n_0} \neq 0$ und $a_n =0$ für alle $0\leq n<n_0$. \\
+		Falls $ord_{z_0} (f)>0$ ist, hat $f$ bei $z_0$ eine Nullstelle der Ordnung $ord_{z_0} (f)$.
+	\end{definition}
+	
+	\begin{example}
+		\begin{enumerate}
+			\item Die Sinus-Funktion hat um $0$ die Entwicklung
+			\[ \sin(z)=\sum_{n=0}^{\infty} (-1)^n \frac{ z^{2n+1}}{(2n+1)!},\ \text{also $ord_0 (\sin)=1$.}\]
+			also $ord_0 (\sin)=1$. Da $\sin(\pi -z)=\sin(z)$ folgt $ord_{\pi}(sin)=1$. \\
+			Da $\sin(2\pi +z)=\sin(z)$ folgt $ord_{k\pi}(\sin)=1$ für alle $k\in\mathbb{Z}$ (Ansonsten 
+			hat der Sinus keine Nullstellen – siehe Übung zu $\cos$).
+			\item Der Cosinus hat Nullstellen der Ordnung $1$ bei $(k+\frac{1}{\varepsilon})\cdot \pi$, 
+			$k\in\mathbb{Z}$.
+		\end{enumerate}
+	\end{example}
+	
+	\begin{definition}[isolierte bzw. hebbare/, wesentliche Singularität]
+		Es sei $z_0\in\Omega$ und $f:\Omega\setminus\{z_0\}\to\mathbb{C}$ holomorph, dann heißt 
+		$z_0$ eine isolierte Singularität von $f$.
+		\begin{enumerate}
+			\item Wenn sich $f$ zu einer holomorphen Funktion auf ganz  $\Omega$ forsetzen lässt, 
+			heißt $z_0$ eine hebbare Singularität.
+			\item Wenn es $m>1$ und Zahlen $a_n ,\ldots ,a_m \in\mathbb{C}$ mit $a_m \neq 0$ gibt, 
+			sd. \[f(z)=\sum_{n=1}^m \frac{a_n}{(z-z_0)^n} \] bei $z_0$ eine hebbare Singularität hat, 
+			dann hat $f$ bei $z_0$ eine %...
+			\item Wenn für alle $r>0$ mit $B_r (z_0)\subset\Omega$ das Bild 
+			$im (f|_{B_r(z_0)\setminus\{z_0\}})$ dicht in $\mathbb{C}$ liegt, heißt $z_0$ eine 
+			wesentliche Singularität von $f$ und wir setzen $ord_{z_0}(f)=-\infty$.
+		\end{enumerate}
+		(Der Vollständigkeit halber sei $ord_{z_0}(0)=\infty$).
+	\end{definition}
+	
+	\begin{example}
+		\begin{enumerate}
+			\item Der Tangens $\tan(z)=\frac{\sin(z)}{\cos(z)}$ hat Nullstellen der Ordnung $1$ bei 
+			$z=k\pi$, $k\in\mathbb{N}$. Bei $z_0 =\frac{\pi}{2}$ schreiben wir
+			\begin{eqnarray*}
+				-\sin(z-\frac{\pi}{2})=\sin(\frac{\pi}{2}-z) =\cos(z)=-(z-\frac{\pi}{2})\cdot 
+				\underbrace{\sum_{n=0}^{\infty} (-1)^n \frac{(z-\frac{\pi}{2})^{2n}}{(2n+1)!}}_{=f(z)
+				\text{ holom. }f(\frac{\pi}{2})\neq 0}
+			\end{eqnarray*}
+			Da $\tan(z+\pi)=\tan(z)$, hat $\tan$ bei $(k+\frac{1}{2})\pi$ ebenfalls einen Pol der 
+			Ordnung 1.
+			\[ \tan(z) =-\frac{\sin(z)}{(z-\frac{\pi}{2})-f(z)}=-\frac{1}{z-\frac{\pi}{2}}+\underbrace{ 
+			\frac{f(z)-\sin(z)}{(z-\frac{\pi}{2})\cdot f(z)}}_{g(z)} \]
+			Da $f(z)-\sin(z)$ bei $z=\frac{\pi}{2}$ den Wert $0$ hat, gilt
+			\[ f(z)-\sin(z)=\sum_{n=1}^{\infty} b_n \cdot (z-\frac{\pi}{2})^n\]
+			und den obigen Bruch kürzen, somit hat $g(z)$ bei $\frac{\pi}{2}$ eine hebbare 
+			Singularität. 
+			Also hat $\tan(z)$ bei $z=\frac{\pi}{2}$ einen Pol der Ordnung 1 mit Hauptteil 
+			$-\frac{1}{z-\frac{\pi}{2}}$ und daher $ord_{\frac{\pi}{2}}(\tan)=1$.
+			\item Die Funktion $z\mapsto e^{-\frac{1}{z}}$ hat bei $z=0$ eine wesentliche 
+			Singularität. Sei etwa $r>0$, dann ex. $n\in\mathbb{N}$ sd. $\frac{1}{2\pi n}<r$. Dann 
+			betrachte $U=\{ \omega\in\mathbb{C} | Im (\omega)\in (2\pi n,2\pi (n+1)]\}$. 
+			Aus $\omega\in U$ folgt $|\frac{1}{\omega}|<r$. Auf $U$ nimmt die Exponentialfunktion 
+			alle Werte in $\mathbb{C}\setminus\{ 0\}$ an: jeder der Werte hat die Form 
+			$s\cdot e^{i\varphi}=e^{\log s+i\varphi}$, $\OE \varphi\in (2\pi n,2\pi (n+1)]$. 
+			Da $-\frac{1}{\omega}\in B_r(0)$ für alle $\omega\in U$ nimmt $e^{-\frac{1}{z}}$ auf 
+			$B_r^{\times}(0)=B_r(0)\setminus\{0\}$ alle Werte in $\mathbb{C}^{\times} =\mathbb{C} 
+			\setminus\{0\}$ an. Also ist $0$ wesentliche Singularität.
+			\item Das gleiche gilt für $e^{-\frac{1}{z^2}}$, obwohl diese Funktion auf 
+			$\mathbb{R}$ eine hebbare Singularität bei $0$ hat.
+		\end{enumerate}
+	\end{example}
+	
+	\begin{theorem}[Riemannscher Hebbarkeitssatz]
+		Wenn $f:\Omega\setminus\{z_0\}\to\mathbb{C}$ die Eigenschaft 
+		\[\lim_{z\to z_0} (z-z_0)\cdot f(z) =0\]
+		hat, dann hat $f$ bei $z_0$ eine hebbare Singularität.
+	\end{theorem}
+	
+	\begin{proof}
+		Betrachte die Funktion $g(z)=(z-z_0)^2 \cdot f(z)$ auf $\Omega\setminus\{z_0\}$. Dann ist 
+		$g$ stetig auf $\Omega$ fortsetzbar durch $g(z_0)=0$. Außerdem ist $g$ auf 
+		$\Omega\setminus\{z_0\}$ holomorph und sogar bei $z_0$ mit $g'(z_0)=0$, denn:
+		\[ \lim_{z\to z_0} \frac{g(z)-g(z_0)}{z-z_0} = \lim_{z\to z_0} (z-z_0)\cdot f(z) =0. \]
+		Also ist $g$ holomorph und hat daher bei $z_0$ eine Potenzreihendarstellung 
+		\[g(z)=\sum_{n=0}^{\infty} a_n (z-z_0)^n \] mit $a_0=a_1=0$. Somit lässt sich $f$ bei $z_0$ 
+		zu einer holomorphen Funktion mit Potenzreihe
+		\[f(z)=\sum_{n=0}^{\infty} a_{n+2}(z-z_0)^n \]
+		fortsetzen.
+	\end{proof}
+	
+	\begin{example}
+		Es sei $r>0$. Dann gibt es keine holomorphe Funktion $f$ auf $B_r^{\times}(0)$ mit $f(z)^2 =z$. 
+		Denn wäre $f$ eine solche Funktion, dann wäre $|f(z)|=\sqrt{|z|}$, also 
+		\[\lim_{z\to z_0} (z-z_0)\cdot f(z) =0. \]
+		Das heißt $f$ müsste sich holomorph auf $B_r(0)$ fortsetzen lassen, aber das geht nicht, da die 
+		reelle Wurzelfunktion bei $x=0$ bereits nicht differenzierbar ist.
+	\end{example}
+	
+	\begin{remark}
+		Wir können $ord_{z_0}(f)$ wie folgt charakterisieren: $n=ord_{z_0}(f)$ ist die kleinste ganze 
+		Zahl, sd.
+		\[ g(z)= (z-z_0)^{-n} f(z) \]
+		bei $z_0$ eine hebbare Singularität hat. 
+		\begin{enumerate}
+			\item $f$ hat hebbare Singularität $\Rightarrow$ $ord_{z_0}(f)\geq 0$ und $g$ ist nahe 
+			$z_0$ beschränkt für $n=ord_{z_0}(f)$, (siehe Potenzreihenentwicklung), hat also 
+			hebbare Singularität, wohingegen für $n=ord_{z_0}(f)+1$ die Funktion $g$ nahe 
+			$z_0$ nich einmal beschränkt ist.
+			\item Wenn $f$ einen Pol hat, habe
+			\[ h(z)=f(z)-\sum_{n=1}^m \frac{a_n}{(z-z_0)^n} \]
+			mit $m=-ord_{z_0}(f)$ und $a_m \neq 0$ eine hebbare Singularität. Also hat 
+			$(z-z_0)^m \cdot f(z)$ bei $z_0$ hebbare Singularität, $(z-z_0)^{m-1}\cdot f(z)$ jedoch 
+			nicht.
+		\end{enumerate}
+	\end{remark}
+	
+	\begin{theorem}[Casorati-Weierstraß]
+		Sei $f:\Omega\setminus\{z_0\}\to\mathbb{C}$ holomorph, dann trifft genau eine der folgenden 
+		Aussagen zu.
+		\begin{enumerate}
+			\item $f$ hat eine hebbare Singularität bei $z_0$
+			\item $f$ hat eine Polstelle bei $z_0$
+			\item $f$ hat eine wesentliche Singularität bei $z_0$
+		\end{enumerate}
+	\end{theorem}
+	
+	\begin{proof}
+		Klar: (1) und (2) schließen einander aus. \\
+		(3) schließt (1) und (2) aus: \\
+		(1)$\Rightarrow$ $\lim_{z\to z_0} f(z)=a\in\mathbb{C}$ existiert, zu jedem $\delta >0$ existiert 
+		also ein $\varepsilon >0$, sd. $im(f|_{B_{\varepsilon}^{\times}(z_0)})\subset B_{\delta}(a)$ 
+		Insbesondere liegt dieses Bild nicht dicht in $\mathbb{C}$. \\
+		(2)$\Rightarrow$ $\lim_{z\to z_0} |f(z)| =\infty$, dh. zu jedem $\delta >0$ ex. $\varepsilon >0$, 
+		sd. $im(f|_{B_{\varepsilon}^{\times}(z_0)})\subset\mathbb{C}\setminus B_{\frac{1}{\delta}}(0)$ 
+		Insbesondere liegt das Bild nicht dicht in $\mathbb{C}$. \\
+		Noch zeigen: Wenn das Bild von $f|_{B_r^{\times} (z_0)}$ nicht dicht liegt, hat $f$ einen Pol 
+		oder eine hebbare Singularität. Wenn $im(f|_{B_r^{\times}(z_0)})$ nicht dicht in 
+		$\mathbb{C}$ ist, ex. $b\in\mathbb{C}\setminus\overline{im(f|_{B_r^{\times}(z_0)})}$, dh. es ex. 
+		$\varepsilon >0$, sd. $B_{\varepsilon}(b)\cap im(f|_{B_r^{\times}(z_0)})=\emptyset.$ 
+		Betrachte die Funktion $g:\Omega\setminus\{z_0\}\to\mathbb{C}$ mit 
+		\[ g(z) =\frac{1}{f(z)-b} \]
+		Dann ist $|g(z)| < \frac{1}{\varepsilon}$ auf $B_r^{\times}(z_0)$, somit hat $g$ eine holomorphe 
+		Fortsetzung auf ganz $B_r (z_0)$. Also hat $f(z)=\frac{1}{g(z)}+b$ einen Pol oder eine 
+		hebbare Singularität.
+	\end{proof}
 \end{document}

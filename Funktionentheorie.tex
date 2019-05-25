@@ -777,7 +777,8 @@
 	
 	\begin{proof} 
 		Nach Folgerung \ref{coroll:holo} sind $f$ und $g$ analytisch. \\
-		$"A$ hat Häufungspunkt $z"$ $\Leftrightarrow$ Es existiert eine Folge $(z_n)_{n\in\mathbb{N}}
+		$"$$A$ hat Häufungspunkt $z"$ $\Leftrightarrow$ Es existiert eine Folge 
+		$(z_n)_{n\in\mathbb{N}}
 		\subset A\setminus\{ z\}$, sd. $z_n\xrightarrow{n\to\infty} z$. \\
 		Es folgt $(g-f)(z_n)=0$ für alle $n$ und nach dem Identitätssatz für Potenzreihen bzw. 
 		analytische Funktionen gilt somit $g-f=0$ auf ganz $\Omega$.
@@ -899,7 +900,7 @@
 	Umkehrsatz für $f:U\to\mathbb{R}^n$, $U\subset\mathbb{R}^n$ 
 	\begin{enumerate}
 		\item Funktionen auf $\Omega\subset\{z_0\}$
-		\item Maximumsprinzip \& Satz von Liouville
+		\item Maximumprinzip \& Satz von Liouville
 		\item lokaler Umkehrsatz / Blättersatz
 	\end{enumerate}
 	$\Omega$ ist stets ein Gebiet in $\mathbb{C}$ und $f$ (falls nicht anders gesagt) stets holomorph.
@@ -910,7 +911,7 @@
 		Für $z_0\in\Omega$ wende $f:\Omega\to\mathbb{C}$ in einer Umgebung $U\subset\Omega$ 
 		von $z_0$ dargestellt durch
 		\[ f(z)=\sum_{n=0}^{\infty} a_n (z-z_0)^n .\]
-		Die (Nullstellen-) Ordnung von $f$ bei $z_0$ ist die kleinste Natürliche $n_0 =ord_{z_0}(l)$, sd. 
+		Die (Nullstellen-) Ordnung von $f$ bei $z_0$ ist die kleinste Natürliche $n_0 =ord_{z_0}(f)$, sd. 
 		$a_{n_0} \neq 0$ und $a_n =0$ für alle $0\leq n<n_0$. \\
 		Falls $ord_{z_0} (f)>0$ ist, hat $f$ bei $z_0$ eine Nullstelle der Ordnung $ord_{z_0} (f)$.
 	\end{definition}
@@ -935,7 +936,10 @@
 			heißt $z_0$ eine hebbare Singularität.
 			\item Wenn es $m>1$ und Zahlen $a_n ,\ldots ,a_m \in\mathbb{C}$ mit $a_m \neq 0$ gibt, 
 			sd. \[f(z)=\sum_{n=1}^m \frac{a_n}{(z-z_0)^n} \] bei $z_0$ eine hebbare Singularität hat, 
-			dann hat $f$ bei $z_0$ eine %...
+			dann hat $f$ bei $z_0$ eine 
+			
+			%...
+			
 			\item Wenn für alle $r>0$ mit $B_r (z_0)\subset\Omega$ das Bild 
 			$im (f|_{B_r(z_0)\setminus\{z_0\}})$ dicht in $\mathbb{C}$ liegt, heißt $z_0$ eine 
 			wesentliche Singularität von $f$ und wir setzen $ord_{z_0}(f)=-\infty$.
@@ -1047,6 +1051,124 @@
 		\[ g(z) =\frac{1}{f(z)-b} \]
 		Dann ist $|g(z)| < \frac{1}{\varepsilon}$ auf $B_r^{\times}(z_0)$, somit hat $g$ eine holomorphe 
 		Fortsetzung auf ganz $B_r (z_0)$. Also hat $f(z)=\frac{1}{g(z)}+b$ einen Pol oder eine 
-		hebbare Singularität.
+		hebbare Singularität. \\
 	\end{proof}
+	
+	\subsection{Das Maximumprinzip und der Satz von Liouville}
+	
+	Frage: Kann $|f(z)|$ lokale Maxima haben? auf ganz $\mathbb{C}$ beschränkt sein? \\
+	Für $f:\mathbb{R}\to\mathbb{R}$ geht das, z. B. $\cos$, $\sin$. 
+	
+	\begin{theorem}[Maximumprinzip]
+		Sei $f:\Omega\to\mathbb{C}$ holomorph. Wenn $z_0\in\Omega$ existiert, sd.
+		\[ |f(z)|\leq |f(z_0)| \]
+		für alle $z\in B_r (z_0)\subset\Omega$ ($r>0$ klein genug), dann ist $f$ auf ganz $\Omega$ 
+		konstant.
+	\end{theorem}
+	
+	\begin{proof}
+		Nach dem Identitätssatz reicht es zu zeigen, dass $f$ auf $S_r (z_0)$ konstant ist. \\
+		Wir nehmen an, dass $\overline{B_r (z_0)}\subset\Omega$. Nach dem Mittelwertsatz gilt dann:
+		\[ f(z_0)=\int_0^1 \underbrace{f(z_0 +re^{2\pi it})}_{|\%|\leq |f(z_0)|}\mathrm{d}t \]
+		Schreibe $f(z_0)=re^{i\varphi}$, dann gilt 
+		\[ |f(z_0)|= Re(e^{i\varphi}f(z_0)) \]
+		Aus $|\omega|\leq|f(z_0)|$ folgt also 
+		\begin{eqnarray}
+			Re(\underbrace{e^{i\varphi}\omega}_{|\%|\leq |f(z_0)|})\leq |f(z_0)| \label{stern}
+		\end{eqnarray}
+		Es folgt 
+		\begin{eqnarray*}
+			|f(z_0)|=Re(e^{-i\varphi}\cdot f(z_0)) &=& 
+			Re\left(e^{-i\varphi}\cdot \int_0^1 f(z_0 +re^{2\pi it})\mathrm{d}t\right) \\
+			&=& \int_0^1 \underbrace{Re(e^{-i\varphi}\cdot f(z_0 +re^{2\pi it}))}_{\leq |f(z_0)|}
+			\mathrm{d}t \leq |f(z_0)|
+		\end{eqnarray*}
+		Da Gleichheit gilt und der Integrand stetig ist, folgt
+		\[ Re\left( e^{-i\varphi} \cdot f(z_0 +re^{2\pi it})\right) =|f(z_0)| \]
+		für alle $t$. Gleichheit in \ref{stern} gilt genau dann, wenn $|\omega|=|f(z_0)|$ und das 
+		Argument (die Phase) von $\omega$ gerade $\varphi$ ist. Das heißt, wenn $\omega =f(z_0)$. 
+		Also gilt $f(z_0 +re^{2\pi it})=f(z_0)$ für alle $t$ und somit ist $f$ nach dem Identitätssatz 
+		konstant.
+	\end{proof}
+	
+	\begin{example}
+		$\cos$ hat zwar auf $\mathbb{R}$ ein lokales Maximum bei $0$, aber da 
+		$\cos (iy)=\cosh(iy)$ hat $\cos$ kein lokales Maximum in $\mathbb{C}$.
+	\end{example}
+	
+	\begin{corollary}[Schwarz Lemma]
+		Es sei $f:B_r (0)\to B_r(0)$ holomorph mit $f(0)=0$. Dann gilt
+		\begin{enumerate}
+			\item $|f(z)|\leq |z|$ für alle $z$ \label{coroll:1}
+			\item $|f'(0)|\leq 1$ \label{coroll:2}
+		\end{enumerate}
+		Wenn in \ref{coroll:1} für $z\neq 0$ oder in \ref{coroll:2} Gleichheit gilt, existiert $\lambda\in
+		\mathbb{C}$ mit $|\lambda|=1$, sd. $f(z)=\lambda\cdot z$.
+	\end{corollary}
+	
+	\begin{proof}
+		Betrachte $g(z)=\frac{f(z)}{z}$, $g:B_r(0)\to\mathbb{C}$. Da $f(0)=0$, hat $g$ bei $0$ 
+		eine hebbare Singularität, $g$ ist also auf ganz $B_r(0)$ holomorph mit 
+		\[ g(0)=\lim_{z\to 0}\frac{f(z)-f(0)}{z-0}=f'(0). \]
+		Sei $s<r$. Da $|f(z)|\leq r$ für alle $z$ mit $|z|=s$, folgt nach dem Maximumprinzip
+		\[ |g(z)| =\frac{|f(z)|}{|z|}\leq \frac{r}{s} \]
+		für alle $z$ mit $|z|=s$. (Denn stetige Funktionen auf einem Kompaktum haben stehts ein 
+		Maximum.) Wegen des Maximumprinzip muss das Maximum auf dem Rand liegen. 
+		Für $s\to r$ erhalten wir $|g(z)|\leq 1$ für alle $ z\in B_r(0)$. Es folgen \ref{coroll:1} \& 
+		\ref{coroll:2}. Falls Gleichheit gilt, hat $|g|$ ein lokales Maximum $|g(z)|=1$ bei $z\neq 0$ 
+		(im Falle \ref{coroll:1}) oder bei $0$ (im Falle \ref{coroll:2}), ist also konstant. Setze 
+		$\lambda=g(z)$.
+	\end{proof}
+	
+	\begin{definition}[biholomorphe Funktion]
+		Es seien $\Omega_0 ,\Omega_1\subset\mathbb{C}$ Gebiete. Eine holomorphe, bijektive 
+		Abbildung $f:\Omega_0\to\Omega_1$ heißt biholomorph. \\
+		Wir sehen später (Satz 2.23
+		
+		%...
+		), dass auch die Umkehrabbildung holomorph ist. Im reellen hingegen haben wir z. B. 
+		$x\mapsto x^3$, die bijektiv und differenzierbar, aber kein Diffeomorphismus ist.
+	\end{definition}
+	
+	\begin{example}
+		Ziel: Finde alle biholomorphen Abbildungen $B_1(0)\to B_1(0)$. \\Es sei $A=\left(
+		\begin{smallmatrix} a&b \\ c&d \end{smallmatrix}\right)\in M_2 (\mathbb{C})$ mit 
+		$(c,d)\neq (0,0)$, dann definieren wir die Möbiustransformation 
+		$M_A (z)=\frac{az+b}{cz+d}$ für alle $z$ mit $cz+d \neq 0$ (siehe Übung). \\
+		Es gilt $M_A \cdot M_B =M_{A\cdot B}$ (siehe Übung). \\
+		Insbesondere hat $M_A$ eine Umkehrabbildung, wenn $A$ invertierbar ist (denn 
+		$M_{E_2}(z)=z$). Sei $A\in U(1,1)=\left\{ A=\left(\begin{smallmatrix} a&b\\c&d \end{smallmatrix}
+		\right)\in M_2 (\mathbb{C})\  \vert\  |a|^2 -|c|^2 -|d|^2 -|b|^2 =1 \land a\overline{b}-c\overline{d}=0 
+		\right\}$. Die Inverse matrix $A^{-1} =\left( \begin{smallmatrix} \overline{a}&-\overline{c} \\
+		-\overline{b}&\overline{d} \end{smallmatrix}\right)$ liegt ebenfalls in $U(1,1)$
+		\[ \begin{pmatrix} \overline{a}&-\overline{c} \\
+		 -\overline{b}&\overline{d} \end{pmatrix}
+		\begin{pmatrix} a&b \\
+		c&d \end{pmatrix}
+		=\begin{pmatrix}|a|^2 -|c|^2 & \overline{a}b-\overline{c}d \\
+		-a\overline{b}+c\overline{d} & |a|^2 -|b|^2 \end{pmatrix}
+		=\begin{pmatrix} 1&0\\0&1 \end{pmatrix} \]
+		Für $A\in U(1,1)$ gilt $M_A :B_1(0)\to B_1(0)$. Sei also $|z|<1$. 
+		\begin{eqnarray*}
+			|az+b|^2 &=& (az+b)(\overline{a}\overline{z}+\overline{b})=|a|^2 |z|^2 +|b|^2 +az\overline{b}
+			+\overline{a}\overline{z}b \\
+			&=& |c|^2|z|^2 +|d|^2 +cz\overline{d} +\overline{c}\overline{z}d+(|\overline{a}|^2 -
+			|\overline{c}|^2)\cdot |z|^2 -(|d|^2 -|b|^2) \\
+			&=& |cz+d|^2 +|z|^2 -1
+		\end{eqnarray*}
+		\[\Rightarrow \quad |M_A(z)|^2 = \frac{|az+b|^2}{|cz+d|^2}=1-\overbrace{\frac{1-|z|^2}{|cz-d|^2}}^{
+		>0}<1 \]
+		Beachte: $|z|<1\quad\Rightarrow\quad |cz|^2 <|c|^2 =|d|^2 -1
+		\quad\Rightarrow\quad cz+d\neq 0$. Dazu benutze die Behauptung
+		\[ \left(|a|^2 -|c|^2 =|d|^2 -|b|^2 =1 \land a\overline{b} =c\overline{d}\right) 
+		\quad\Leftrightarrow\quad 
+		\left(|a|^2 -|b|^2 =|d|^2 -|c|^2 =1 \land a\overline{c}=b\overline{d}\right) \]
+		Also ist $M_A$ eine holomorphe Abbildung von $B_1(0)\to B_1(0)$. Sie ist biholomorph mit 
+		Umkehrabbildung $M_{A^{-1}}$.
+	\end{example}
+	
+	\begin{corollary}[aus dem Schwarz-Lemma]
+		Es sei $f: B_1(0)\to B_1(0)$ biholomorph. Dann gilt $f=M_A$ für ein $A\in U(1,1)$. 
+		($U(1,1)$ ist reell dreidimensional)
+	\end{corollary}
 \end{document}

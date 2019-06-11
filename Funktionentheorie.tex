@@ -1325,7 +1325,24 @@
 	
 	\section{Der Residuensatz}
 	
+	\textsl{Frage:} Was passiert mit dem Kurvenintegral über einer geschlossenen Kurve, die ein Gebiet 
+	umläuft, wenn der Integrand im Inneren isolierte Singularitäten hat?
+	\[ \int_{\gamma} f(z)\mathrm{d}z =\sum_{j=1}^k \frac{1}{2\pi i} \underbrace{n_{\gamma}(z_j)}_{\in\mathbb{Z}}
+	\cdot Res_{z_j}(f) \]
+	Mit diesem Satz lassen sich viele reelle Integrale bestimmen.
+	
 	\subsection{Umlaufzahl und Homologie}
+	
+	\textsl{Ziel:} Verstehe die Zahl $n_{\gamma}(z)$, die Umlaufzahl von $\gamma$ um $z$. \\
+	\textsl{Motivation:} Das Kurvenintegral ist invariant unter Umparametrisierung und man kann 
+	Integrationsbereiche zerstückeln und neu zusammensetzen.
+	
+	\begin{definition}[formale Linearkombination]
+		Sei $M$ eine Menge. Eine formale-($\mathbb{Z}$-)Linearkombination von Elementen aus $M$ 
+		ist ein Ausdruck der Form $\sum_{m\in M} a_m \cdot m$, wobei $a_m =0$ für alle bis auf endlich 
+		$m\in M$. Diese bilden eine abelsche Gruppe unter Addition und lassen sich mit $n\in\mathbb{Z}$ 
+		multiplizieren.
+	\end{definition}
 	
 	\begin{definition} \label{def:Kette}
 		Es sei $\Omega\subset\mathbb{C}$ ein Gebiet. 
@@ -1468,7 +1485,7 @@
 		Zu \ref{prop:umlauf1}: Sei ohne Einschränkung $w=0$. Zerlege $\Omega$ in offene Teilmengen 
 		\[\Omega_+ =\Omega\setminus\{ x\vert x\in(-\infty,0]\},\quad \Omega_-=\Omega\setminus
 		\{x\vert x\in[0,\infty)\}.\]Sei $\gamma$ eine geschlossene Kurve (keine Einschränkung nach 
-		Bemerkung \ref{rem:3.3} (2) in $\Omega$, $\gamma:[a,b]\to\Omega$. Dann bilden die 
+		Bemerkung \ref{rem:3.3} (2)) in $\Omega$, $\gamma:[a,b]\to\Omega$. Dann bilden die 
 		Zusammenhangskomponenten von $\gamma^{-1}(\Omega_{±})$ eine offene Überdeckung 
 		von $[a,b]$, also existiert nach Heine-Borel eine endliche Teilüberdeckung von $[a,b]$. 
 		Also existieren $a=t_0<t_1<\ldots<t_k=b$, sd. $\gamma|_{[t_{i-1},t_i]}\subset\Omega_+$ oder 

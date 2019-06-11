@@ -1215,14 +1215,14 @@
 		$t\in\mathbb{R}$ gilt 
 		\[C_t =\begin{pmatrix}\cosh(t)&\sinh(t)\\ \sinh(t)&\cosh(t)\end{pmatrix}\in U(1,1),\]
 		denn $\cosh(t)^2 -\sinh(t)^2 =1$, da für $s\in\mathbb{R}$ gilt 
-		$1=\cos(s)^2+\sin(s)^2=\cosh(is)^2+(±i\cdot \sinh(is))^2 =\cosh(is)^2-\sinh(is)^2$, für alle 
+		$1=\cos(s)^2+\sin(s)^2=\cosh(is)^2+(\pm i\cdot \sinh(is))^2 =\cosh(is)^2-\sinh(is)^2$, für alle 
 		$t\in\mathbb{C}$.
 		\[ M_{C_t}(r)=\frac{r \cosh(t)+\sinh(t)}{r\sinh(t)+\cosh(t)}=0 \quad\Leftrightarrow\quad 
 		r=-\frac{\sinh(t)}{\cosh(t)}=-\tanh(t) \]
 		\[\tanh' =\frac{\cosh(t)^2 -\sinh(t)^2}{\cosh(t)^2}=\frac{1}{\cosh(t)^2}>0 \]
 		für alle $t\in\mathbb{R}$. Also ist $\tanh :\mathbb{R}\to I$ umkehrbar mit Bildbereich 
 		$I=(\lim_{t\to\infty}\tanh(t) ,\lim_{t\to\infty} \tanh(t))=(-1,1)$, denn 
-		\[ \lim_{t\to ±\infty} \frac{e^t -e{-t}}{e^t +e^{-t}}=±1. \]
+		\[ \lim_{t\to \pm \infty} \frac{e^t -e{-t}}{e^t +e^{-t}}=\pm 1. \]
 		Also existiert ein $t_0$, sd. $r=-\tanh(t_0)$, denn $r\in (-1,1)$. Es folgt
 		\[(M_{C_{t_0}}\circ M_B \circ f)(0)=\frac{r\cosh(t_0)+\sinh(t_0)}{r\sinh(t_0)+\cosh(t_0)}=0 \]
 		und $M_{C_{t_0}}\circ M_B\circ f:B_1(0)\to B_1(0)$ ist biholomorph. \\
@@ -1359,26 +1359,31 @@
 			$\varphi:[c,d]\to [a,b]$ stückweiser $C^1$-Diffeomorphismus ist und $c\in (a,b)$. 
 			Eine Äquivalenzklasse von stückweisen $C^1$-Kurven heißt 
 			(ganzzahlige 1-)Kette in $\Omega$, die Menge aller Ketten bezeichnen wir mit 
-			$c(\Omega)$.
+			$C(\Omega)$.
 			
 			\item Der Rand einer Kette $c=n_1 \gamma_1 +\ldots+n_k\gamma_k$ ist die formale 
 			Linearkombination von Punkten in $\Omega$ 
-			\[ \partial c=n_1 [\gamma_1(b_1)]-n_1[\gamma_1(a_1)] ±\ldots +n_k[\gamma_k(b_k)]-
+			\[ \partial c=n_1 [\gamma_1(b_1)]-n_1[\gamma_1(a_1)] \pm\ldots +n_k[\gamma_k(b_k)]-
 			n_k[\gamma_k(a_k)], \]
 			wobei $\gamma_i :[a_i,b_i]\to\Omega$ stückweise $C^1$-Kurve ist. 
 			Eine Kette heißt geschlossen oder Zykel, wenn $\partial c=0$. Die Menge aller 
-			(ganzzahligen 1-)Zykel in $\Omega$ bezeichnen wir mit $z(\Omega)$.
+			(ganzzahligen 1-)Zykel in $\Omega$ bezeichnen wir mit $Z(\Omega)$.
 		\end{enumerate}
 	\end{definition}
 	
 	\begin{example}
 		\begin{enumerate}
 			\item Sei $\gamma_[a,b]\to\Omega$ geschlossene Kurve, sei $[\gamma]$ die 
-			zugehörige Kette, damit ist $c-[\gamma]$ ein Zykel, denn 
-			$\partial c =[\gamma(b)]-[\gamma(a)]=0$.
+			zugehörige Kette, damit ist $c=[\gamma]$ ein Zykel, denn 
+			$\partial c =[\gamma(b)]-[\gamma(a)]=0$. \\
+			\textsl{Beachte:} Wir rechnen hier nicht in $\mathbb{C}$, das heißt es ist z. B. 
+			$2[i]\neq [2i]$.
 			
 			\item Betrachte $\gamma_1 ,\gamma_2 ,\gamma_3 :[0,1]\to\mathbb{C}$ mit 
-			$\gamma_1(t)=e^{2\pi it}$, $\gamma_2(t)=-e^{2\pi it}$ und $\gamma_3(t)=e^{-2\pi it}$. 
+			\[\gamma_1(t)=e^{2\pi it},\qquad\quad \gamma_2(t)=-e^{2\pi it},
+			\qquad\quad\gamma_3(t)=e^{-2\pi it}.\] 
+			Dann gilt
+			\[ [\gamma_1]=[\gamma_2]=-[\gamma_3]\]
 			(werden später wichtig)
 		\end{enumerate}
 	\end{example}
@@ -1434,7 +1439,7 @@
 			verschwindet $\int f(z)\mathrm{d}z$ über der Kette in Definition \ref{def:Kette1}.
 			
 			\item Sei analog $b=m_1[z_1]+\ldots+m_l[z_l]$ eine formale Linearkombination von 
-			Funktionen in $\Omega$, dann definiere
+			Punkten in $\Omega$, dann definiere
 			\[ f(b)=m_1f(z_1)+\ldots+m_lf(z_l) \]
 			Falls $f$ holomorph mit Ableitung $f'$ ist, folgt mit Folgerung \ref{Hauptsatz}, dass
 			\[ \int_c f'(z)\mathrm{d}z=f(\partial c) \]
@@ -1444,18 +1449,18 @@
 	\begin{definition}[Umlaufzahl, nullhomolog, homolog]
 		Es sei $\Omega\subset\mathbb{C}$ ein Gebiet, $c$ geschlossene Kette (Zykel) in $\Omega$ 
 		und $w\in\mathbb{C}\setminus\Omega$. Dann definiere die Umlaufzahl von $c$ um $w$ durch
-		\[ n_w = \frac{1}{2\pi i} \int_c \frac{1}{z-w}\mathrm{d}z \]
+		\[ n_w = \frac{1}{2\pi i} \int_c \frac{1}{z-w}\mathrm{d}z. \]
 		Ein Zykel $c$ heißt nullhomolog, falls $n_w(c)=0$ für alle $w\in\mathbb{C}\setminus\Omega$. \\
 		Zwei Zykel heißen homolog, wenn ihre Differenz nullhomolog ist. Die Menge aller, zu einer 
 		gegebenen Kette $c$, homologen Ketten bildet die Homologieklasse von $c$. 
 		Die Menge der Homologieklassen bildet die (1.) Homologie von $\Omega$.
 	\end{definition}
 	
-		\begin{remark}
+	\begin{remark}
 		Die Umlaufzahl ist additiv, das heißt
 		\begin{eqnarray*}
-			n_w(c_0+c_1)=n_w(c_0)+n_w(c_1) \\
-			n_w(l\cdot c)=l\cdot n_w(c)
+			n_w(c_0+c_1)&=&n_w(c_0)+n_w(c_1) \\
+			n_w(l\cdot c)&=&l\cdot n_w(c)
 		\end{eqnarray*}
 		Es folgt, dass wir Homologieklassen addieren und mit ganzen Zahlen multiplizieren können. 
 		Also ist $H(\Omega)$ eine abelsche Gruppe.
@@ -1471,10 +1476,10 @@
 	\end{example}
 	
 	\begin{proposition}
-		Sei $\Omega\subset\mathbb{C}$
+		Sei $\Omega\subset\mathbb{C}$ ein Gebiet
 		\begin{enumerate}
-			\item Die Umlaufzahl ist ganzzahlig \label{prop:umlauf1}
-			\item Sie ist lokal konstant auf $\mathbb{C}\setminus\Omega$ \label{prop:umlauf2}
+			\item Die Umlaufzahl ist ganzzahlig. \label{prop:umlauf1}
+			\item Sie ist lokal konstant auf $\mathbb{C}\setminus\Omega$. \label{prop:umlauf2}
 			\item Wenn $c$ eine formale Linearkombination nullhomotoper Kurven ist, gilt 
 			$n_w(c)=0$ für alle $w\in\mathbb{C}\setminus\Omega$, d. h. $c$ ist nullhomolog. 
 			\label{prop:umlauf3}
@@ -1486,33 +1491,34 @@
 		\[\Omega_+ =\Omega\setminus\{ x\vert x\in(-\infty,0]\},\quad \Omega_-=\Omega\setminus
 		\{x\vert x\in[0,\infty)\}.\]Sei $\gamma$ eine geschlossene Kurve (keine Einschränkung nach 
 		Bemerkung \ref{rem:3.3} (2)) in $\Omega$, $\gamma:[a,b]\to\Omega$. Dann bilden die 
-		Zusammenhangskomponenten von $\gamma^{-1}(\Omega_{±})$ eine offene Überdeckung 
+		Zusammenhangskomponenten von $\gamma^{-1}(\Omega_{\pm})$ eine offene Überdeckung 
 		von $[a,b]$, also existiert nach Heine-Borel eine endliche Teilüberdeckung von $[a,b]$. 
 		Also existieren $a=t_0<t_1<\ldots<t_k=b$, sd. $\gamma|_{[t_{i-1},t_i]}\subset\Omega_+$ oder 
 		$\gamma|_{[t_{i-1},t_i]}\subset\Omega_-$ für alle $1\leq i\leq k$. Auf $\Omega_+$ und $\Omega_-$ 
-		hat $\frac{1}{z}$ eine Stammfunktion (auf $\Omega_+$ ist danach Hauptzwei des Logarithmus, $\log$, 
-		auf $\Omega_-$ nennen wir sie $\tilde{\log}$) \\
+		hat $\frac{1}{z}$ eine Stammfunktion (auf $\Omega_+$ ist das der  Hauptzweig des Logarithmus, 
+		$\log$, auf $\Omega_-$ nennen wir sie $\tilde{\log}$) \\
 		Wir wählen $\tilde{\log}$ so, dass
 		\begin{eqnarray*}
 			\tilde{\log}(z)=\log(z),\ \text{falls $Im(z)>0$} \\
 			\tilde{\log}(z)=\log(z)+2\pi i,\ \text{falls $Im(z)<0$}
 		\end{eqnarray*}
-		wir berechnen $s$ $\frac{\mathrm{d}z}{z}$ einzeln auf $\gamma|_{[t_{i-1},t_i]}$ mit dem Hauptsatz 
-		(Folgerung \ref{Hauptsatz}). An $t_i$ unterscheiden sich die Beträge um $±2\pi i$ (also $0$). 
-		
-		%...
-		
-		unterscheiden sich die Werte bei $a$ und $b$ um $0$ oder $±2\pi i$, da $\gamma$ geschlossen ist.
+		wir berechnen 
+		\[ \int_{\gamma} \frac{1}{z}\mathrm{d}z \]
+		einzeln auf $\gamma|_{[t_{i-1},t_i]}$ mit dem Hauptsatz 
+		(Folgerung \ref{Hauptsatz}). An $t_i$ unterscheiden sich die Beträge um $\pm 2\pi i$ (oder $0$). Dito
+		unterscheiden sich die Werte bei $a$ und $b$ um $0$ oder $\pm 2\pi i$, da $\gamma$ geschlossen ist.
 		Da \[n_0(\gamma)=\frac{1}{2\pi i}\int_{\gamma} \frac{1}{z}\mathrm{d}z,\]
 		folgt $n_0(\gamma)\in\mathbb{Z}$. \\
 		
 		Zu \ref{prop:umlauf2}: Nach Analyis I hängt das Integral stetig vom Integranden ab (unter 
-		Voraussetzungen, die erfüllt sind), also hängt $n_w(c)=\frac{1}{2\pi i} \int_c \frac{1}{z-w}\mathrm{d}z$ 
+		Voraussetzungen, die hier erfüllt sind), also hängt 
+		$n_w(c)=\frac{1}{2\pi i} \int_c \frac{1}{z-w}\mathrm{d}z$ 
 		stetig von $w\in\mathbb{C}\setminus\Omega$ ab.
 		Da die Wertemenge $\mathbb{Z}$ diskret ist, ist $w\mapsto n_w(c)$ lokal konstant. \\
 		
 		Zu \ref{prop:umlauf3}: Da der Integrand $\frac{1}{z-w}$ auf $\Omega$ holomorph ist und das 
-		Kurvenintegral homotopieunabhängig ist, folgt $n_w([\gamma])=0$ für nullhomotope 
+		Kurvenintegral homotopieunabhängig ist, folgt 
+		\[n_w([\gamma])=0\] für nullhomotope 
 		Kurven $\gamma$. Das das für alle Punkte $w\in\mathbb{C}\setminus\Omega$ gilt, ist $[\gamma]$ 
 		nullhomolog.
 	\end{proof}
@@ -1533,8 +1539,8 @@
 		\begin{enumerate}
 			\item $\gamma_1(t)=e^{2\pi it}$, $\gamma_2(t)=2e^{2\pi it}$ Kurven in $\mathbb{C}^{\times}
 			=\mathbb{C}\setminus\{0\}$. $[\gamma_1]$ ist homolog zu $[\gamma_2]$ in $\mathbb{C}
-			\setminus\{0\}$ (aber nicht in $\mathbb{C}\setminus\{0,1+i\}$) \\$n_{1+i}(\gamma_1)=0$, 
-			$n_{1+i}(\gamma_2)=1$.
+			\setminus\{0\}$ (aber nicht in $\mathbb{C}\setminus\{0,1+i\}$)
+			\[n_{1+i}(\gamma_1)=0,\qquad \qquad \qquad n_{1+i}(\gamma_2)=1.\]
 			
 			\item Es gibt Kurven, die in gewissen $\Omega$ nullhomolog, aber nicht nullhomotop sind 
 			(Übung).
@@ -1562,7 +1568,7 @@
 		Es sei $c$ Zykel in $\Omega$. Dann sind äquivalent
 		\begin{enumerate}
 			\item $c$ ist nullhomolog in $\Omega$; \label{artin1}
-			\item $c$ lässt sich als Linearkombination nullhomotoper geschlossener Kurven schreiben; 
+			\item $c$ lässt sich als Linearkombination nullhomotoper, geschlossener Kurven schreiben; 
 			\label{artin2}
 			\item $c$ wird durch eine geschlossene, nullhomotope Kurve in $\Omega$ dargestellt. 
 			\label{artin3}

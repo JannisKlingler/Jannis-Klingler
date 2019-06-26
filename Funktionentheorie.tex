@@ -11,6 +11,7 @@
 \usepackage{dsfont}
 \usepackage{xfrac}
 \usepackage{tikz}
+\usepackage{bigints}
 
 \usetikzlibrary{positioning}
 \usetikzlibrary{arrows}
@@ -35,9 +36,9 @@
 
 \begin{document}
 
-\maketitle
+	\maketitle
 
-\section{Holomorphe und analytische Funktionen}
+	\section{Holomorphe und analytische Funktionen}
 
 	\subsection{Analytische Funktionen}
 	
@@ -1121,11 +1122,11 @@
 	\begin{definition}[biholomorphe Funktion]
 		Es seien $\Omega_0 ,\Omega_1\subset\mathbb{C}$ Gebiete. Eine holomorphe, bijektive 
 		Abbildung $f:\Omega_0\to\Omega_1$ heißt biholomorph. \\
-		Wir sehen später (Satz 2.23
+		Wir sehen später (Satz 2.23)
 		
 		%...
 		
-		), dass auch die Umkehrabbildung holomorph ist. Im reellen hingegen haben wir z. B. 
+		, dass auch die Umkehrabbildung holomorph ist. Im reellen hingegen haben wir z. B. 
 		$x\mapsto x^3$, die bijektiv und differenzierbar, aber kein Diffeomorphismus ist.
 	\end{definition}
 	
@@ -1635,4 +1636,415 @@
 		Das zeigt \ref{artin1} $\Rightarrow$ \ref{artin2}, \ref{artin2} $\Rightarrow$ \ref{artin3} wie in 
 		Bemerkung \ref{rem:3.3} und \ref{artin3} $\Rightarrow$ \ref{artin1}
 	\end{proof}
+	
+	\begin{remark}
+		Satz \ref{thm:CI;umlauf} hat eine Umkehrung: Wenn $f$ holomorph ist, $c$ ein Zykel in $\Omega$, sd. 
+		das für das folgende Integral gilt
+		\begin{eqnarray}
+			\int_c f(z)\mathrm{d}z=0 \label{rem:CI;1}
+		\end{eqnarray}
+		für alle holomorphen Funktionen $f$, dann sind $c_1$ und $c_2$ homolog (Betrachte Differenz der 
+		Kurven). Also misst $"$Homologie$"$ auf wievielen Zykeln Integrale holomorpher Funktionen 
+		verschiedene Werte annhemen. \\
+		\textsl{Begründung:} Die Funktionen $z\mapsto \frac{1}{z\cdot w}$ für $w\notin\Omega$ sind auf 
+		$\Omega$ holomorph. Wenn \ref{rem:CI;1} gilt, verschwinden alle Umlaufzahlen, also ist $c$ dann 
+		nullhomolog.
+	\end{remark}
+	
+	Es bezeichne $S_r (w)$ den Zykel zur Kurve $t\mapsto w+re^{2\pi it}$, $[0,1]\to\mathbb{C}$ 
+	(Kreis im mathematischen Sinne einmal um $w$ verschieben mit Radius $r$ in der komplexen Ebene).
+	
+	\begin{corollary}
+		Es sei $\Omega\subset\mathbb{C}$ ein Gebiet und $c$ ein nullhomologer Zykel in $\Omega$. 
+		Es seien $z_1,\ldots,z_k\in\Omega$ und $r_1,\ldots,r_k >0$ so, dass die abeschlossenen 
+		Bälle $\overline{B_{r_j}(z_j)}$ in $\Omega$ liegen und paarweise disjunkt sind. 
+		Dann ist $c$ in $\Omega\setminus\{z_1,\ldots,z_k\}$ homolog zum Zykel
+		\begin{eqnarray}
+			\sum_{j=1}^k n_{z_j}(c)\cdot S_{r_j}(z_j). \label{coroll:zyk;1}
+		\end{eqnarray}
+		(fehlende Skizze siehe Skriptum Niklas/Kai)\\
+	\end{corollary}
+	
+	\begin{proof}
+		Die Differenz von $c$ und dem Zykel \ref{coroll:zyk;1} ist nullhomolog in $\Omega\setminus\{z_1,\ldots,
+		z_k\}$, denn sei $w\notin\Omega$, dann folgt
+		\[ n_w(c)=n_w (S_{r_j}(z_j))=0, \]
+		denn beide Zykel sind in $\Omega$ nullhomolog ($S_{r_j}(z_j)$ ist in $\Omega$ nullhomotop, da 
+		$\overline{B_{r_j}(z_j)}\subset\Omega$). Für $w=z_l$ gilt
+		\[ n_w(S_{r_j}(z_j))=S_{r_l} \]
+		($j=l$ klar, $j\neq l:\overline{B_{r_j}(z_j)}\subset\Omega\setminus\{z_l\}$) Es folgt
+		\[ n_{z_l}\left(c-\sum_{j=1}^k n_{z_j}(c)\cdot S_{r_j}(z_j)\right)=n_{z_l}(c)-n_{z_l}(c)=0. \]
+		Also ist $c$ homolog zu \ref{coroll:zyk;1}.\\
+		\textsl{Analog:} Falls $c$ in $\Omega\setminus\left( \overline{B_{r_1}(z_1)}\cup\ldots\cup
+		\overline{B_{r_k}(z_k)}\right)$ verläuft, können wir ein $\varepsilon>0$ bestimmen, dass auch 
+		$\overline{B_{r_j +\varepsilon}(z_j +\varepsilon)}\subset\Omega$ paarweise disjunkt sind. 
+		Dann ist $c$ in $\Omega\setminus\left( \overline{B_{r_1}(z_1)}\cup\ldots\cup
+		\overline{B_{r_k}(z_k)}\right)$ homolog zu
+		\[ \sum_{j=1}^k n_{z_j}(c)\cdot S_{r_j +\varepsilon}(z_j). \]
+	\end{proof}
+	
+	\subsection{Laurentreihen und das Residuum}
+	
+	Wir haben im Zusammenhang mit Singularitäten bereits Potenzreihen in $z$ betrachtet, in denen auch 
+	negative Exponenten vorkommen, siehe Beispiel 2.4 (2),(3). 
+	
+	%...
+	
+	Das wollen wir jetzt systematisch machen. \\
+	Wir brauchen für $0\leq r<R\leq \infty$ den Kreisring $A_{r,R}(w)$ (lat. $"$annulus$"$)
+	\[ A_{r,R}(w)=\{z\in\mathbb{C} \ \vert\ r<|z-w|<R\} \]
+	
+	\begin{proposition}[Definition: Laurentreihe, Hauptteil, Nebenteil]
+		Eine (komplexe) Laurentreihe ist ein Ausdruck der Form
+		\[ L(z) =\sum_{k=-\infty}^{\infty} a_k z^k \]
+		mit $a_k\in\mathbb{C}$ für alle $k\in\mathbb{Z}$. Die Summe über $k>0$ heißt Hauptteil, die Summe 
+		über $k\leq 0$ heißt Nebenteil. \\
+		Wir erhalten den inneren- und den äußeren Konvergenzradius
+		\[ r=\limsup_{k\to\infty}\sqrt[k]{|a_{-k}|},\qquad R=\left(\limsup_{k\to\infty} \sqrt[k]{|a_k|}\right)^{-1} \]
+		(beiden in $[0,\infty]$), dann konvergiert $L(z)$ auf $A_{r,R}(0)$, divergiert für $|z|<r$ oder 
+		$|z|>R$ und für $|z|=r$ oder $|z|=R$ ist keine allgemeine Aussage möglich. \\
+		Falls $r<R$ nennen wir $L$ konvergent, sonst divergent. \\
+		Falls $r<R$, also $L$ konvergent, dann nennen wir $A_{r,R}(0)$ ihren Konvergenzring. \\
+		Eine Laurentreihe $L$ um $w$ mit Konvergenzring $A_{r,R}(w)$ stellt eine holomorphe 
+		Funktion $f:\Omega\to\mathbb{C}$ auf $U\subset\Omega\cap A_{r,R}(w)$ dar, falls für alle 
+		$z\in U$ gilt, dass
+		\[ f(z) = L(z-w) =\sum_{k=-\infty}^{\infty} a_k (z-w)^k. \]
+	\end{proposition}
+	
+	\begin{proof}
+		Der Nebenteil ist eine Potenzreihe in $z$ und konvergiert für 
+		\[|z|<\left(\limsup_{k\to\infty} \sqrt[k]{|a_k|}\right)^{-1}=R.\]
+		Der Hauptteil ist eine Potenzreihe in $\frac{1}{z}$ und konvergiert für
+		\[ \left|\frac{1}{z}\right| < \left(\limsup_{k\to\infty} \sqrt[k]{|a_k|}\right)^{-1} \quad\Leftrightarrow\quad
+		|z| > \limsup_{k\to\infty} \sqrt[k]{|a_{-k}|} =r. \]
+		Also konvergiert $L(z)$ auf $A_{r,R}(0)$.
+	\end{proof}
+	
+	\begin{example}
+		\begin{enumerate}
+			\item \label{exp:laur;1} Wir entwickeln die Funktion $\frac{1}{z-w}$ um $0$. Dann gilt für $|z|<|w|$
+			\[ \frac{1}{z-w} = -\frac{\frac{1}{w}}{1-\frac{z}{w}}=-\frac{1}{w} \sum_{k=0}^{\infty} 
+			\left(\frac{z}{w}\right)^k \qquad \qquad \text{(geom. Reihe)} \]
+			Für $k\geq 0$ gilt $a_k=-\frac{1}{w^{k+1}}$ und 
+			\[ \limsup_{k\to\infty}\sqrt[k]{|a_k|} =\frac{1}{|w|} \quad\Rightarrow\quad R=|w|. \]
+			Für $|z|>|w|$ gilt
+			\[ \frac{1}{z-w}=\frac{\frac{1}{z}}{1-\frac{w}{z}} =\frac{1}{2}\sum_{k=0}^{\infty}\left(\frac{w}{z}\right)^k 
+			=\sum_{k=-\infty}^{-1} z^k \frac{1}{w^{k+1}}. \]
+			Für $l>0$ gilt $a_{-l}=\frac{1}{w^{-l+1}}=w^{l-1}$ und
+			\[ \limsup_{k\to\infty}\sqrt[k]{|a_k|}=|w| \quad\Rightarrow\quad r=|w|. \]
+			(l=-k)
+			
+			\item Sei $f(z)=\frac{1}{z-w_0}+\frac{1}{z-w_1}$ mit $0<|w_0|<|w_1|$ (Skizze siehe Niklas/Kai) \\
+			Indem wir passende Laurententwicklungen aus \ref{exp:laur;1} addieren, erhalten wir drei 
+			Laurententwicklungen auf $A_{0,|w_0|}(0)$, $A_{|w_0|,|w_1|}(0)$, $A_{|w_1|,\infty}(0)$. 
+			Auf dem mittleren Gebiet sind alle Koeffizienten null.
+		\end{enumerate}
+	\end{example}
+	
+	
+	%...
+	
+	
+	
+	
+	
+	\subsection{Residuensatz und erste Anwendungen}
+	
+	\begin{theorem}
+		Es sei $\Omega\subset\mathbb{C}$ Gebiet, $z_1,\ldots ,z_k\in\Omega$, $f:\Omega\setminus
+		\{z_1,\ldots ,z_k\}\to\mathbb{C}$ holomorph. Sei $c$ Zykel in $\Omega\setminus\{z_1,\ldots,z_k\}$, 
+		der in $\Omega$ nullholomorph ist. Dann gilt
+		\[ \int_c f(z)\mathrm{d}z =\sum_{j=1}^k 2\pi i Res_{z_j}(f)\cdot n_{z_j}(c) \]
+	\end{theorem}
+	
+	\begin{proof}
+		Wir dürfen $c$ durch einen Zykel ersetzen, der in $\Omega\setminus\{z_1,\ldots,z_k\}$ zu $c$ 
+		homolog ist (Satz 3.11). 
+		
+		%...
+		
+		Nach Folgerung 3.14 
+		
+		%...
+		
+		wählen wir dazu den Zykel $n_{z_1}(c)\cdot S_{\varepsilon}^1 (z_1)+\ldots+n_{z_k}(c)\cdot 
+		S_{\varepsilon}^1(z_k)$ für $\varepsilon>0$ klein genug. Mit Proposition 3.19 
+		
+		%...
+		
+		folgt
+		\begin{eqnarray*}
+			\int_c f(z)\mathrm{d}z &=& \sum_{j=1}^k n_{z_j}(c) \int_{S_{\varepsilon}^1(z_j)}f(z)\mathrm{d}z \\
+			&=& 2\pi i\sum_{j=1}^k n_{z_j}(c)\cdot Res_{z_j}(f).
+		\end{eqnarray*}
+	\end{proof}
+	
+	Zum Anwenden: versuche ein gegebenes Integral (zum Beispiel im Reellen) in ein komplexes Kurvenintegral 
+	über einen Zykel umzuformen. Danach bestimme das Residuum an allen Punkten, die umlaufen werden.\\
+	Ein \underline{rationaler Ausdruck} in den Größen $X_1,\ldots,X_k$ ist ein Ausdruck, der aus 
+	$X_1,\ldots,X_k$ und Zahlen in $\mathbb{C}$ durch Anwenden der Grunrechenarten $(+,-,\cdot,:)$. 
+	Ein \underline{Polynom} in $X_1,\ldots,X_k$ ist ein rationaler Ausdruck, in dem nicht dividiert wird. 
+	Jeder rationale Ausdruck lässt sich durch geeignetes Erweitern als Quotient zweier Polynome schreiben.
+	
+	\begin{example}
+		Der Tangens ist ein rationaler Ausdruck in $e^{iz}$ und $e^{-iz}$, denn 
+		\[ \tan(z)=\frac{\sin(z)}{\cos(z)}=\frac{\frac{e^{iz}-e^{-iz}}{2i}}{\frac{e^{iz}+e^{-iz}}{2}}=-i
+		\frac{e^{iz}-e^{-iz}}{e^{iz}+e^{-iz}}. \]
+		Aber $e^{-z^2}=e^{(iz)^2}$ ist \underline{kein} rationaler Ausdruck in $e^{iz}$.
+	\end{example}
+	
+	\begin{corollary}
+		Es sei $R(\cos x,\sin x)$ ein rationaler Ausdruck in $\cos x$ und $\sin x$, der für alle $x\in\mathbb{R}$ 
+		definiert ist. Dann hat 
+		\[ z\mapsto \frac{1}{z} \cdot R(\frac{z+z^{-1}}{2},\frac{z-z^{-1}}{2i}) \]
+		keine Pole auf $S^1(0)$ und es gilt:
+		\begin{eqnarray*}
+			\int_0^{2\pi} R(\cos x,\sin x)\mathrm{d}x &=& \frac{1}{i} \int_{S^1} \frac{R\left(\frac{z+z^{-1}}{2},
+			\frac{z-z^{-1}}{2i}\right)}{z} \mathrm{d}z \\
+			&=& 2\pi \sum_{z\in B_1(0)} Res_z \left(\frac{1}{z} R\left(\frac{z+z^{-1}}{2},\frac{z-z^{-1}}{2i}\right)
+			\right).
+		\end{eqnarray*}
+		und nun endlich viele im Inneren des Einheitskreises.\\
+		Gemeint ist: $R(X_1,X_2)$ ist rationaler Ausdruck. Ersetze $X_1,X_2$ durch $\cos x,\sin x$ bzw 
+		$\frac{z+z^{-1}}{2},\frac{z-z^{-1}}{2i}$.
+	\end{corollary}
+	
+	\begin{proof}
+		Setze $z=e^{ix}$. Dann folgt
+		\begin{itemize}
+			\item $\mathrm{d}z=i e^{ix}\mathrm{d}x$, also $\mathrm{d}x=\frac{1}{i} \frac{\mathrm{d}z}{z}$
+			\item $\cos x= \frac{e^{ix}+e^{-ix}}{2}=\frac{z+\frac{1}{z}}{2}$
+			\item $\sin x= \frac{e^{ix}-e^{-ix}}{2i}=\frac{z-\frac{1}{z}}{2i} $
+		\end{itemize}
+		$x\in[0,2\pi]$ entspricht $z\in\mathbb{C}$ mit $|z|=1$. Da $R$ auf $\mathbb{R}$ definiert ist, hat 
+		$\frac{1}{z} R\left(\frac{z+z^{-1}}{2},\frac{z-z^{-1}}{2i}\right)$ keine Pole auf $S^1$. Wir können 
+		diesen Ausdruck als rationalen Ausdruck in $z$ auffassen. Dieser hat im Nenner ein Polynom (von 	
+		endlichem Grad), also hat der Nenner auf $\mathbb{C}$ nur endlich viele Nullstellen und das sind 
+		gerade die Pole von $\frac{1}{z}R(\ldots)$. Jetzt folgt die Behauptung aus der Definition des 
+		Kurvenintegrals (parametrisiere $S^1$ durch $z=e^{ix}$) und dem Residuensatz. 
+		(Alle Pole im Inneren von $B_1(0)$ werden von $S^1$ genau einmal umlaufen.)
+	\end{proof}
+	
+	\begin{example}
+		Sei $a\in \mathbb{R}$, $a>1$.
+		\begin{eqnarray*}
+			 \int_0^{2\pi} \frac{1}{a+\cos x}\mathrm{d}x &=& \frac{1}{i}\int_{S^1}\frac{1}{z} 
+			 \frac{1}{a+\frac{z+z^{-1}}{2}}\mathrm{d}z \\
+			 &=& \frac{1}{i}\int_{S^1} \frac{1}{az+\frac{z^2}{2}+\frac{1}{2}}\mathrm{d}z.ds
+		\end{eqnarray*}
+		Der Nenner hat Nullstellen bei $z_{1,2}=-a\pm \sqrt{a^2 -1}$. Da $a>1$, liegt eine davon nämlich 
+		$\sqrt{a^2 -1}-a$ im Inneren von $B_1$. Wir rechnen das Residuum mit Proposition 3.21 (2). 
+		
+		%...
+		
+		Schreibe
+		\[ f=\frac{g}{h} =\frac{\frac{1}{z}}{a+\frac{z+z^{-1}}{2}}. \]
+		dann ist 
+		\[ g(\sqrt{a^2 -1}-a)=\frac{1}{\sqrt{a^2 -1}-a} \]
+		und
+		\[ h'(\sqrt{a^2 -1}-a) =\frac{1}{2}-\frac{1}{2z^2}|_{\ldots}=\frac{1}{2}-\frac{1}{2(2a^2 -1-2a\sqrt{a^2 -1})}
+		=\frac{(\sqrt{a^2 -1}-a)^2 -1}{2(\sqrt{a^2 -1}-a)^2} \]
+		\begin{eqnarray*}
+			Res_{\sqrt{a^2 -1}-a}(\frac{g}{h}) 
+			&=& \frac{1}{\sqrt{a^2 -1}-a}\cdot \frac{2(\sqrt{a^2 -1}-a)^2}{(\sqrt{a^2 -1}-a)^2 -1} \\
+			&=& \frac{2(\sqrt{a^2 -1}-a)}{2a^2 -2 -2a\sqrt{a^2 -1}} \\
+			&=& \frac{\sqrt{a^2 -1}-a}{\sqrt{a^2 -1}(\sqrt{a^2 -1}-a)} =\frac{1}{\sqrt{a^2 -1}}
+		\end{eqnarray*}
+		Also gilt
+		\[ \int_0^{2\pi} \frac{1}{a+\cos x}\mathrm{d}x = \frac{2\pi}{\sqrt{a^2 -1}}. \]
+	\end{example}
+	
+	Es bezeichne $\hat{\mathbb{C}}=\mathbb{C}\cup \{\infty\}$ die Riemannsche Zahlenkugel. Sei 
+	$K\subset\mathbb{C}$ kompakt. $K\subset \overline{B_R(0)}$ und $f:\mathbb{C}\setminus K\to 
+	\mathbb{C}$ holomorph. Dann hat $f$ bei $z=\infty$ eine hebbare Sinuglarität/ Pol/ wesentliche 
+	Singularität, wenn $f(\frac{1}{z})$ bei $z=0$ eine entsprechende Singularität hat. Dito definiere 
+	Nullstellen der Ordnung $k$ bei $z=\infty$.\\
+	Außerdem sei $\mathbb{H} =\{ z\in\mathbb{C} \ \vert\ Im\  z>0 \}$ der obere Halbraum. \\
+	Im Folgenden arbeiten wir auf $\mathbb{R}$ mit dem Riemann-Integral.
+	
+	\begin{corollary}
+		Es sei $R(z)$ rationaler Ausdruck, der für alle $z\in\mathbb{R}$ definiert ist und bei $\infty$ eine 
+		Nullstelle der Ordnung 2 hat. Dann hat $f(z)$ nur endlich viele Polstellen in $\mathbb{H}$ und 
+		\[ \int_{-\infty}^{\infty} R(x)\mathrm{d}x =2\pi i \sum_{z\in\mathbb{H}} Res_z(R(z)). \]
+	\end{corollary}
+	
+	\begin{remark}
+		Mit Hilfe der Partialbruchzerlegung können wir $R(x)$ als Summe einfacherer Ausdrücke schreiben, 
+		die eine Stammfunktion besitzen.
+	\end{remark}
+	
+	\begin{proof}
+		Da der Nenner von $R$ ein Polynom ist, hat er nur endlich viele Nullstellen in $\mathbb{C}$, also 
+		erst recht in $\mathbb{H}$. Betrachte $S>0$ groß und die Kontur $c$.
+		
+		%... Zeichnung fehlt
+		
+		Für $S$ groß genug liegen alle Pole von $R$ in $\mathbb{H}$ innerhalb der Kontur und werden 
+		einmal umlaufen, also ist das Integral über $c$ genau die rechte Seite in der Folgerung. Da $R(z)$ 
+		eine Nullstelle der Ordnung $k\geq 2$ bei $\infty$ hat, existiert $C>0$, sd.
+		\[ \left|R\left(\frac{1}{z}\right)\right|\leq C\left|\frac{1}{z}\right|^k \]
+		für alle $"$kleinen $\frac{1}{z}"$, dh. für $|z|\to \infty$. Also folgt 
+		\[ \int_c R(z)\mathrm{d}z=\int_{-S}^S R(x)\mathrm{d}x + \underbrace{\int_0^{\pi} \underbrace{
+		R(S\cdot e^{i\varphi})}_{|\cdot|\leq C\cdot S{-k}}\cdot \underbrace{iSe^{i\varphi}}_{|\cdot|=S}\mathrm{d}
+		\varphi}_{|\cdot|\leq C\cdot S^{1-k} \underset{s\to\infty}{\to}0} \]
+		Durch Grenzübergang $S\to \infty$ folgt die Behauptung.
+	\end{proof}
+	
+	\begin{example}
+		\[ \int_{-\infty}^{\infty} \frac{1}{1+x^2}\mathrm{d}x=2\pi i Res_i \frac{1}{1+x^2} = 
+		2\pi i\cdot \frac{1}{2i}=\pi \]
+		$\arctan'=\frac{1}{1+x^2}$ daraus folgt
+		\[ \int_{-\infty}^{\infty} \frac{1}{1+x^2}\mathrm{d}x =\left(\lim_{x\to\infty}-\lim_{x\to\infty}\right)
+		\arctan(x) =\pi. \]
+	\end{example}
+	
+	\textsl{Wichtig:} Wir lernen hier lieber die Methode (über welchen Zykel integrieren wir, machen wir 
+	Koordinatentransformationen, etc...?). Oftmals kann man die Verfahren variieren (z. B. muss es unter 
+	Umständen kein rationaler Ausdruck sein).
+	
+	\begin{corollary}
+		Es sei $R$ ein rationaler Ausdruck, der für alle $z\in \mathbb{R}$ höchstens einfache Pole hat und bei 
+		$\infty$ eine Nullstelle der Ordnung $\geq 1$. Dann hat $R$ nur endlich viele Singulariäten in 
+		$\mathbb{H}$ und es konvergieren die uneigentlichen Riemann-Integrale
+		\begin{enumerate}
+			\item Falls die reellen Polstellen in $\pi\cdot\mathbb{Z}$ liegen:
+			\[ \int_{-\infty}^{\infty} R(x)\cdot \sin x\mathrm{d}x =2\pi \cdot Re\left(\sum_{z_0 \in\mathbb{H}}
+			Res_{z_0}\left(R(z)e^{iz}\right)\right) + \pi \cdot Re\left(\sum_{z_0 \in\mathbb{R}}
+			Res_{z_0}\left(R(z)e^{iz}\right)\right) \]
+			
+			\item Falls die reellen Polstellen in $\pi \mathbb{Z}+\frac{\pi}{2}$ liegen:
+			\[ \int_{-\infty}^{\infty} R(x)\cdot \cos x \mathrm{d}x =-2\pi\cdot Im\left(\sum_{z_0 \in\mathbb{H}}
+			Res_{z_0}\left(R(z)e^{iz}\right)\right) - \pi \cdot Im\left(\sum_{z_0 \in\mathbb{R}}
+			Res_{z_0}\left(R(z)e^{iz}\right)\right). \]
+		\end{enumerate}
+	\end{corollary}
+	
+	\begin{proof}
+		Wir wählen $S$ so groß, dass alle reellen Polstellen in $(-S,S)$ und alle Polstellen in $\mathbb{H}$ 
+		bereits im Rechteck $(-S,S)+(0,S)\cdot i$ liegen. 
+		
+		%... fehlende Skizze 26.6.2019
+		
+		
+		Betrachte die Funktion $f(z)=R(z)e^{iz}$. Auf 
+		$\mathbb{R}$ gilt:
+		\[ Re\left( R(z)e^{iz}\right)= R(z)\cdot Re(e^{iz}) =R(z)\cdot \cos(z). \]
+		Die Kontur besteht aus vier Teilen
+		\[ \int_{-S}^S R(x)\cos x \mathrm{d}x \xrightarrow[S\to\infty]{} \int_{-\infty}^{\infty} R(x)\cos x\mathrm{d}x\]
+		Nach dem Leibnitz-Kriterium konvergiert das uneigentliche Riemann-Integral auch, wenn $R$ nur eine 
+		einfache Nullstelle bei $\infty$ hat:\\
+		
+		%... fehlende Skizze 26.6.2019
+		
+		Das Integral besteht abwechselnd aus Integralen über positive und negative Teilstücke der Länge 
+		$\pi$ und für große $x$ fallen die Absolutbeträge der Teilintegrale monoton.
+		\[ -\int_{-S}^S R(x+iS)e^{i(x+iS)}\mathrm{d}x=\underbrace{-e^{-S}}_{\text{fällt exponentiell}}
+		\underbrace{\int_{-S}^S R(x+iS) e^{ix}\mathrm{d}x}_{\text{wächst höchstens polynomial für }S\to\infty}
+		\xrightarrow[S\to\infty]{}0 \]
+		\[ \int_0^S R(S+ix)e^{i(S+ix)}i\mathrm{d}x = \underbrace{e^{iS}}_{\text{Betrag $1$}}
+		\int_0^S \underbrace{R(S+ix)}_{|\%|\leq\frac{C}{|S+ix|}\leq\frac{C}{S}}e^{-x}i\mathrm{d}x 
+		\overset{S\to\infty}{\to}0, \]
+		dieto für die linke Rechteck-Kante. \\
+		\textsl{1. Fall:} $F$ hat keine reellen Polstellen.
+		\begin{eqnarray*}
+			\int_{-\infty}^{\infty} R(x)\cos x\mathrm{d}x &=& \lim_{S\to\infty} Re\left(\int_{c_S}R(z)e^{iz}
+			\mathrm{d}z\right) \\
+			&=& Re\left( 2\pi i\sum_{z_0\in\mathbb{H}}Res_{z_0}\left(R(z)e^{iz}\right)\right) \\
+			&=& -2\pi Im\left( 2\pi i\sum_{z_0\in\mathbb{H}}Res_{z_0}\left(R(z)e^{iz}\right)\right) 
+		\end{eqnarray*}
+		Polstellen auf $\mathbb{R}$? Die reellen Integrale sind wohldefiniert, denn
+		\[ \underbrace{\frac{1}{z-n\cdot\pi}\sin(z)}_{\text{$"$hebbar$"$}} 
+		=Im\left(\underbrace{\frac{1}{z-n\cdot\pi}e^{iz}}_{\text{hat Pol mit reellem Residuum}}\right) \]
+		bzw
+		\[ \frac{\cos z}{z-(n+\frac{1}{2})\pi} = Re\left( \frac{e^{iz}}{z-(n+\frac{1}{2})\pi}\right) \]
+		Ersetze lokal den Integrationsweg:\\
+		
+		%... fehlende Skizze 26.6.2019
+		
+		Betrachte das Integral über den Halbbogen:
+		\begin{eqnarray*}
+			\int_0^{\pi} R(z_0+\varepsilon e^{i(\pi-\varphi)})e^{iz_0+ie^{i(\pi-\varphi)}
+			\cdot\varepsilon}\cdot(-i)\varepsilon e^{i(\pi-\varphi)}\mathrm{d}\varphi \\
+			= \bigintss_0^{\pi} \underbrace{\left( \frac{Res_{z_0}R(z)}{\varepsilon\cdot e^{i(\pi-\varphi)}}+ 
+			O(1)\right)}_{\to Res_{z_0} R(z)}
+			\left( (\pm i) \underbrace{e^{\varepsilon i\underbrace{e^{i(\pi-\varphi)}}_{\text{Betrag $1$}}}}_
+			{\to 1\text{ für }\varepsilon\to 0}\right) (-i\varepsilon) e^{i(\pi-\varphi)}\mathrm{d}\varphi \\
+			\xrightarrow[\varepsilon\to 0]{} -i\pi \cdot Res_{z_0}R(z)\cdot e^{iz_0}
+		\end{eqnarray*}
+		Wir haben berechnet:
+		\[ \bigintsss_{-\infty}^{\infty} R(x)\cos x\mathrm{d}x +\pi Im\left(\sum_{z_0\in\mathbb{R}}Res_{z_0}\left(
+		R(z_0)e^{iz_0}\right)\right)
+		= -2\pi Im\left( \sum_{z_0\in\mathbb{H}}Res_{z_0}\left(R(z_0)e^{iz_0}\right)\right). \]
+	\end{proof}
+	
+	Analog für $\int R(x)\sin x\mathrm{d}x$.
+	
+	\begin{example}
+		\begin{eqnarray*}
+			\int_0^{\infty} \underbrace{\frac{\sin x}{x}}_{\text{gerade}}\mathrm{d}x
+			&=& \frac{1}{2} \int_{-\infty}^{\infty} \frac{\sin x}{x}\mathrm{d}x \qquad (\text{Pol bei $0$}) \\
+			&=& \frac{1}{2} Res_0 \left(\frac{e^{ix}}{x}\right) = \frac{\pi}{2}\cdot \frac{1}{1} =\frac{\pi}{2}.
+		\end{eqnarray*}
+	\end{example}
+	
+	\begin{definition}[Hauptzweig]
+		Der Hauptwert des Logarithmus (Hauptzweig) ist die auf $\mathbb{C}\setminus (-\infty,0]$ definierte 
+		Stammfunktion von $z\mapsto \frac{1}{z}$ mit Wert $0$ an der Stelle $1$. Wir schreiben dafür 
+		auch $Log$ (anstelle $\log$). $Log(z)=\log |z|+i\ arg\ z$, $arg:\mathbb{C}\setminus(-\infty,0]\to(-\pi,\pi)$.
+	\end{definition}
+	
+	\begin{corollary}
+		Es sei $\lambda\in (0,1)$ und $R$ ein reeller rationaler Ausdruck, wohldefiniert für alle $x\geq 0$, mit 
+		Nullstelle der Ordnung $\geq 1$ bei $\infty$. Dann gilt 
+		\[ \int_0^{\infty} x^{\lambda -1}R(x)\mathrm{d}x = -\frac{\pi}{\sin(2\pi)}\sum_{z_0\in\mathbb{C}\setminus
+		(-\infty,0]}Res_{z_0} \left(\underbrace{e^{(\lambda -1)Log(z) }}_
+		{\text{$"$}z^{\lambda -1}\text{$"$}}R(-z)\right) \]
+	\end{corollary}
+	
+	\begin{proof}
+		Betrachte $f(z)=e^{(\lambda -1)Log(z)}R(-z)$ und für $\varphi >0$, $S>0$ den Zykel $c$ \\
+		
+		%... fehlende Skizze 26.6.2010
+		
+		Äußerer Kreis:
+		\[ \bigintss_{\varphi-\pi}^{\pi-\varphi}\underbrace{e^{(\lambda -1)Log(S\cdot e^{i\vartheta})}}_
+		{\underbrace{S^{(\lambda -1)}}_{\to 0} \cdot \underbrace{ e^{(\lambda -1)i\vartheta}}_{|\%|=1}}
+		\cdot \underbrace{ R\left( -S\cdot e^{i\vartheta}\right)}_{\leq \frac{C}{S}}\cdot 
+		iS\underbrace{e^{i\vartheta}}_
+		{\text{Betrag $1$}}\mathrm{d}\vartheta \underset{S\to\infty}{\to}0.\]
+		Innerer Kreis:
+		\[ \bigintss_{\varphi-\pi}^{\pi-\varphi} \underbrace{\underbrace{e^{(\lambda -1)Log(\frac{1}{S}
+		e^{i\vartheta})}}_
+		{S^{1-\lambda}\cdot e^{(\lambda -1)i\vartheta}}\cdot \underbrace{R\left(-\frac{1}{S}e^{i\vartheta}\right)}_
+		{\to R(0)} \cdot \frac{i}{S}}_{S^{-\lambda\to0}}\underbrace{e^{i\vartheta}}_{\text{Betrag $1$}}\mathrm{d}
+		\vartheta \underset{S\to\infty}{\to}0. \]
+		Für die geraden Stücke erhalten wir
+		\begin{eqnarray*}
+			-\int_{\frac{1}{S}}^S e^{(\lambda -1)Log(xe^{i(\pi-\varphi)})}R(\underbrace{-xe^{i(\pi-\varphi)}}_
+			{\to x})\underbrace{e^{i(\pi-\varphi)}}_{\to -1}\mathrm{d}x
+			+ \int_{\frac{1}{S}}^S e^{(\lambda -1)Log(xe^{i(\varphi-\pi)})}R(\underbrace{-xe^{i(\varphi-\pi)}}_
+			{\to x})\underbrace{e^{i(\varphi-\pi)}}_{\to -1}\mathrm{d}x \\
+			\xrightarrow[\varphi\to0]{} \int_{\frac{1}{S}}^S x^{\lambda -1}e^{i(\lambda -1)\pi}R(x)\mathrm{d}x
+			-\int_{\frac{1}{S}}^S x^{\lambda -1}e^{-i(\lambda -1)\pi}R(x)\mathrm{d}x
+		\end{eqnarray*}
+		Nach Grenzübergang $S\to\infty$, $\varphi\to0$ erhalten wir
+		\begin{eqnarray*}
+			\int_0^{\infty} x^{\lambda -1}(2i\cdot \underbrace{\sin((\lambda -1)\pi)}_{-\sin(2\pi)})R(x)\mathrm{d}x
+			= 2\pi i\sum_{z_0\in\mathbb{C}\setminus (-\infty,0]}Res_{z_0}(e^{(\lambda -1)z}R(-z)) \\
+			\Rightarrow \qquad \int_0^{\infty} x^{\lambda -1}R(x)\mathrm{d}x
+			=-\frac{\pi}{\sin(2\pi)}\sum_{z_0\in\mathbb{C}\setminus (-\infty,0]} 
+			Res_{z_0}(e^{(\lambda -1)z}R(-z)).
+		\end{eqnarray*}
+	\end{proof}
+	
+	\begin{example}
+		Sei $\lambda\in (0,2)$, $\lambda\neq 1$.
+		\begin{eqnarray*} 
+			\int_0^{\infty} \frac{x^{\lambda -1}}{(1+x)^2}\mathrm{d}x &=& -\frac{\pi}{\sin(2\pi)}(\lambda -1) \\
+			&=& Res_1 \left( e^{(\lambda -1)Log(z)}\frac{1}{(1-z)^2}\right) \\
+			&=& \left( e^{(\lambda -1)Log(z)}\right)_{z=1}^{'} \\
+			&=& (\lambda -1)e^{(\lambda -1)Log(z)} \cdot \frac{1}{z}\vert_{z=1} =(\lambda -1)
+		\end{eqnarray*}
+	\end{example}
+		
 \end{document}

@@ -2152,13 +2152,13 @@
 		%... fehlende Skizze 26.6.2010
 		
 		Äußerer Kreis:
-		\[ \bigintss_{\varphi-\pi}^{\pi-\varphi}\underbrace{e^{(\lambda -1)Log(S\cdot e^{i\vartheta})}}_
+		\[ \bigintsss_{\varphi-\pi}^{\pi-\varphi}\underbrace{e^{(\lambda -1)Log(S\cdot e^{i\vartheta})}}_
 		{\underbrace{S^{(\lambda -1)}}_{\to 0} \cdot \underbrace{ e^{(\lambda -1)i\vartheta}}_{|\%|=1}}
 		\cdot \underbrace{ R\left( -S\cdot e^{i\vartheta}\right)}_{\leq \frac{C}{S}}\cdot 
 		iS\underbrace{e^{i\vartheta}}_
 		{\text{Betrag $1$}}\mathrm{d}\vartheta \underset{S\to\infty}{\to}0.\]
 		Innerer Kreis:
-		\[ \bigintss_{\varphi-\pi}^{\pi-\varphi} \underbrace{\underbrace{e^{(\lambda -1)Log(\frac{1}{S}
+		\[ \bigintsss_{\varphi-\pi}^{\pi-\varphi} \underbrace{\underbrace{e^{(\lambda -1)Log(\frac{1}{S}
 		e^{i\vartheta})}}_
 		{S^{1-\lambda}\cdot e^{(\lambda -1)i\vartheta}}\cdot \underbrace{R\left(-\frac{1}{S}e^{i\vartheta}\right)}_
 		{\to R(0)} \cdot \frac{i}{S}}_{S^{-\lambda\to0}}\underbrace{e^{i\vartheta}}_{\text{Betrag $1$}}\mathrm{d}
@@ -2191,5 +2191,183 @@
 			&=& (\lambda -1)e^{(\lambda -1)Log(z)} \cdot \frac{1}{z}\vert_{z=1} =(\lambda -1)
 		\end{eqnarray*}
 	\end{example}
+		
+	\subsection{Das Null- und Polstellen zählende Integral}
+	
+	\begin{definition}
+		Es sei $\Omega$ ein Gebiet. Eine Funktion heißt holomorph auf $\Omega$ bis auf isolierte 
+		Singularitäten, wenn es eine diskrete Teilmenge $A\subset\Omega$ gibt, sd.
+		\[ f:\Omega\setminus A\to\mathbb{C}\]
+		holomorph ist. Wir nennen $f$ meromorph, wenn $f$ höchstens Pole besitzt.
+	\end{definition}
+	
+	\begin{example}
+		$\Omega =\mathbb{C}$
+		\begin{itemize}
+			\item $f(z)=\frac{1}{\sin(z)}$, $A=\pi\mathbb{Z}:=\{\pi n\ \vert\ n\in\mathbb{Z}\}$
+			
+			\item $f(z)=\frac{1}{z}$, $A=\{0\}$
+			
+			\item $f(z)=\frac{\sin(z)}{z}$, $A=\{0\}$
+		\end{itemize}
+		(kann auch $f(0)=1\quad\to\quad A=\emptyset$)
+	\end{example}
+	
+	\begin{example}[Gegenbeispiele]
+		\begin{itemize}
+			\item $\log(t)$, $A=\{ x\in\mathbb{R}\ \vert\ x\leq 0\}$
+			
+			\item $f(z)=e^{\frac{1}{z}}$ (wesentliche Singularität)
+			
+			\item $f(z)=|z|$, $A=\mathbb{C}\setminus\{0\}$
+		\end{itemize}
+	\end{example}
+	
+	\begin{remark}
+		Es sei $\Omega$ ein Gebiet ($\Omega =\hat{\mathbb{C}}$ auch oke). Dann ist 
+		\[ \mathfrak{M}(\Omega)=\{f:\Omega\to\hat{\mathbb{C}}\ \vert\  f\text{ meromorph}\} \]
+		ein Körper. \textsl{Vergleich:} $\mathbb{Z}\hookrightarrow \mathbb{Q}$ mit $H(\Omega)
+		\hookrightarrow M(\Omega)$.
+	\end{remark}
+	
+	Sei $f$ bei $w$ meromorph und habe eine Darstellung 
+	\[ f(z)=(z-w)^{ord(t)}\cdot g(z),\]
+	wobei $g(w)\neq 0$ und $g$ holomorph bei $w$ ist.
+	
+	\begin{definition}
+		Logarithmische Ableitung:
+		\[ \frac{f'(z)}{f(z)}=\frac{ord_w(f)}{z-w}+\frac{g'(z)}{g(z)} \]
+		\[ \Rightarrow \qquad \qquad Res_w\left(\frac{f'}{f}\right)=ord_w(f). \]
+		\textsl{Warum?} Für $|z-w|$ klein genug können wir schreiben
+		\[ f(z)=\sum_{n=-N}^{\infty} a_n(z-w)^n \]
+		für ein $N<\infty$. $N=ord_w(f) \Leftrightarrow a_{-N}\neq 0$.
+		\[ f(z)=(z-w)^{-N}\sum_{n=-N}^{\infty} a_n(z-w)^{n+N} \underset{m:=n+N}{=}
+		(z-w)^{-N} \underbrace{\sum_{m=0}^{\infty}a_{m-N}	(z-w)^m}_{g(z)}	\]
+		\[ \Rightarrow \qquad \int_{|z-w|=\varepsilon} \frac{f'(z)}{f(z)} \mathrm{d}z =
+		ord_w(f) \int \frac{1}{z-w}\mathrm{d}z =2\pi i \cdot ord_w(f). \]
+	\end{definition}
+	
+	\begin{theorem}[vom Null- und Polstellen zählenden Integral]
+		Es sei $\Omega$ ein Gebiet, $f\in\mathfrak{M}(\Omega)$ meromorph und $c$ ein nullhomologer 
+		Zykel (der die Null- und Polstellen von $f$ nicht trifft). Dann gilt
+		\[ \frac{1}{2\pi i} \int_c \frac{f'(z)}{f(z)}\mathrm{d}z =\sum_{z\in\Omega} n_z(c)\cdot ord_z(f) \]
+	\end{theorem}
+	
+	\begin{example}
+		\begin{itemize}
+			\item $n_q(\gamma)=0$
+			
+			\item $n_q(\gamma)=+1$
+			
+			\item $n_q(\gamma)=-1$
+			
+			\item $n_q(\gamma)=+2$
+		\end{itemize}
+	\end{example}
+	
+	\begin{proof}
+		Lokale Darstellung
+		\[ \frac{f'}{f} =\frac{ord_w(f)}{z-w}+\frac{g'(z)}{g(z)} \]
+		holomorph
+		\[ \Rightarrow \qquad \qquad Res_w\left(\frac{f'}{f}\right)=ord_w(f).\]
+	\end{proof}
+	
+	\begin{remark}[Argumentprinzip]
+		$\gamma:S^1\to\mathbb{C}$ Kurve und $f\circ\gamma:S^1\to\mathbb{C}^*$ Kurve. Dann gilt
+		\[ n_0(f\circ \gamma)=\frac{1}{2\pi i}\int_{\gamma} \frac{f'(z)}{f(z)}\mathrm{d}z. \]
+		\textsl{Warum?}
+		\[ w =f(z) \quad \Rightarrow \quad \frac{1}{2\pi i} \int \frac{\mathrm{d}}{w}=\frac{1}{2\pi i} 
+		\int \frac{\frac{\mathrm{d}t}{\mathrm{d}z} \mathrm{d}z}{f(z)}.\]
+	\end{remark}
+	
+	\begin{definition}
+		Es sei $\Omega\subset\mathbb{C}$ ein Gebiet, $c\in Z(\Omega)$ Zykel. Wir sagen, dass 
+		$c$ den Rand $(\partial \Omega)$ von $\Omega$ darstellt, wenn es eine Darstellung 
+		\[ c=\sum_{i=1}^k n_i[\gamma_i] \]
+		gibt, mit $\gamma_i(t)\in\partial\Omega =\overline{\Omega}\setminus\Omega$ für alle $i$ und alle 
+		$t_i$ und
+		\[ n_w(c)=\frac{1}{2\pi i}\int \frac{\mathrm{d}z}{z-w} =\begin{dcases}1&w\in\Omega \\ 0&w\in
+		\mathbb{C}\setminus\Omega \end{dcases} \]
+	\end{definition}
+	
+	\begin{example}
+		Sei $0<r<R$, $c=S_r$ als Rand von $B_r$ und $\partial\Omega =S_R -S_r$.
+		
+		%... fehlende Skizze 1.7.2019
+		
+	\end{example}
+	
+	\begin{definition}
+		Für eine Funktion $f:\Omega\setminus A\to\mathbb{C}$ holomorph, $f$ stetig am Rand gilt
+		\[ \int_{\partial\Omega} f(z)\mathrm{d}z =\int_c f(z)\mathrm{d}z =2\pi i\sum_{z\in\Omega}
+		\underbrace{n_z(c)}_{=1}Res_z(f), \]
+		wobei $c$ den Rand von $\Omega$ darstellt.
+	\end{definition}
+	
+	\begin{definition}
+		Wir sagen, dass $f$ den Wert $w$ an der Stelle $z$ von Ordnung $k$ annimmt, wenn $ord_z(f-w)=k$ 
+		gilt. 
+		\begin{eqnarray*}
+			N(f,\Omega,w)&=&\sum_{z\in f^{-1}(w)}ord_z(f-w) \\
+			N(f,\Omega,\infty)&=& \sum_{z\in f^{-1}(\infty)}(-ord_z(f))
+		\end{eqnarray*}
+		Und wir sagen, dass $f$ in $\Omega$ den Wert $w$ genau $N(f,\Omega,w)$-mal annimmt.
+	\end{definition}
+	
+	\begin{example}
+		$f(z)=(z-w)^k$, $N(f,\mathbb{C},0)=k$ für $k\geq 0$ und $N(f,\mathbb{C},\infty)=0$.
+	\end{example}
+	
+	\begin{corollary}\label{coroll:Umlauf}
+		Es gilt 
+		\[ N(f,\Omega,w)-N(f,\Omega,\infty) =\frac{1}{2\pi i} \int_{\gamma} \frac{f'(z)}{f(z)-w}\mathrm{d}z=
+		n_w (f\circ\gamma).\]
+	\end{corollary}
+	
+	\begin{definition}
+		Eine Abbildung $\hat{f}:\hat{\mathbb{C}}\to\hat{\mathbb{C}}$ heißt meromorph, wenn 
+		\[ z\mapsto f(z), \qquad w\mapsto f\left(\frac{1}{w}\right) \]
+		für $f=\hat{f}|_{\mathbb{C}}$ meromorph sind.
+	\end{definition}
+	
+	\begin{corollary}
+		Es sei $f\in\mathfrak{M}(\hat{\mathbb{C}})$ nicht konstant, dann nimmt $f$ alle Werte 
+		$w\in\hat{\mathbb{C}}$ gleich oft an.
+	\end{corollary}
+	
+	\begin{example}
+		$\hat{f}(z)=z$ hat einen Pol bei $\infty$.
+	\end{example}
+	
+	\begin{proof}
+	
+		%... fehlende Skizze 1.7.2019
+		
+		
+		Man betrachte die Riemannsche Zahlenkugel mit Polen von $f$ und die Kurve $\gamma$ in der 
+		Ebene. Dann kann die Kurve $\gamma$ sowohl um die Pole von $f$ liegen, als auch in ihnen.
+		Zu Letzterem folgt, dass die Umlaufzahl der Pole $0$ ist und damit 
+		$N(f,\Omega,w)=N(f,\Omega,\infty)$ gilt.
+	\end{proof}
+	
+	\begin{corollary}[Satz von Rouché]
+		Es seien $f,g$ in einer Umgebung von $\overline{\Omega}$ holomorph und es sei $c$ ein Zykel, 
+		der $\Omega$ umrandet. Wenn $|g|<|f|$ auf $\partial\Omega$, dann haben $f$ und $f+g$ 
+		gleich viele Nullstellen.
+	\end{corollary}
+	
+	\begin{proof}
+		Da $|f|>|g|$ auf $\partial\Omega$ folgt $\gamma_s := (f+s\cdot g)\circ c$ für $s\in [0,1]$ und 
+		$|f+s\cdot g|\geq |f|-s|g| >0$. Damit folgt dann, dass $\gamma_s:S^1\to\mathbb{C}^*$ für alle 
+		$s\in [0,1]$. Seien $\gamma_0=f\circ c$ und $\gamma_1=(f+g)\circ c$. Dann sind 
+		$\gamma_0$ und $\gamma_1$ homotop in $\mathbb{C}^*$ und es gilt mit \ref{coroll:Umlauf}
+		\[ n_0(f\circ c) =n_0((f+g)\circ c = N(f,\Omega,0)-0=N(f+g,\Omega,0)-0. \]
+	\end{proof}
+	
+	\begin{corollary}
+		Seien $f(z)=z^n$, $g(z)=a_{n-1}z^{n-1}+\ldots+a_0$ und $\Omega=B_R(0)$ für $R$ groß. Dann 
+		haben $z^n=f$ und $z^n+a_{n-1}z^{n-1}+\ldots+a_0$ gleich viele Nullstellen (nämlich $n$).
+	\end{corollary}
+		
 		
 \end{document}

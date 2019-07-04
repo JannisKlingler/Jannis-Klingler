@@ -2372,6 +2372,169 @@
 		Seien $f(z)=z^n$, $g(z)=a_{n-1}z^{n-1}+\ldots+a_0$ und $\Omega=B_R(0)$ für $R$ groß. Dann 
 		haben $z^n=f$ und $z^n+a_{n-1}z^{n-1}+\ldots+a_0$ gleich viele Nullstellen (nämlich $n$).
 	\end{corollary}
+	
+	\subsection{Holomorpher Funktionalkalkül}
+	
+	\begin{definition}
+		Sei $V$ ein Vektorraum, $A:V\to V$ linear, dann ist
+		\[ Spec(A):=\{ z\in\mathbb{C}\ \vert\  z\mathds{1} -A\text{ nicht invertierbar}\}. \]
+	\end{definition}
+	
+	\begin{example}
+		$V=\mathbb{C}^n$, $A\in M_n(\mathbb{C})$
+		\[ \Rightarrow \qquad Spec(A)=\{\lambda\in\mathbb{C}\ \vert\ \lambda\text{ Eigenwert von }A\}\]
+		\textsl{Warum?}
+		\[ z\mathds{1}-A\text{ nicht invertierbar} \quad\Leftrightarrow\quad det(z\mathds{1}-A)=0 
+		\quad\Leftrightarrow\quad z\text{ Eigenwert von A}\]
+	\end{example}
 		
+	Sei $f:B_R(0)\to\mathbb{C}$ holomorph. $A\in M_n(\mathbb{C})$, $Spec(A)\subset B_R(0)$. \\
+	Wir wollen:
+	\[  f(A):= \sum_{n=0}^{\infty} a_n A^n ,\]
+	wenn $f(z)=\sum a_n z^n$ ist.
+	
+	\begin{example}
+		\begin{enumerate}
+			\item $A=\theta B$, $B=\begin{smallmatrix} 0&-1\\ 1&0\end{smallmatrix}$, $\theta\in\mathbb{R}$ 
+			(oder $\mathbb{C}$), $f(z)=e^z =\sum_{n=0}^{\infty} \frac{z^n}{n!}$. Mit
+			\begin{eqnarray}
+				B^2=\mathds{1} \quad\Rightarrow\quad B^{2n}=(-1)^n\mathds{1},\ B^{2n+1}=B(-1)^n 
+				\label{exp:matr;1}
+			\end{eqnarray}
+			folgt dann
+			\begin{eqnarray*}
+				f(A)=\sum_{n=0}^{\infty} \frac{\theta^n B^n}{n!} 
+				&=&\sum_{n=0}^{\infty} \frac{\theta^{2n}B^{2n}}{(2n)!}+\sum_{n=0}^{\infty}
+				\frac{\theta^{2n+1}B^{2n+1}}{(2n+1)!} \\
+				&\underset{\ref{exp:matr;1}}{=}&  \sum_{n=0}^{\infty} \frac{\theta^{2n}(-1)^n\mathds{1}}
+				{(2n)!}+\sum_{n=0}^{\infty} \frac{\theta^{2n+1}(-1)^n}{(2n+1)!}B \\
+				&=& \cos(\theta)\mathds{!} +\sin(\theta)B \\
+				&=& \begin{pmatrix} \cos(\theta) & -\sin(\theta) \\ \sin(\theta) & \cos(\theta) \end{pmatrix}
+			\end{eqnarray*}
+			
+			\item Sei
+			\[ A=\begin{pmatrix} \lambda_1 & 0 & \cdots & 0 \\
+						       0 & \lambda_2 & \ddots & \vdots \\
+						       \vdots & \ddots & \ddots & 0 \\
+						       0 & \cdots & 0 & \lambda_n
+				\end{pmatrix} \]
+			dann ist
+			\[ f(A)=\begin{pmatrix} f(\lambda_1) & 0 & \cdots & 0 \\
+						       0 & (\lambda_2) & \ddots & \vdots \\
+						       \vdots & \ddots & \ddots & 0 \\
+						       0 & \cdots & 0 & (\lambda_n)
+				\end{pmatrix} \]
+			\textsl{Warum?}
+			\[ A^k=\begin{pmatrix} \lambda_1^k & 0 & \cdots & 0 \\
+						       0 & \lambda_2^k & \ddots & \vdots \\
+						       \vdots & \ddots & \ddots & 0 \\
+						       0 & \cdots & 0 & \lambda_n^k
+				\end{pmatrix} \]
+			daraus folgt
+			\[ \sum_{k=0}^{\infty}a_k A^k=
+				\begin{pmatrix} \sum_{k=0}^{\infty}a_k\lambda_1^k & 0 & \cdots & 0 \\
+						       0 & \sum_{k=0}^{\infty}a_k\lambda_2^k & \ddots & \vdots \\
+						       \vdots & \ddots & \ddots & 0 \\
+						       0 & \cdots & 0 & \sum_{k=0}^{\infty}a_k\lambda_n^k
+				\end{pmatrix} \]
+			
+			\item Sei $A=PDP^{-1}$, $A^n=PD^nP^{-1}$ $\Rightarrow$ $f(A)=Pf(D)P^{-1}$
+		\end{enumerate}
+	\end{example}
+	
+	\begin{example}[Operator ohne Eigenwerte]
+		\begin{enumerate}
+			\item$V=\{\text{ Polynome }p(z)\}$, $A:V\to V$ mit $(Ap)(z):=z\cdot p(z)$, $p(z)=a_nz^n+
+			\ldots+a_0$ und 
+			$(Ap)(z)=a_nz^{n+1}+\ldots+a_0 z$. Keine Eigenwerte! $z\cdot p(z)=\lambda p(z)$, 
+			$p\not\equiv 0\ \Rightarrow\ z=\lambda\ \Rightarrow\ z$ ist konstant.
+			
+			\item Seien $V=\bigotimes_{n=0}^{\infty} V_n$, $V_n =\mathbb{C}\{z^n\}$ und 
+			$A:V_n\to V_{n+1}$. Brauchen, dass $dim\ V=\infty$.
+		\end{enumerate}
+	\end{example}
+	
+	\begin{example}[Jordan Normalform]
+		Sei $A\in M_n(\mathbb{C}$ mit $A=PJP^{-1}$, wobei
+		\[ T= \begin{pmatrix} J_1 & 0 & \cdots & 0 \\
+						0 & J_2 & \ddots & \vdots \\
+						\vdots & \ddots & \ddots & 0 \\
+						0 & \cdots & 0 & J_k
+			\end{pmatrix}, \qquad
+		J_i= \begin{pmatrix} \lambda_i & 1 & 0 & 0 \\
+						0 & \lambda_i & \ddots & 0 \\
+						\vdots & \ddots & \ddots & 1 \\
+						0 & \cdots & 0 & \lambda_i
+			\end{pmatrix} \]
+		also gilt $A^k=PJ^kP^{-1}$ und damit folgt $f(A)=Pf(J)P^{-1}$ \\
+		\textsl{Behauptung:} Es gilt
+		\[ f(J_i)= \begin{pmatrix} \frac{f(\lambda_i)}{0!} & \frac{f'(\lambda_i)}{1!} 
+							& \frac{f''(\lambda_i)}{2!} & \cdots & \cdot \\
+						     0 & \ddots & \ddots & \ddots & \vdots \\
+						     \vdots & \ddots & \ddots & \ddots & \frac{f''(\lambda_i)}{2!} \\
+						     \vdots & \ddots & \ddots & \ddots & f'(\lambda_i) \\
+						     0 & \cdots & \dots & 0 & f(\lambda_i)
+				\end{pmatrix} \]
+		\textsl{Kein Beweis}
+	\end{example}
+	
+	Falls wir eine holomorphe Funktion $f$ haben mit 
+	\[ f(a) = \frac{1}{2\pi i} \int_{\gamma} \frac{f(z)}{z-a}\mathrm{d}z \]
+	für $a\in\Omega$. Dann stellt sich die Frage was $f(A)$ ist.
+	
+	\begin{definition}[Resolvente]
+		Sei $A:V\to V$ linear und $z\notin Spec(A)$ dann ist $ R(A,z)=(z\mathds{1}-A)^{-1}$ die Resolvente.
+	\end{definition}
+	
+	\begin{theorem}
+		Es sei $A\in M_n(\mathbb{C})$, $f:\Omega\to\mathbb{C}$ holomorph und $Spec(A)\subset\Omega$.
+		$\gamma$ sei (in $\Omega$) nullhomologer Zykel in $\Omega\setminus Spec(A)$ und 
+		$n_{\lambda}(\gamma)=\pm 1$ für alle $\lambda\in Spec(A)$. Dann gilt
+		\[ f(A)=\frac{1}{2\pi i}\int_{\gamma} R(A,z)f(z)\mathrm{d}z \text{$"="$} \frac{1}{2\pi i}
+		\int_{\gamma} \frac{f(z)}{z-A}\mathrm{d}z. \]
+	\end{theorem}
+	
+	\begin{example}
+		$f:S^1\to\mathbb{C}$ ,$f=f(\theta)=f(\theta +2\pi k)$ und $\triangle f(\theta):=-f''(\theta)$.
+		$\triangle$ hat Eigenwerte $n^2$ für $n\in\mathbb{Z}$ und Eigenfunktionen 
+		$f_n(\theta)=e^{in\theta}$ für $n\in\mathbb{Z}$. \\
+		\textsl{Bemerkung:} $"$$det(\triangle)=\prod_{n\in\mathbb{Z}} n^2$$"$, 
+		$"$$det(\triangle +1)=\prod_{n\in\mathbb{Z}} (n^2 +1)$$"$ \\
+		Können $\triangle$ als $"$Diagonalmatrix$"$ darstellen
+		\[ \begin{pmatrix} \ddots & \ddots & \ddots & \ddots & \ddots & \ddots & \ddots & \ddots & \ddots \\
+					  \ddots & 9 & 0 & \cdots & \cdots & \cdots & \cdots & 0 & \ddots \\
+					  \ddots & 0 & 4 & \ddots & \ddots & \ddots & \ddots & \vdots & \ddots \\
+					  \ddots & \vdots & \ddots & 1 & \ddots & \ddots & \ddots & \vdots & \ddots \\
+					  \ddots & \vdots & \ddots & \ddots & 0 & \ddots & \ddots & \vdots & \ddots \\
+					  \ddots & \vdots & \ddots & \ddots & \ddots & 1 & \ddots & \vdots & \ddots \\
+					  \ddots & \vdots & \ddots & \ddots & \ddots & \ddots & 4 & 0 & \ddots \\
+					  \ddots & 0 & \cdots & \cdots & \cdots & \cdots & 0 & 9 & \ddots \\
+					  \ddots & \ddots & \ddots & \ddots & \ddots & \ddots & \ddots & \ddots & \ddots
+		\end{pmatrix} \]
+		Wir wollen für $f(z)=e^{-z}$ wissen, was $f(t\triangle)$ ist für $t\geq 0$. Es gilt 
+		\[ f(t\triangle)f_n =\sum_{k=0}^{\infty} \frac{(t\triangle)^k}{k!} f_n =\sum_{k=0}^{\infty} 
+		\frac{(tn^2)^k}{k!}f_n \]
+		\[\Rightarrow\qquad e^{-t \triangle}f_n =e^{-tn^2}f_n \]
+		Sei $F:S^1\to\mathbb{C}$ mit $F(\theta)=\sum_{n\in\mathbb{Z}} a_n f_n(\theta)$ eine beliebige 
+		Fourierreihe. Dann gilt
+		\[  e^{-t\triangle} F(\theta)=\sum_{n\in\mathbb{Z}}a_n e^{-tn^2}f_n(\theta)=: \tilde{F}.\]
+		Wollen aber auch, dass gilt 
+		\[ 2\pi i e^{-t\triangle}=\lim_{m\to\infty} \int_{\gamma_m} R(t\triangle,z)e^{-z}\mathrm{d}z, \]
+		wobei
+		
+		%... fehlende Skizze 3.7.2019
+		
+		\[ 2\pi i e^{-t\triangle}f_n=\lim_{m\to\infty}\int_{\gamma_m} e^{-z}R(t\triangle,z)f_n\mathrm{d}z \]
+		\[ R(t\triangle,z)f_n=(z-t\triangle)^{-1}f_n = (z-tn^2)^{-1}f_n \]
+		Daraus folgt nun
+		\[ 2\pi i e^{-t\triangle}=\lim_{m\to\infty}\int_{\gamma_m}\frac{e^{-z}}{z-tn^2}f_n(\theta)\mathrm{d}z 
+		= 2\pi i e^{-tn^2}f_n(\theta). \]
+	\end{example}
+	
+	\text{Warum?} Wir haben $F:S^1\to\mathbb{C}$ und definieren
+	\[ \tilde{F}(t,\theta)=e^{t\triangle} F(\theta) \]
+	Da $\tilde{F}$ die Gleichung $\tilde{F}|_{t=0}=F$ löst ist dann $\triangle\tilde{F}+\partial_t \tilde{F}=0$ 
+	(die Wärmeleitungsgleichung) $\tilde{F}(t=0,\theta)=F(\theta)$.
+	
 		
 \end{document}

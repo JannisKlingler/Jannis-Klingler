@@ -24,7 +24,7 @@
 \newtheorem{definition}[theorem]{Definition}
 \newtheorem{example}[theorem]{Beispiel}
 \newtheorem*{axiom}{Axiom}
-\newtheorem{remark}{Bemerkung}
+\newtheorem{remark}[theorem]{Bemerkung}
 
 \theoremstyle{remark}
 \newtheorem*{repetition}{Wiederholung}
@@ -1099,7 +1099,7 @@
 		$\cos (iy)=\cosh(iy)$ hat $\cos$ kein lokales Maximum in $\mathbb{C}$.
 	\end{example}
 	
-	\begin{corollary}[Schwarz Lemma]
+	\begin{corollary}[Schwarz Lemma] \label{coroll:SL}
 		Es sei $f:B_r (0)\to B_r(0)$ holomorph mit $f(0)=0$. Dann gilt
 		\begin{enumerate}
 			\item $|f(z)|\leq |z|$ für alle $z$ \label{coroll:1}
@@ -1134,7 +1134,7 @@
 		$x\mapsto x^3$, die bijektiv und differenzierbar, aber kein Diffeomorphismus ist.
 	\end{definition}
 	
-	\begin{example}
+	\begin{example} \label{exp:moebius}
 		Ziel: Finde alle biholomorphen Abbildungen $B_1(0)\to B_1(0)$. \\Es sei $A=\left(
 		\begin{smallmatrix} a&b \\ c&d \end{smallmatrix}\right)\in M_2 (\mathbb{C})$ mit 
 		$(c,d)\neq (0,0)$, dann definieren wir die Möbiustransformation 
@@ -1206,7 +1206,7 @@
 		$M_{A}^{-1} =M_{A^{-1}} \quad\Rightarrow\quad M_A :B_1(0)\to B_1(0)$ biholomorph.
 	\end{repetition}
 	
-	\begin{corollary}
+	\begin{corollary} \label{coroll:moebius}
 		Es sei $f:B_1(0)\to B_1(0)$ biholomorph. Dann gilt $f=M_A$ für ein $A\in U(1,1)$.
 	\end{corollary}
 	
@@ -2536,5 +2536,157 @@
 	Da $\tilde{F}$ die Gleichung $\tilde{F}|_{t=0}=F$ löst ist dann $\triangle\tilde{F}+\partial_t \tilde{F}=0$ 
 	(die Wärmeleitungsgleichung) $\tilde{F}(t=0,\theta)=F(\theta)$.
 	
+	\section{Riemannscher Abbildungssatz}
+	
+	\textsl{Ziel:} alle einfach zusammenhängenden Gebiete in $\mathbb{C}$, mit Ausnahme von $\mathbb{C}$ 
+	selbst, sind zueinander biholomorph.
+	
+	\subsection{Der Riemannsche Abbildungssatz als Maximierungsproblem}
+	
+	\begin{theorem}[Riemannscher Abbildungssatz] \label{thm:RA}
+		Jedes einfach zusammenhängende Gebiet $\Omega\subsetneq\mathbb{C}$ lässt sich 
+		biholomorph auf $B_1(0)$ abbilden.
+	\end{theorem}
+	
+	\begin{remark}
+		Es gibt keine biholomorphe Abbildung $\mathbb{C}\to B_1(0)$.
+	\end{remark}
+	
+	\begin{proof}
+		Nach dem Satz von Liouville (Satz \ref{thm:LV}) ist jede holomorphe Abbildung $\mathbb{C}\to B_1(0)$ 
+		konstant.
+	\end{proof}
+	
+	\begin{remark} \label{rem:bihol}
+		\begin{itemize}
+			\item Abbildungen der Form $h_{z_0}:B_1(0)\to B_1(0)$ mit 
+			\[z\mapsto \frac{z-z_0}{\overline{z_0}z-1}\] 
+			für $z_0\in B_1(0)$, sind biholomorph. Vergleich Beispiel \ref{exp:moebius} 
+			(Möbiustransformationen) und überprüfe
+			\[ \frac{1}{\sqrt{1-|z_0|^2}}\begin{pmatrix} 1 & -z_0 \\ \overline{z_0} & 1 \end{pmatrix}\in U(1,1). \]
+			
+			\item Nach Proposition \ref{coroll:moebius} ist jede biholomorphe Abbildung 
+			$B_1(0)\to B_1(0)$ eine Möbiustransformation.
+		\end{itemize}
+	\end{remark}
+	
+	\begin{corollary}[aus Satz \ref{thm:RA}]
+		Es sei $\Omega\subsetneq\mathbb{C}$ ein einfach zusammenhängendes Gebiet, $z_0\in\Omega$ und 
+		$w\in S_1(0)$. Dann existiert genau eine biholomorphe Abbildung $f:\Omega\to B_1(0)$ mit 
+		$f(z_0)=0$ und $f'(z_0)=w|f'(z_0)|$.
+	\end{corollary}
+	
+	\begin{proof}
+		\textsl{Existenz:} Nach Satz \ref{thm:RA} existiert $g:\Omega\to B_1(0)$ biholomorph. Sei $x:=g(z_0)$. 
+		Wir suchen eine biholomorphe Abbildung $B_1(0)\to B_1(0)$ mit $x\mapsto 0$. Betrachte dazu 
+		$z\mapsto \frac{z-x}{\overline{x}z-1}$ (nach Bemerkung \ref{rem:bihol} biholomorph) und setze 
+		\[ f(z)=c\cdot \frac{g(z)-x}{\overline{x}g(z)-1} \]
+		mit $c\in S_1(0)$, sd. $f'(z_0)$ ein positives reelles Vielfaches von $w$ wird. \\
+		
+		\textsl{Eindeutigkeit:} Sei $h$ eine weitere biholomorphe Abbildung mit $h(z_0)=0$ und 
+		$h'(z_0)=w|h'(z_0)|$. Dann gilt $h\circ f^{-1}:B_1(0)\to B_1(0)$ mit $0\mapsto 0$ und 
+		\[ \left(h\circ f^{-1}\right)'(0)=\frac{h'(z_0)}{f'(z_0)}=\frac{ w|h'(z_0)|}{w|f'(z_0)|} \in(0,\infty). \]
+		Nach \ref{coroll:moebius} ist $h\circ f^{-1}$ eine Möbiustransformation, dh.
+		\[ \left(h\circ f^{-1}\right)(z)=\frac{az+b}{cz+d} \quad\text{mit}\quad 
+		\begin{pmatrix} a&b\\c&d \end{pmatrix}\in U(1,1). \]
+		Es ist $b=0$, daher $c=0$. Also $(h\circ f^{-1})(z)=\frac{a}{d}\cdot z$ mit $|\frac{a}{d}|=1$ und 
+		$(h\circ f^{-1})'(0)=\frac{a}{d}\in (0,\infty)$. Es folgt $\frac{a}{d}=1$, also $h\circ f^{-1}=id$, dh. 
+		$h=f$.
+	\end{proof}
+	
+	\begin{proposition} \label{rem:log}
+		Sei $f$ eine Funktion ohne Nullstellen auf einem einfach zusammenhängenden Gebiet 
+		$\Omega\subset\mathbb{C}$. Dann besitzt $f$ einen Logarithmus und eine Quadratwurzel auf 
+		ganz $\Omega$.
+	\end{proposition}
+	
+	\begin{proof}
+		Wir suchen eine Abbildung $g:\Omega\to\mathbb{C}$ holomorph mit $f(z)=exp(g(z))$. Da 
+		$\Omega$ einfach zusammenhängend und $\frac{f'}{f}$ holomorph ist, existiert nach 
+		\ref{coroll:stammfkt} eine Stammfunktion $F$ von $\frac{f'}{f}$. 
+		Sei $G:\Omega\to\mathbb{C}$ mit
+		\[ z\mapsto \frac{exp(F(z))}{f(z)}. \]
+		\textsl{Behauptung:} $G'(z)=0$ für alle $z\in\Omega$. \\
+		\textsl{Beweis:}
+		\[ G'(z)=\frac{exp(F(z))\cdot \frac{f'(z)}{f(z)}\cdot f(z) -exp(F(z))\cdot f'(z)}{f(z)^2}=0. \]
+		Also folgt $exp(F(z))=C\cdot f(z)$ mit $C\neq 0$. Wir wählen $C\in \mathbb{C}$ mit $C=exp(c)$. \\
+		\textsl{Behauptung:} $g(z):=F(z)-c$ hat gewünschte Eigenschaft. \\
+		\textsl{Beweis:}
+		\[ exp(F(z)-c)=\frac{exp(F(z))}{C}=f(z) \]
+		für alle $z\in\Omega$. \\
+		Für die Quadratwurzel wähle $h(z)=exp(\frac{1}{2}g(z))$. Dann ist
+		\[ h(z)^2 =exp\left(\frac{1}{2}g(z)\right)^2 =exp(g(z))=f(z). \]
+	\end{proof}
+	
+	\begin{proposition}
+		Jedes einfach zusammenhängende Gebiet $\Omega\subsetneq\mathbb{C}$ lässt sich biholomorph auf 
+		eine Teilmenge von $B_1(0)$ abbilden, die den Nullpunkt enthält.
+	\end{proposition}
+	
+	\begin{proof}
+		\textsl{Idee:}
+		
+		%... fehlende Skizze 8.7.2019
+		
+		Sei $\Omega\subsetneq\mathbb{C}$ einfach zusammenhängend. \\
+		\textsl{Behauptung 1:} $\Omega$ lässt sich biholomorph auf $\Omega_1\subset\mathbb{C}$ 
+		abbilden, sd. im Komplent $\mathbb{C}\setminus\Omega_1$ eine volle Kreisscheibe 
+		enthalten ist. \\
+		\textsl{Beweis 1:} Nach Voraussetzung existiert ein $b\in\mathbb{C}\setminus\Omega$. Die 
+		Funktion $f:\Omega\to\mathbb{C}$, $z\mapsto z-b$ ist holomorph und hat keine Nullstelle. 
+		Nach Bemerkung \ref{rem:log} existiert eine Abbildung $g:\Omega\to\mathbb{C}$ mit 
+		$(g(z))^2=z-b$. \\
+		\textsl{Beobachtung:} $g$ ist injektiv. \\
+		Falls $g(z_1)=g(z_2)$ $\Rightarrow$ $g(z_1)^2=g(z_2)^2$ $\Rightarrow$ $z_1=z_2$. Das heißt 
+		$g:\Omega\to\Omega_1:=im(g)$ ist biholomorph. Aus der Beobachtung folgt auch, dass 
+		$z_1=z_2$, falls $g(z_1)=-g(z_2)$ ist. In anderen Worten gilt, wenn $0\neq w\in im(g)$, so ist 
+		$-w\notin im(g)$. Da $\Omega_1=im(g)$ nach dem Satz über Gebietstreue offen ist, finden wir 
+		$B_r(a)$, $r>0$, mit $0\notin B_r(a)$ und $B_r(a)\subset\Omega_1$. Somit gilt $B_r(-a)\subset
+		\mathbb{C}\setminus\Omega$. Also folgt Behauptung 1.\\
+		\textsl{Behauptung 2:} $\Omega_1$ lässt sich biholomorph auf $\Omega_2\subset B_1(0)$, mit 
+		$0\in \Omega_2$, abbilden. \\
+		\textsl{Beweis 2:} Die Abbildung $\tilde{h}:\Omega_1\to\mathbb{C}$, $z\mapsto \frac{1}{z-a'}$ mit 
+		$a':=-a$ bildet 
+		biholomorph auf ein beschränktes Gebiet $\tilde{\Omega}_2$ ab. Für $z\in \Omega_1$ 
+		ist $z\notin B_r(a')$, dh. $|z-a'|>r$, also $\frac{1}{|z-a'|}<\frac{1}{r}$, dh. $\tilde{h}(z)\in B_1(0)$. 
+		Durch geeignete Translation $(z\mapsto z+a)$ erhalten wir eine biholomorphe Abbildung 
+		$\hat{h}:\Omega_1\to\hat{\Omega}_2$ mit $0\in \hat{\Omega}_2$ und durch geeignetes 
+		Stauchen $(z\mapsto \varphi z, 0<\varphi<1)$ schließlich $h:\Omega_1\to\Omega_2$ 
+		biholomorph mit $0\in\Omega_2\subset B_1(0)$.\\
+		Damit folgt Behauptung 2 und die Aussage folgt nun aus den Behauptungen.
+	\end{proof}
+	
+	\begin{example}
+		Wir betrachten $\Omega=\mathbb{C}\setminus(-\infty,0]$. \\
+		Auf $\Omega$ ist durch $z\mapsto \sqrt{z}:=e^{\frac{1}{2}\log(z)}$ eine Wurzel mit Werten in 
+		$(0,\infty)\times\mathbb{R}\subset \mathbb{R}^2=\mathbb{C}$ definiert. So erhalten wir 
+		eine biholomorphe Abbildung $f:\Omega\to B_1(0)$ mit
+		\[z\mapsto \frac{\sqrt{z}-1}{\sqrt{z}+1}.\]
+	\end{example}
+	
+	\begin{proposition}
+		Sei $\Omega\subsetneq B_1(0)$ ein einfach zusammenhängendes Gebiet. Dann existiert eine 
+		Funktion $f:\Omega\to B_1(0)$ mit $f(0)=0$ und $|f'(0)|>1$.
+	\end{proposition}
+	
+	\textsl{Achtung:} Für $\Omega=B_1(0)$ gilt dies nicht! (Lemma von Schwarz \ref{coroll:SL})
+	
+	\begin{proof}
+		Sei $a\in B_1(0)\setminus\Omega$. Betrachte
+		\[ h(z)=\frac{z-a}{\overline{a}z-1} .\]
+		Die Funktion $h$ ist holomorph und hat in $\Omega$ keine Nullstelle. Nach Bemerkung 
+		\ref{rem:log} existiert daher $H:\Omega\to\mathbb{C}$ mit $(H(z))^2=h(z)$. Dann ist 
+		$H:\Omega\to B_1(0)$ injektiv. Verwende Bemerkung \ref{rem:bihol} erneut, verkette mit $H$ 
+		und erhalte mit $\psi:\Omega\to B_1(0)$,
+		\[ \psi(z)=\frac{H(z)-H(0)}{\overline{H(0)}H(z)-1}. \]
+		\textsl{Behauptung:} $\psi(0)=0$ und $|\psi'(0)|>1$. \\
+		\textsl{Beweis:} $\psi(0)=0$ ist klar. Es gilt 
+		\[ H(z)^2=\frac{z-a}{\overline{a}z-1}, \]
+		also $2H(0)\cdot H'(0)=|a|^2-1$. Außerdem gilt $|H(0)|^2=|a|$, also $|H(0)|=\sqrt{|a|}$. 
+		Damit folgt
+		\[ \left| \psi'(0)\right|=\frac{|H'(0)|}{|H(0)^2-1|}=\frac{|a|^2 -1}{2\cdot\sqrt{|a|}}\cdot\frac{1}{|a|-1}
+		=\frac{|a|+1}{2\cdot\sqrt{|a|}}>1 .\]
+		Wobei die letzte Ungleichung mit der Binomischen Formeln aus $\left(\sqrt{|a|}-1\right)^2>0$ folgt.
+	\end{proof}
 		
 \end{document}

@@ -1062,7 +1062,7 @@
 	Frage: Kann $|f(z)|$ lokale Maxima haben? auf ganz $\mathbb{C}$ beschränkt sein? \\
 	Für $f:\mathbb{R}\to\mathbb{R}$ geht das, z. B. $\cos$, $\sin$. 
 	
-	\begin{theorem}[Maximumprinzip]
+	\begin{theorem}[Maximumprinzip] \label{thm:Maxprin}
 		Sei $f:\Omega\to\mathbb{C}$ holomorph. Wenn $z_0\in\Omega$ existiert, sd.
 		\[ |f(z)|\leq |f(z_0)| \]
 		für alle $z\in B_r (z_0)\subset\Omega$ ($r>0$ klein genug), dann ist $f$ auf ganz $\Omega$ 
@@ -2544,8 +2544,8 @@
 	\subsection{Der Riemannsche Abbildungssatz als Maximierungsproblem}
 	
 	\begin{theorem}[Riemannscher Abbildungssatz] \label{thm:RA}
-		Jedes einfach zusammenhängende Gebiet $\Omega\subsetneq\mathbb{C}$ lässt sich 
-		biholomorph auf $B_1(0)$ abbilden.
+		Jedes einfach zusammenhängende Gebiet $\Omega\subset\mathbb{C}$, $\Omega\neq\emptyset,\mathbb{C}$ 
+		lässt sich biholomorph auf $B_1(0)$ abbilden.
 	\end{theorem}
 	
 	\begin{remark}
@@ -2571,7 +2571,8 @@
 	\end{remark}
 	
 	\begin{corollary}[aus Satz \ref{thm:RA}]
-		Es sei $\Omega\subsetneq\mathbb{C}$ ein einfach zusammenhängendes Gebiet, $z_0\in\Omega$ und 
+		Es sei $\Omega\subset\mathbb{C}$, $\Omega\neq\emptyset,\mathbb{C}$, 
+		ein einfach zusammenhängendes Gebiet, $z_0\in\Omega$ und 
 		$w\in S_1(0)$. Dann existiert genau eine biholomorphe Abbildung $f:\Omega\to B_1(0)$ mit 
 		$f(z_0)=0$ und $f'(z_0)=w|f'(z_0)|$.
 	\end{corollary}
@@ -2618,8 +2619,9 @@
 		\[ h(z)^2 =exp\left(\frac{1}{2}g(z)\right)^2 =exp(g(z))=f(z). \]
 	\end{proof}
 	
-	\begin{proposition}
-		Jedes einfach zusammenhängende Gebiet $\Omega\subsetneq\mathbb{C}$ lässt sich biholomorph auf 
+	\begin{proposition}[Schritt 1] \label{prop:schritt1}
+		Jedes einfach zusammenhängende Gebiet $\Omega\subset\mathbb{C}$, $\Omega\neq\emptyset,\mathbb{C}$ 
+		lässt sich biholomorph auf 
 		eine Teilmenge von $B_1(0)$ abbilden, die den Nullpunkt enthält.
 	\end{proposition}
 	
@@ -2628,7 +2630,7 @@
 		
 		%... fehlende Skizze 8.7.2019
 		
-		Sei $\Omega\subsetneq\mathbb{C}$ einfach zusammenhängend. \\
+		Sei $\Omega\subset\mathbb{C}$, $\Omega\neq\emptyset,\mathbb{C}$ einfach zusammenhängend. \\
 		\textsl{Behauptung 1:} $\Omega$ lässt sich biholomorph auf $\Omega_1\subset\mathbb{C}$ 
 		abbilden, sd. im Komplent $\mathbb{C}\setminus\Omega_1$ eine volle Kreisscheibe 
 		enthalten ist. \\
@@ -2664,8 +2666,9 @@
 		\[z\mapsto \frac{\sqrt{z}-1}{\sqrt{z}+1}.\]
 	\end{example}
 	
-	\begin{proposition}
-		Sei $\Omega\subsetneq B_1(0)$ ein einfach zusammenhängendes Gebiet. Dann existiert eine 
+	\begin{proposition}[Schritt 2] \label{prop:schritt2}
+		Sei $\Omega\subset B_1(0)$, $0\in\Omega\neq B_1(0)$, 
+		ein einfach zusammenhängendes Gebiet. Dann existiert eine 
 		Funktion $f:\Omega\to B_1(0)$ mit $f(0)=0$ und $|f'(0)|>1$.
 	\end{proposition}
 	
@@ -2688,5 +2691,279 @@
 		=\frac{|a|+1}{2\cdot\sqrt{|a|}}>1 .\]
 		Wobei die letzte Ungleichung mit der Binomischen Formeln aus $\left(\sqrt{|a|}-1\right)^2>0$ folgt.
 	\end{proof}
+	
+	\begin{corollary} \label{coroll:injsurj}
+		Sei $\Omega\subsetneq B_1(0)$ einfach zusammenhängend, $0\in \Omega$, sei $F:\Omega\to B_1(0)$ 
+		injektiv, sd. 
+		$F(0)=0$ und für alle injektiven $f:\Omega\to B_1(0)$ mit $f(0)=0$ gilt
+		\[ |F'(0)|\geq |f'(0)| ,\]
+		dann ist $F$ surjektiv.
+	\end{corollary}
+	
+	\begin{proof}
+		Falls $F$ nicht surjektiv ist, existiert $a\in B_1(0)\setminus im(F)$. Also finden wir mit Proposition
+		 \ref{prop:schritt2} 
+		eine Abbildung $g: im(F)\to B_1(0)$ mit $g(0)=0$ und $|g'(0)|>1$. Sei $f=g\circ F$, dann folgt
+		\[ |f'(0)|= \underbrace{|g'(\underbrace{F(0)}_{0})|}_{>1} \cdot |F'(0)| > |F'(0)| \]
+		was ein Widerspruch ist. Also ist $F$ surjektiv.
+	\end{proof}
+	
+	\textsl{Ziel:} Finde solch ein $F$. Dann können wir zeigen, dass $F$ sowohl injektiv als auch surjektiv und 
+	holomorph, also biholomorph, ist von $\Omega\to B_1(0)$. Zusammen mit Proposition \ref{prop:schritt1} erhalten 
+	wir die gesuchte Abbildung für Satz \ref{thm:RA}. \\
+	\textsl{Idee:} Finde Folge $(f_n)_n$, $f_n:\Omega\to B_1(0)$ mit $f_n(0)=0$ und
+	\[ \lim_{n\to\infty} |f_n'(0)|=\sup \{ |f'(0)|\ \vert\ f:\Omega\to B_1(0)\text{ injektiv, } f(0)=0 \} \]
+	\textsl{Frage:} Existiert eine brauchbare Grenzfunktion?
+	
+	\subsection{Folgen holomorpher Funktionen}
+	
+	\textsl{Ziel:} 
+	\begin{itemize}
+		\item Konvergenzsatz
 		
+		\item Eigenschaften der Grenzfunktion
+		
+		\item Version von Arzela-Ascoli (mit schwächeren Voraussetzungen)
+	\end{itemize}
+	Es sei also $f_n:\Omega_n\to\mathbb{C}$ eine Folge von Funktionen auf $\Omega_n\subset\mathbb{C}$. \\
+	Wir suchen also dann eine Grenzfunktion auf einem Gebiet
+	\[ \Omega = \{ z\in\mathbb{C}\ \vert\ \text{Ex. $r>0$ und $n_0\in\mathbb{N}$, sd. $B_r(z)\in\Omega_n$ für alle 
+	$n\geq n_0$} \} .\]
+	
+	%... Fehlende Skizze 10.7.2019
+	
+	
+	Sei $K\subset\Omega$ kompakt, dann exsitiert sogar $r>0$, $n_0\in\mathbb{N}$, sd. $B_r(z)\subset\Omega_n$ 
+	für alle $n\geq n_0$ und alle $z\in K$. \\
+	\textsl{Beweis:} zu jedem $z\in K$ existiert $r_z,n_0(z)$, sd. $B_{2r}(z)\subset\Omega_n$ für alle $n\geq n_0$. 
+	Für endlich viele $z_1,\ldots,z_N$ folgt
+	\[ K\subset \bigcup_{i=1}^N B_{r(z_i)}(z_i). \]
+	
+	
+	%... Fehlende Skizze 10.7.2019
+	
+	
+	Für alle $w\in B_{r(z_i)}(z_i)$ folgt $B_{r(z_i)}(w)\subset B_{2r(z_i)}(z_i)\subset \Omega_n$. Setze jetzt
+	\[ r=\min_{1\leq i\leq N} r(z_i), \qquad n_0=\max_{1\leq i\leq N} n_0(z_i). \]
+	Wir hätten gern, dass $\Omega$ wir oben zusammenhängend ist. Falls nicht, betrachten wir eine
+	Zusammenhangskomponente und nennen diese $\Omega$.
+	
+	\begin{definition}[Kompakte Konvergenz von Funktionenfolgen]
+		Eine Folge $f_n:\Omega_n\to\mathbb{C}$ konvergiert kompakt gegen $f:\Omega\to\mathbb{C}$, wenn für 
+		jedes Kompaktum $K\subset\Omega$ ein $n_0\in\mathbb{N}$ existiert mit $K\subset\Omega_n$ für alle 
+		$n\geq n_0$ und die Folge $f_n|_K$ gleichmäßig gegen $f|_K$ konvergiert.
+	\end{definition}
+	
+	\begin{remind}
+		$f_n\to f$ gleichmäßig, wenn für alle $\varepsilon>0$ ein $n_0\in\mathbb{N}$ exisitert, sd. 
+		$|f_n(x)-f(x)|<\varepsilon$ für alle $x$ und alle $n\geq n_0$. \\
+		Alle $f_n$ stetig und gleichmäßige Konvergenz $\Rightarrow$ $f$ stetig. \\
+		Aber gleichmäßige Konvergenz überall ist zu viel verlangt. Gleichmäßige Konvergenz auf $\overline{B_r(z)}$ 
+		reicht schon um die Stetigkeit von $f$ auf $B_r(z)$ zu erhalten.
+	\end{remind}
+	
+	\begin{theorem}[Konvergenzsatz von Weierstraß]
+		Eine Folge $f_n:\Omega_n\to\mathbb{C}$ konvergiere kompakt gegen $f:\Omega\to\mathbb{C}$. Wenn alle 
+		$f_n$ holomorph sind, ist auch $f$ holomorph und die Folge $f_n'$ konvergiert kompakt gegen $f'$.
+	\end{theorem}
+	
+	\begin{proof}
+		Nach dem Satz von Morera \ref{thm:morera} reicht es zu zeigen, dass das Kurvenintegral von $f$ über den 
+		Rand von beliebigen Dreiecken $\triangle\subset\Omega$ stets verschwindet. Wegen kompakter 
+		Konvergenz ist $f$ stetig. Außerdem sei $\triangle\subset\Omega$ eine Dreiecksfläche, dann folgt
+		\[ \int_{\partial\triangle}f(z)\mathrm{d}z =\lim_{n\to\infty} \int_{\partial\triangle} f_n(z)\mathrm{d}z=0. \]
+		Da $\triangle$ kompakt ist, haben wir gleichmäßige Konvergenz auf $\partial\triangle$, also konvergieren 
+		die Integrale. Aus der Holomorphie der $f_n$ folgt dann, dass das Integral verschwindet. 
+		Also ist $f$ holomorph nach dem Satz von Morera. \\
+		Sei jetzt $z\in\Omega$, $\overline{B_{2r}(z)}\subset\Omega$, dann gilt für alle $w\in B_r(z)$, dass
+		\begin{eqnarray*}
+			f'(w)&=&\frac{1}{2\pi i} \int_{S_{2r}(z)} 
+			\frac{f(\zeta)}{\underbrace{(\zeta -w)}_{|\%|\geq r>0}\ ^2}\mathrm{d}\zeta \\
+			&=& \lim_{n\to\infty}\frac{1}{2\pi i} \int_{S_{2r}(z)}\frac{f_n(\zeta)}{(\zeta-w)^2}\mathrm{d}\zeta \\
+			&=& \lim_{n\to\infty} f_n'(w)
+		\end{eqnarray*}
+		Sei jetzt $K\subset\Omega$ kompakt, dann gibt es endlich viele $z_i\in K$, sd. $\overline{B_{2r}(z_i)}$ und
+		\[ K\subset \bigcup_{i=1}^N B_{r_i}(z_i) .\]
+		Also erhalten wir auch gleichmäßige Konvergenz auf $K$, dh. $f_n'\to f'$ kompakt.
+	\end{proof}
+	
+	Für die höheren Ableitungen erhalten wir kompakte Konvergenz entweder induktiv, oder indem wir Satz 1.30 
+	für höhere Ableitungen benutzen. \\
+	Zur gleichmäßigen Konvergenz. Es sei $|f_n(\zeta)-f(\zeta)|<\varepsilon$ für alle $n\geq n_0$ auf $S_{2r}(z)$
+	\[ \Rightarrow \quad \left| \frac{1}{2\pi i}\int_{S_{2r}(z)}\frac{f_n(\zeta)}{(\zeta-w)^2}\mathrm{d}\zeta - 
+	\frac{1}{2\pi i} \int_{S_{2r}(z)} \frac{f(\zeta)}{(\zeta-w)^2}\mathrm{d}\zeta \right| 
+	\leq \frac{1}{2\pi i} \left| \int_{S_{2r}(z)} \frac{\varepsilon \mathrm{d}\zeta}{\underbrace{(\zeta-w)^2}_{\geq r}}\right|
+	\leq \frac{2r\varepsilon}{r^2} \]
+	
+	\begin{remind}
+		\[ N(f,\Omega,w)=\sum_{z\in f^{-1}(w)\cap\Omega} ord_z(f-w) \]
+		Für injektive Funktionen ist $N(f,\Omega,w)\leq 1$.
+	\end{remind}
+	
+	\begin{theorem}[Hurwitz] \label{thm:Hur}
+		Es konvergieren $f_n:\Omega_n\to\mathbb{C}$ holomorph, kompakt gegen $f:\Omega\to\mathbb{C}$. Falls 
+		$N(f_n,\Omega_n,w)\leq k$ für alle $n\geq n_0$, dann ist entweder $f$ konstant, oder es gilt 
+		$N(f,\Omega,w)\leq k$. \\
+	\end{theorem}
+	
+	Die Blätterzahl kann sich also im Grenzfall nicht erhöhen. Insbesondere ist die Grenzfunktion einer Folge 
+	injektiver Funktionen wieder injektiv.
+	
+	\begin{proof}
+		Fall $f$ konstant $w$ ist, sind wir fertig. \\
+		Anderfalls liegt $f^{-1}(w)$ diskret in $\Omega$, denn falls nicht, wäre $z\mapsto f(z)-w$ identisch $0$ 
+		nach dem Identitätssatz für holomorphe Funktionen. Wir nehmen an, dass es $k+1$ Urbilder 
+		$z_0,\ldots,z_k\in f^{-1}(w)$ gibt. Dann finden wir $r>0$ so, dass $\overline{B_r(z_i)}\subset\Omega$ für 
+		alle $i$ und $\overline{B_r(z_i)}\cap\overline{B_r(z_j)}=\emptyset$ für $i\neq j$.
+		
+		%... Fehlende Skizze 10.7.2019
+		
+		Außerdem dürfen wir annehmen (wegen Diskretheit des Urbildes $f^{-1}(w)$), dass $f(z)\neq w$ für alle 
+		$z\in S_r(z_i)$ und alle $i=0,\ldots,k$. Dann existiert $\varepsilon>0$, sd. $|f(z)-w|>\varepsilon$ für alle 
+		$z\in S_r(z_i)$ wegen Kompaktheit der $S_r(z_i)$ und Stetigkeit von $f$. Wähle wegen kompakter 
+		Konvergenz $n_0$ so, dass $|f_n(z)-f(z)|<\varepsilon$ für alle $n\geq n_0$ und alle $z\in S_r(z_i)$. 
+		Aus dem Satz von Rouché folgt (mit $g=f_n -f$), dass
+		\[ N(f_n,\bigcup_{i=0}^k B_r(z_i),w)=N(f_n -w, \bigcup_{i=0}^k B_r(z_i),0) 
+		= \sum_{i=0}^k \underbrace{N(f-w, B_r(z_i),0)}_{\geq 1} \geq k+1 .\]
+		Insgesamt erhalten wir einen Widerspruch, denn
+		\[ k\geq N(f_n,\Omega_n,w)\geq N(f_n,\bigcup B_r(z_i),w)\geq k+1. \]
+	\end{proof}
+	
+	\begin{proposition} \label{prop:beschr;hol}
+		Sei $\Omega\subset\mathbb{C}$ ein Gebiet, $C,\varepsilon>0$ und $K\subset\Omega$ kompakt. Dann 
+		existiert $\delta>0$, sd. für alle Funktionen $f:\Omega\to\mathbb{C}$ mit $|f(z)|<C$ für alle $z\in\Omega$ 
+		und für alle $z,w\in K$ gilt:
+		\[ |z-w|<\delta \qquad \Rightarrow\qquad |f(z)-f(w)|<\varepsilon .\]
+	\end{proposition}
+	
+	\textsl{Das heißt:} Beschränkte holomorphe Funktionen auf einem vorgegebenen Gebiet $\Omega$, mit fester 
+	Schranke $C$, sind auf jedem Kompaktum gleichgradig stetig.
+	
+	\begin{proof}
+		Zu jedem $z\in\Omega$ existiert ein $r>0$, sd. $\overline{B_{2r}(z)}\subset\Omega$, da $\Omega$ offen ist. 
+		Dann existiert $r>0$, sd. $\overline{B_{2r}(z)}\subset\Omega$ für alle $z\in K$. 
+		
+		
+		%... fehlende Skizze 15.7.2019
+		
+		
+		Falls nicht, existiert 
+		eine Folge $z_n\in K$, sd. $B_{\frac{2}{n}}(z_n)\nsubseteq\Omega$. Sei $z_0$ ein Häufungspunkt und 
+		$r$ zu $z_0$ wie oben, dann erhalten wir einen Widerspruch: $\frac{2}{n}<r$ für alle $n>n_0$ und 
+		$|z_0 -z_n|<r$ für alle $n>n_0$ in der Teilfolge. \\
+		
+		
+		%fehlende Skizze 15.7.2019
+		
+		
+		Seien jetzt $z,w\in K$, $|z-w|<r$.
+		\begin{eqnarray*}
+			|f(z)-f(w)|&=&\left| \frac{1}{2\pi i}\int_{S_{2r}(z)}\frac{f(\zeta)\mathrm{d}\zeta}{\zeta -z} -
+			\frac{1}{2\pi i} \int_{S_{2r}(z)}\frac{f(\zeta)\mathrm{d}\zeta}{\zeta -w} \right| \\
+			&=& \frac{1}{2\pi i} \left| \int_{\underbrace{S_{2r}(z)}_{\text{Länge }4\pi r}}
+			 \frac{\overbrace{f(\zeta)}^{|\%|\leq C}\overbrace{(z-w)}^{|\%|<\delta}\mathrm{d}\zeta}
+			 {\underbrace{(\zeta -z)}_{|\%|=2r}\underbrace{(\zeta -w)}_{|\%|>r}} \right| \\
+			 &<& \frac{4\pi r\cdot \delta \cdot C}{2\pi \cdot 2r \cdot r}=\underbrace{C\cdot \frac{\delta}{r}}
+			 _{=\varepsilon}.
+		\end{eqnarray*}
+		Also wähle $\delta <r$ so, dass $\frac{C\delta}{r}\leq\varepsilon$.
+	\end{proof}
+	
+	\begin{definition}[lokal gleichmäßig beschränkt]
+		Eine Folge $f_n:\Omega\to\mathbb{C}$ heißt lokal gleichmäßig beschränkt, wenn jeder Punkt $z\in\Omega$ 
+		eine Umgebung $U\subset\Omega$ ein $n_0\in\mathbb{N}$ und eine Konstante $C>0$ besitzt, sd. 
+		\[ |f_n(w)|<C \]
+		für alle $n\geq n_0$ und alle $w\in U$.
+	\end{definition}
+	
+	\begin{theorem}[Montel]
+		Es sei $f_n:\Omega\to\mathbb{C}$ eine lokal gleichmäßig beschränkte Folge von Funktionen. Dann existiert 
+		eine auf $\Omega$ kompakt konvergente Teilfolge.
+	\end{theorem}
+	
+	\begin{proof}
+		Wähle eine Folge $z_k$ in $\Omega$, deren Bild direkt in $\Omega$ liegt, z. B., indem wir alle Punkte 
+		$x+iy\in\mathbb{C}$ mit $x,y\in\mathbb{Q}$ abzählen und nun diese in $\Omega$ betrachten. \\
+		Nach Voraussetzung ist für festes $k$ die Folge $(f_n(z_k))_n$ beschränkt, hat also eine konvergente 
+		Teilfolge. \\
+		Wähle eine konvergente Teilfolge $f_{n_1}(z_0),f_{n_2}(z_0),\ldots$ für $z_0$, nenne diese Teilfolge 
+		$(f_{0,n})_n$. Dann wähle konvergente Teilfolge hiervon, $f_{0,n_1}(z_1),f_{0,n_2}(z_1),\ldots$ für $z_1$, 
+		nenne sie $(f_{1,n})_n$ usw. \\
+		Definiere jetzt
+		\[ g_k = f_{m,m}:\Omega\to\mathbb{C},\]
+		dann ist die Folge $(g_m)_m$ ab $m\geq k$ eine Teilfolge der Folge $(f_{k,n})_n$, also existiert
+		\[ \lim_{n\to\infty} g_m(z_k). \]
+		Das heißt, wir dürfen annehmen, dass die Folge $f_n$ auf einer dichten abzählbaren Teilmenge 
+		$A\subset\Omega$ punktweise konvergiert. \\
+		\textsl{Zu zeige:} Die neue Folge $f_n$ konvergiert kompakt. \\
+		Sei dazu $K\subset\Omega$ kompakt und $\varepsilon >0$. Dann suchen wir ein $n_0\in\mathbb{N}$, sd. 
+		$|f_{n_1}(z)-f_{n_2}(z)|<\varepsilon$ für alle $n_1,n_2\geq n_0$ und alle $z\in K$. Dann existiert eine 
+		Grenzfunktion (nach Cauchy-Kriterium) und die Folge $f_n|_K$ konvergiert gleichmäßig. \\
+		Zu jedem $z\in K$ wähle $U_z\subset\Omega$, $C_z>0$, $n_z$ so, dass $z\in U_z$ und 
+		$|f_n(w)|<C_z$ für alle $w\in U_z$ und alle $n\geq n_z$. Da $K$ kompakt ist, reichen endlich viele $U_z$, 
+		um $K$ zu überdecken. Setze also
+		\begin{eqnarray*}
+			U&=&U_{z_1}\cup\cdots\cup U_{z_N} \supset K, \\
+			n_0&=& \max (n_{z_1},\ldots,n_{z_N}) \\
+			C_0&=&\max (C_{z_1},\ldots,C_{z_N})<\infty. 
+		\end{eqnarray*}
+		Dann ist $f_n$ für alle $n\geq n_0$ auf $U$ durch $C$ beschränkt. Jetzt wähle $\delta>0$ zu 
+		$\frac{\varepsilon}{3}$ gemäß Proposition \ref{prop:beschr;hol}, dann folgt 
+		\[ |f_n(z)-f_n(w)|<\frac{\varepsilon}{3} \]
+		für alle $z,w\in K$ mit $|z-w|<\delta$ für alle $n\geq n_0$. \\
+		Ohne Einschränkung sei $K$ eine endliche Vereinigung abgeschlossener Bälle. Dann wir $K$ überdeckt 
+		von den Bällen $B_{\delta}(a)$, für $a\in A\cap K$. Davon reichen endlich viele:
+		\[ K\subset B_{\delta}(a_1)\cup \cdots\cup B_{\delta}(a_N), \qquad a_1,\ldots,a_N\in A. \]
+		Also existiert $n'\geq n_0$, sd.
+		\[ |f_{n_1}(a_i)-f_{n_z}(a_i)|<\frac{\varepsilon}{3} \]
+		für alle $n_1,n_2\geq n'$ und alle $1\leq i\leq N$. Es folgt die Cauchy-Bedingung auf $K$: \\
+		Sei $z\in K$, dann existiert $i$ mit $z\in B_{\delta}(a_i)$, also
+		\[ |z-a_i|<\delta \quad \Rightarrow\quad |f_{n_1}(z)-f_{n_1}(a_i)|,\ |f_{n_2}(z)-f_{n_2}(a_i)|,\ 
+		|f_{n_1}(a_i)-f_{n_2}(a_i)|<\frac{\varepsilon}{3} \]
+		für alle $n_1,n_2\geq n'$. Also gilt
+		\[ |f_{n_1}(z)-f_{n_2}(z)|\leq |f_{n_1}(z)-f_{n_1}(a_i)|+|f_{n_1}(a_i)-f_{n_2}(a_i)|+|f_{n_2}(z)-f_{n_2}(a_i)| < 
+		\varepsilon. \]
+	\end{proof}
+	
+	\begin{proof}
+		Zu Satz \ref{thm:RA}: \\
+		Wir haben bereits eine biholomorphe Abbildung $h:\Omega\to U\subset B_1(0)$. Wir betrachten 
+		$f_n: U\to B_1(0)$ injektiv mit $f_n(0)=0$ und
+		\[ \lim_{n\to\infty} |f_n'(0)|=\sup \{ |f'(0)|\ \vert\ f:\Omega\to B_1(0)\text{ injektiv, } f(0)=0 \} \]
+		Da die Folge $f_n$ durch $1$ bescrhänkt ist, existiert eine kompakte konvergente Teilfolge. 
+		Die Grenzfunktion $F$ ist wieder holomorph mit $f(0)=0$ und erfüllt
+		\[ |F'(0)|=\sup \{ |f'(0)|\ \vert\ f:\Omega\to B_1(0)\text{ injektiv, } f(0)=0 \} \]
+		Dazu schreiben wir
+		\[F'(0)=\frac{1}{2\pi i} \int_{S_r(0)} \frac{F(\zeta)}{\zeta^2}\mathrm{d}\zeta =\lim_{n\to\infty} \frac{1}{2\pi i} 
+		\int_{S_r(0)}\frac{f_n(\zeta)}{\zeta^2}\mathrm{d}\zeta = \lim_{n\to\infty} f_n'(0). \]
+		Nach dem Satz von Hurwitz \ref{thm:Hur} ist $F$ injektiv. Nach dem Maximumprinzip \ref{thm:Maxprin} 
+		gilt $|F(z)|<1$ für alle 
+		$z\in U$. Nach Folgerung \ref{coroll:injsurj} 
+		ist $F:U\to B_1(0)$ surjektiv. Also ist $F:U\to B_1(0)$ biholomorph, somit auch 
+		$F\circ h:\Omega\to B_1(0)$.
+	\end{proof}
+	
+	Nun ein Beispiel vorweg aus dem nachfolgenden Kapitel (5.3)
+	
+	\begin{example}
+		Die Funktion $\frac{1}{\sin^2 z}$ hat bei $n\pi\in\pi\mathbb{Z}$ Singularitäten mit Hauptteil 
+		$\frac{1}{(z-n\pi)^2}$, denn es gibt ein Pol zweiter Ordnung und $\frac{1}{\sin^2(z-n\pi)}$ ist gerade in $z$. \\
+		\textsl{Behauptung:} 
+		\[ \sum_{n\in\mathbb{Z}}\frac{1}{(z-n\pi)^2}=\frac{1}{\sin^2 z}. \]
+		Die linke Seite, genauer die Partialsummen, konvergiert kompakt auf $\mathbb{C}\setminus\pi\mathbb{Z}$.
+		Sei $z\notin\pi\mathbb{Z}$, ohne Einschränkung $0\leq Re\  z\leq\pi$
+		\begin{eqnarray*}
+			\left| \sum_{n=1}^{\infty} \frac{1}{(z-n\pi)^2} \right| &\underset{z=x+iy}{\leq}& \sum_{n=1}^{\infty} 
+			\frac{1}{|x-n\pi|^2+|y|^2} \\
+			&\leq& \left| \frac{1}{(z-\pi)^2}\right| + \sum_{n=2}^{\infty} \frac{1}{(n-1)^2 \pi^2}
+		\end{eqnarray*}
+		Genauer für $\sum_{n=0}^{-\infty}<\infty$. Zeige auch
+		\[ \sum_{n\in\mathbb{Z}} \frac{1}{(x+iy-n\pi)^2} \to 0 \]
+		für $y\to\pm\infty$.
+		Die Funktion
+		\[ \sum_{n\in\mathbb{Z}} \frac{1}{(z-n\pi)^2}-\frac{1}{\sin^2 z} \]
+		ist holomorph auf $\mathbb{C}\setminus \pi\mathbb{Z}$ mit hebbaren Sinuglaritäten, periodisch, d. h. $z$ 
+		und $z+\pi$ liefern den gleichen Wert, ist also beschränkt mit Grenzwert $0$ für $Im\ z\to\pm\infty$ und somit 
+		konstant $0$ nach dem Satz von Liouville \ref{thm:LV}.
+	\end{example}
 \end{document}

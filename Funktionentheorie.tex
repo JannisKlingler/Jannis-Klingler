@@ -2762,7 +2762,7 @@
 		reicht schon um die Stetigkeit von $f$ auf $B_r(z)$ zu erhalten.
 	\end{remind}
 	
-	\begin{theorem}[Konvergenzsatz von Weierstraß]
+	\begin{theorem}[Konvergenzsatz von Weierstraß] \label{thm:Weierstr}
 		Eine Folge $f_n:\Omega_n\to\mathbb{C}$ konvergiere kompakt gegen $f:\Omega\to\mathbb{C}$. Wenn alle 
 		$f_n$ holomorph sind, ist auch $f$ holomorph und die Folge $f_n'$ konvergiert kompakt gegen $f'$.
 	\end{theorem}
@@ -2942,14 +2942,57 @@
 		ist $F:U\to B_1(0)$ surjektiv. Also ist $F:U\to B_1(0)$ biholomorph, somit auch 
 		$F\circ h:\Omega\to B_1(0)$.
 	\end{proof}
+
+	\section{Konstruktion holomorpher und meromorpher Funktionen}
 	
-	Nun ein Beispiel vorweg aus dem nachfolgenden Kapitel (5.3)
+	\subsection{Der Satz von Mittag-Leffler}
 	
-	\begin{example}
+	\textsl{Motivation:} Für Reihen von Funktionen kombinieren wir absolute und kompakte Konvergenz.
+	
+	\begin{definition}[normale Konvergenz] \label{def:normKonv}
+		Eine Reihe $\sum_{n=0}^{\infty}f_n$ von Funktionen konvergiert normal auf $\Omega$, wenn für alle 
+		$z\in\Omega$ eine Umgebung $U$ von $z$ und eine absolut konvergente Reihe
+		$\sum_{n=0}^{\infty} C_n$ reeller Zahlen existiert, sd.
+		\[ |f_n(w)|<C_n \]
+		für alle $w\in U$.
+	\end{definition}
+	
+	\begin{corollary}[aus dem Satz von Weierstraß \ref{thm:Weierstr}]
+		Es sei $\sum_{n=0}^{\infty}f_n$ eine auf $\Omega$ normal konvergente Reihe holomorpher Funktionen. 
+		Dann ist die Grenzfunktion holomorph und ihre Ableitung wird durch die normal konvergente Reihe
+		\[ \sum_{n=0}^{\infty} f_n' \]
+		gegeben.
+	\end{corollary}
+	
+	\begin{proof}
+		\textsl{Zu zeigen:} die Folge der Partialsummen $\sum_{n=0}^N f_n$ konvergiert kompakt. \\
+		Sei dazu $K\subset\Omega$ kompakt. Jeder Punkt $z\in K$ besitzt eine Umgebung $U_z$ wie in Definition 
+		\ref{def:normKonv} und eine Reihe $\sum_{n=0}^{\infty} C_{z,n}$. Endlich viele dieser Umgebungen 
+		überdecken $K$, etwa zu $z_1,\ldots,z_k$. Dann erfüllt die Reihe auf $K$ eine zu Definition 
+		\ref{def:normKonv} analoge Bedinung zur reellen, abosolut konvergenten Reihe 
+		\[ \sum_{n=0}^{\infty} (C_{z_1,n}+\ldots+C_{z_k,n}). \]
+		Also konvergiert die Partialsummenfolge gleichmäßig auf $K$, also kompakt auf $\Omega$. \\
+		\textsl{Noch zu zeigen:} $\sum_{n=0}^{\infty} f_n'$ konvergiert normal. \\
+		Zu $z\in\Omega$ wähle $r>0$ so, dass $\overline{B_{2r}(z)}\subset\Omega$. Dann finde eine Reihe 
+		$\sum_{n=0}^{\infty} C_n$ zu $\overline{B_{2r}(z)}$ wie oben. Für $w\in B_r(z)$ betrachte
+		\[ f_n'(w)=\left|\frac{1}{2\pi i} \int_{S_{2r}(z)}\frac{f_n(\zeta)}{(\zeta-w)^2}\mathrm{d}\zeta\right| 
+		< \frac{4\pi r}{2\pi}\cdot \frac{C_n}{r^2} =\frac{2C_n}{r} .\]
+		Also wähle zu $z$ die Umgebung $B_r(z)$ und die reelle Reihe $\sum_{n=0}^{\infty}\frac{2C_n}{r}$, 
+		um normale Konvergenz zu zeigen.
+	\end{proof}
+	
+	\begin{example} \label{exp:5.3}
 		Die Funktion $\frac{1}{\sin^2 z}$ hat bei $n\pi\in\pi\mathbb{Z}$ Singularitäten mit Hauptteil 
 		$\frac{1}{(z-n\pi)^2}$, denn es gibt ein Pol zweiter Ordnung und $\frac{1}{\sin^2(z-n\pi)}$ ist gerade in $z$. \\
 		\textsl{Behauptung:} 
-		\[ \sum_{n\in\mathbb{Z}}\frac{1}{(z-n\pi)^2}=\frac{1}{\sin^2 z}. \]
+		\begin{eqnarray}
+			\sum_{n\in\mathbb{Z}}\frac{1}{(z-n\pi)^2}=\frac{1}{\sin^2 z}. \label{exp:5.3;1}
+		\end{eqnarray}
+		
+		
+		%fehlende Skizze 17.7.2019
+		
+		
 		Die linke Seite, genauer die Partialsummen, konvergiert kompakt auf $\mathbb{C}\setminus\pi\mathbb{Z}$.
 		Sei $z\notin\pi\mathbb{Z}$, ohne Einschränkung $0\leq Re\  z\leq\pi$
 		\begin{eqnarray*}
@@ -2964,6 +3007,281 @@
 		\[ \sum_{n\in\mathbb{Z}} \frac{1}{(z-n\pi)^2}-\frac{1}{\sin^2 z} \]
 		ist holomorph auf $\mathbb{C}\setminus \pi\mathbb{Z}$ mit hebbaren Sinuglaritäten, periodisch, d. h. $z$ 
 		und $z+\pi$ liefern den gleichen Wert, ist also beschränkt mit Grenzwert $0$ für $Im\ z\to\pm\infty$ und somit 
-		konstant $0$ nach dem Satz von Liouville \ref{thm:LV}.
+		konstant $0$ nach dem Satz von Liouville \ref{thm:LV}. \\
+		\textsl{Noch zu zeigen:} Die rechte Seite konvergiert gleichmäßig gegen $0$ für $Im\ z\to\pm\infty$. \\
+		Dazu sei $z=x+iy$, ohne Einschränkung $x\in [0,\pi]$ (beide Seiten von \ref{exp:5.3;1} ergeben für $z$ 
+		und $z+k\pi$ den gleichen Wert). 
+		
+		
+		%fehlende Skizze 17.7.2019
+		
+		
+		Für $n\geq 1$ gilt
+		\[ |(x-n\pi)+iy| \geq \frac{1}{2}(|y|+(n-1)\pi) \]
+		oder für $n\leq 0$ analog.
+		\[ \sum_{n\in\mathbb{Z}}\frac{1}{|z-\pi n|^2} \leq 4\sum_{n=1}^{\infty} \frac{1}{(|y|+(n-1)\pi)^2}+4
+		\sum_{n=0}^{\infty} \frac{1}{(|y|+n\pi)^2} \leq 8 \sum_{n=k}^{\infty} \frac{1}{n^2\pi^2} \]
+		für $k\leq \frac{|y|}{\pi}$, $k\in\mathbb{Z}$. Da die Reihe $\sum \frac{1}{n^2 \pi^2}$ absolut konvergiert, 
+		konvergiert
+		\[ \sum_{n=k}^{\infty} \frac{1}{n^2\pi^2} \to 0 \]
+		für $k\to\infty$, also für $|y|\to\infty$. 
+		\[ \sum_{i=0}^{\infty} \frac{1}{\underbrace{(2i+1)^2}_{1+2\mathbb{Z}}} =\frac{\pi^2}{8}
+		\sum_{n\in\mathbb{Z}}^{\infty} \frac{1}{\underbrace{(\frac{\pi}{2}-\pi n)^2}_{\in \frac{\pi}{2}+\pi\mathbb{Z}}}
+		=\frac{\pi^2}{8}\cdot \frac{1}{\sin^2 \frac{\pi}{2}}=\frac{\pi^2}{8}. \]
+		für $z=\frac{\pi}{2}$.
 	\end{example}
+	
+	\begin{theorem}[Mittag-Leffler]
+		Es sei $A\subset\mathbb{C}$ eine diskrete Menge von Punkten. Für 
+		alle $a\in A$ sei $f_a:\mathbb{C}\to\mathbb{C}$ holomorph mit $f_a(0)=0$. Dann existiert eine 
+		holomorphe Funktion $f:\mathbb{C}\setminus A\to \mathbb{C}$, sd. für alle $a\in A$ die Funktion
+		\[ f(z) -f_a\left(\frac{1}{z-a}\right) \]
+		bei $a$ eine hebbare Singularität hat.
+	\end{theorem}
+	
+	\textsl{$"$diskret$"$ heißt:} $"$ohne Häufungspunkte$"$. \\
+	Es gelte
+	\[ f_a(w)=\sum_{n=1}^{\infty} b_n w^n \]
+	(beachte: $f_a(0)=0$). Dann soll also $f_n$ bei $a$ eine Singularität mit Hauptteil
+	\[ \sum_{n=1}^{\infty} \frac{b_n}{(z-a)^n} \]
+	haben. In Beispiel \ref{exp:5.3} ist $A=\pi\mathbb{Z}$ und $f_a(w)=w^2$.
+	
+	\begin{proof}
+		\textsl{Idee:} addiere die Funktionen $f_a\left(\frac{1}{z-a}\right)$ auf. Um Konvergenz zu gewährleisten, ziehen 
+		die ein geeignetes Taylorpolynom ab. Das ändert nichts an den Hauptteilen. Da $A$ keine Häufungspunkte 
+		hat, dürfen wir dem Betrag nach sortieren:
+		\[ A=\{ a_0,a_1,\ldots\} \]
+		mit $|a_0|,\leq|a_1|\leq \ldots$ und $\lim_{k\to\infty}|a_k|=\infty$. \\
+		Für $a_k\neq 0$ schreibe
+		\[ f_{a_k} \left(\frac{1}{z-a_k}\right) =\sum_{n=0}^{\infty} C_{k,n}\cdot z^n \]
+		da die Funktion bei $z=0$ holomorph ist. Diese Entwicklung hat Konvergenzradius $|a_k|$. Also konvergiert 
+		die Reihe gleichmäßig auf $B_{\frac{|a_k|}{2}}(0)$ und wir wählen $n_k$ so, dass
+		\[ \left| f_{a_k}\left(\frac{1}{z-a_k}\right) -\underbrace{\sum_{n=0}^{n_k} C_{k,n} z^n}_{T_k(z) \text{( ein Polynom 
+		in $z$)}}\right| < 2^{-k} \]
+		Setze
+		\[ f(z)=f_{a_0}\left(\frac{1}{z-a_0}\right) +\sum_{k=1}^{\infty}\left(f_{a_k}\left(\frac{1}{z-a_k}\right) -T_k(z)\right) \]
+		\textsl{Behauptung:} Diese Reihe konvergiert normal auf $\mathbb{C}\setminus A$. \\
+		Dazu betrachte für $R>0$ den Ball $\overline{B_R(0)}\setminus A$. Da $a_k|\to\infty$, existiert $k_0$, sd. 
+		$|a_k|>2R$ für alle $k\geq k_0$. Es folgt 
+		\[ \sum_{k=k_0}^{\infty}\underbrace{\left(f_{a_k}\left(\frac{1}{z-a_k}\right)-T_k(z)\right)}_{|\%|<2^{-k}}
+		< 2^{1-k_0} \]
+		auf ganz $\overline{B_R(0)}$. Die vorderen Summanden, die wir weggelassen haben, ändern nichts 
+		an der Konvergenz und liefern die gesuchten Singularitäten auf $\overline{B_R(0)}$.
+		
+		
+		%... fehlende Skizze 17.7.2019
+		
+		
+	\end{proof}
+	
+	In der Praxis versucht man die Polynome $T_n$ weniger großzügig zu wählen. (siehe Beispiel \ref{exp:5.3})
+	
+	\begin{example}
+		Wir möchten Singularitäten der Form $\frac{1}{z-n\pi}$ für alle $n\in\mathbb{Z}$.
+		
+		
+		%... fehlende Skizze 17.7.2019
+		
+		
+		\[ \frac{1}{z}+\sum_{n\neq 0} \underbrace{\left(\frac{1}{z-n\pi}+\frac{1}{n\pi}\right)}_{\frac{n\pi +z-n\pi}
+		{(z-n\pi)n\pi}=\frac{z}{(z-n\pi)n\pi}} 
+		= \frac{1}{z}+\sum_{n=1}^{\infty} \underbrace{\left( \frac{1}{z-n\pi}+\frac{1}{z+n\pi}\right)}_
+		{\frac{2z}{z^2 -n^2\pi^2}} =\cot z. \]
+		Beide Reihen konvergieren normal. \\
+		\textsl{Denn:} Ableiten liefert die Reihe aus Beispiel \ref{exp:5.3} (bis auf Vorzeichen) und
+		\[ \cot' =\frac{-\sin^2 -\cos^2}{\sin^2}=-\frac{1}{\sin^2}.\]
+		Außerdem sind sowohl $\cot$ als auch die Reihe ungerade (d. h. $f(-z)=-f(z)$).
+	\end{example}
+	
+	\subsection{Die $\Gamma$-Funktion}
+	
+	\textsl{Ziel:} Interpoliere $n!$ (genauer: $(n-1)!$)
+	
+	\begin{definition}
+		Für $Re\ z>0$ definieren wir
+		\[ \Gamma(z) =\int_0^{\infty} \underbrace{t^{z-1}}_{e^{(z-1)\log t}}e^{-t}\mathrm{d}t \]
+		Für $Re\ z>0$ ist $|t^{z-1}|=|t^{Re\ z-1}|$ noch integrierbar bei $t\to 0$. Diese Funktion ist holomorph, da 
+		wir die Ableitung ins Integral hineinziehen dürfen.
+	\end{definition}
+	
+	\begin{theorem} \label{thm:Gamma}
+		Die $\Gamma$-Funktion besitzt eine eindeutige meromorphe Fortsetzung auf ganz $\mathbb{C}$ mit Polen 
+		$z=-n$, $n\in\mathbb{N}_0$. Für $z\in\mathbb{C}\setminus (-\mathbb{N}_0)$ gilt 
+		\[ \Gamma(z+1)=z\cdot \Gamma(z). \]
+		Für $0\neq n\in\mathbb{N}$ gilt $\Gamma(n)=(n-1)!$. \\
+		(Zur Erinnerung: meromorph $\Leftrightarrow$ keine wesentlichen Singularitäten)
+	\end{theorem}
+	
+	\begin{proof}
+		Für $Re\ z>1$ gilt mit partieller Integration:
+		\begin{eqnarray*}
+			\Gamma(z)&=&\int_0^{\infty} t^{z-1}\underbrace{e^{-t}}_
+			{-\frac{\mathrm{d}}{\mathrm{d}t}(e^{-t})}\mathrm{d}t \\
+			&=& -\underbrace{\left.\left( t^{z-1}e^{-t}\right)\right\vert_{t=0}^{\infty}}_{\genfrac{}{}{0pt}{1}{\text{$\to0$ für 
+			$t\to0$}}{\text{$\to0$ für 
+			$t\to\infty$}}}
+			+(z-1)\int_0^{\infty} t^{z-2}e^{-t}\mathrm{d}t \\
+			&=&(z-1)\Gamma(z-1)
+		\end{eqnarray*}
+		Benutze diese Gleichung, um $\Gamma$ induktiv auszudehnen auf 
+		\[ \{ z\in\mathbb{C} \ \vert\ Re(z)>-n\text{ \& }-z\notin\mathbb{N}_0 \} \]
+		durch 
+		\begin{eqnarray}
+			\Gamma(z-1)=\frac{\Gamma(z)}{z-1}. \label{proof;Gamma1}
+		\end{eqnarray}
+		Dabei benutzen wir den Eindeutigkeitssatz, um \ref{proof;Gamma1} auf dem jeweiligen Definitionsbereich 
+		zu zeigen.
+		
+		
+		%... fehlende Skizze 22.7.2019
+		
+		
+		Außerdem gilt
+		\[ \Gamma(1)=\int_0^{\infty}e^{-t}\mathrm{d}t=-\left.(e^{-t})\right\vert_{t=0}^{\infty} =1 =0! \]
+		Für $n\in\mathbb{N}$ folgt induktiv:
+		\[ \Gamma(n+1)=n\cdot \Gamma(n)= n\cdot (n-1)! = n! \]
+		Für $z\in -\mathbb{N}_0$ erhalten wir Polstellen:
+		\[ z\cdot \Gamma(z) = \underbrace{\Gamma(z+1)}_{=1 \text{ bei }z=0} \quad \text{ nahe }z=0.\]
+	\end{proof}
+	
+	Wir schauen uns die Pole noch genauer an.
+	
+	\begin{corollary}[Zerlegung nach Prym] \label{coroll:Prym}
+		Für alle $z\in\mathbb{C}$ gilt
+		\[ \Gamma(z) =\sum_{n=0}^{\infty} \underbrace{\frac{(-1)^n}{n!(z+n)}}_
+		{\genfrac{}{}{0pt}{1}{\text{Polstelle bei $z=-n$ von erster}}
+		{\text{Ordnung mit Residuum $\frac{(-1)^n}{n!}$}}} +\underbrace{\int_1^{\infty} t^{z-1}e^{-t}\mathrm{d}t}
+		_{\text{holom. auf ganz $\mathbb{C}$}}. \]
+	\end{corollary}
+	
+	\begin{proof}
+		Für $Re\ z>0$ berechnen wir
+		\begin{eqnarray*}
+			\int_0^1 t^{z-1}e^{-t}\mathrm{d}t &=& \int_0^1 t^{z-1} \left( \sum_{n=0}^{\infty} (-1)^n \cdot 
+			\frac{ t^n}{n!}\right)\mathrm{d}t \\
+			&=& \sum_{n=0}^{\infty} \int_0^1 t^{z+n-1} \cdot \frac{(-1)^n}{n!}\mathrm{d}t \\
+			&=& \sum_{n=0}^{\infty} \frac{(-1)^n}{n!} \underbrace{\left.\left(\frac{t^{z+n}}{z+n}\right)\right\vert_{t=0}^1}_
+			{\genfrac{}{}{0pt}{1}{\text{$\to 0$ für $t\to 0$}}{\text{$=\frac{1}{z+n}$ für $ t=1$}}} 
+			= \sum_{n=0}^{\infty} \frac{(-1)^n}{n!(z+n)}.
+		\end{eqnarray*}
+	\end{proof}
+	
+	\begin{theorem}[Wielandt]
+		Es sei $\Omega\subset\mathbb{C}$ ein Gebiet mit $[1,2)\times\mathbb{R}\subset\Omega$. Es sei 
+		$f:\Omega\to\mathbb{C}$ beschränkt und holomorph mit
+		\begin{eqnarray}
+			f(z+1)=z\cdot f(z) \label{thm:Wielandt;1}
+		\end{eqnarray}
+		für alle $z\in\Omega$ mit $z+1\in\Omega$. Dann gilt 
+		\[ f(z)=f(1)\cdot \Gamma(z) \]
+		auf ganz $\Omega$. \\
+		Wir überprüfen Beschränktheit von $\Gamma$ für $z=x+iy$, $x\in [1,2)$:
+		\begin{eqnarray*}
+			|\Gamma(z)| &=&\left| \int_0^{\infty} e^{(x+iy-1)\log t}\cdot e^{-t}\mathrm{d}t \right| \\
+			&\leq& \int_0^{\infty} \left| e^{(x-1)\log t}\right|\cdot\underbrace{\left| e^{iy\cdot \log t} \right|}_{=1}\cdot e^{-t}
+			\mathrm{d}t \\
+			&\leq& \underbrace{ \int_0^1 \underbrace{ t^{x-1}e^{-t}}_{\leq 1} \mathrm{d}t}_{\leq 1} +
+			\underbrace{ \int_1^{\infty} \underbrace{ t^{x-1}}_{\leq t}e^{-t}\mathrm{d}t}_{< C<\infty}
+		\end{eqnarray*}
+		
+		
+		%... fehlende Skizze 22.7.2019
+		
+		
+	\end{theorem}
+	
+	\begin{proof}
+		Betrachte auf $\Omega$ die Funktion
+		\[ h(z)=f(z)-f(1)\Gamma(z). \]
+		Sie ist holomorph, beschränkt auf $[1,2)\times\mathbb{R}$ und erfüllt \ref{thm:Wielandt;1}.
+		Jetzt betrachte
+		\[ g(z)=h(z)h(n-z) \]
+		Dann gilt
+		\begin{eqnarray}
+			g(z+1)=h(z+1)h(n-1-z)=z\cdot h(z)\cdot \frac{h(n-z)}{n-1-z} \label{thm:Wielandt;2}
+		\end{eqnarray}
+		Wähle also $n=1$ dann folgt
+		\[\ldots =- h(z)\cdot h(1-z)=-g(z) \]
+		Wie im Beweis von Satz \ref{thm:Gamma} dehnen wir $f$ und $h$ aus auf den Bereich 
+		$Re\ z\geq 0$, mit Pol bei $z=0$. Dann können wir $g$ auf einem Gebiet definieren, das $[0,1]\times 
+		\mathbb{R}\subset\mathbb{C}$ enthält, mit eventuellen Polen bei $z=0,1$. \\
+		\textsl{Aber:} es gilt
+		\[ h(1)=f(1)-f(1)\Gamma(1)=0 \]
+		und somit hat $h$ auch bei $0$ einen Pol, denn
+		\[ h(z)=0+a_1\cdot (z-1)+0((z-1)^2), \]
+		also ist $h(0)=a_1$ beschränkt. Dann hat auch $g$ keinen Pol. Wegen Kompaktheit ist $g$ also beschränkt 
+		auf $[0,1]\times[-1,1]\subset\mathbb{C}$
+		
+		
+		%... fehlende Skizze 22.7.2019
+		
+		
+		Für $z\in [1,2)\times\mathbb{R}$ ist $f$ beschränkt durch $C$. Für $z\in [0,1]\times[1,\infty)$ folgt 
+		\[ |f(z)|=\frac{|f(z+1)|}{\underbrace{|z|}_{>1}} \leq \frac{C}{1}=C \]
+		Analog für $z\in [0,1)\times (-\infty,-1]$, dito für $\Gamma$. Somit ist $h$ auf $[0,1]\times\mathbb{R}$ 
+		beschränkt. Da $1-z\in [0,1]\times\mathbb{R}$ für alle $z\in [0,1]\times\mathbb{R}$, ist 
+		\begin{eqnarray}
+			g(z)=h(z)h(1-z) \label{thm:Wielandt;3}
+		\end{eqnarray}
+		ebenfalls auf $[0,1]\times\mathbb{R}$ beschränkt. Wegen \ref{thm:Wielandt;2} ist $g$ 
+		auf ganz $\mathbb{C}$ beschränkt und somit nach Liouville \ref{thm:LV} konstant.
+		Es folgt
+		\[ g(1)=\underbrace{h(1)}_{0}\cdot \underbrace{h(0)}_{\in\mathbb{C}} =0. \]
+		Aus $g=0$ folgt $h(z)=0$ oder $h(1-z)=0$, also $h=0=f-f(1)\cdot\Gamma$.
+	\end{proof}
+	
+	Was wäre, wenn wir den Trick \ref{thm:Wielandt;3} direkt auf $\Gamma$ anwenden? \\
+	Setze also
+	\[ f(z)=\Gamma(z)\Gamma(1-z), \]
+	dann hat $f$ Pole an allen $z\in \mathbb{Z}$.
+	
+	\begin{theorem}[Ergänzungssatz von Euler]
+		Es gilt auf ganz $\mathbb{C}$:
+		\[ \Gamma(z)\Gamma(1-z) =\frac{\pi}{\sin(\pi z)}. \]
+	\end{theorem}
+	
+	\begin{proof}
+		Die Funktion $f(z)=\Gamma(z)\Gamma(1-z)$ erfüllt
+		\[ f(z+1)=-f(z) \]
+		wie \ref{thm:Wielandt;2}. Nahe $z=0$ gilt nach Prym \ref{coroll:Prym} und Satz \ref{thm:Gamma}:
+		\[ f(z) =\left( \frac{(-1)^0}{0!z}+\mathcal{O}(z^0)\right)\cdot \underbrace{\Gamma(1-z)}_{(1+\mathcal{O}(z))} 
+		=\frac{1}{z} +\mathcal{O}(z^0). \]
+		Das gleiche gilt für
+		\[ \frac{\pi}{\sin(\pi z)}=\frac{ \pi}{(\pi z)}\cdot \underbrace{(1+\mathcal{O}(z^2))}_{\text{holomorph}} 
+		= \frac{1}{z} +\mathcal{O}(z^0). \]
+		Somit ist
+		\[ g(z)=\Gamma(z)\Gamma(1-z)-\frac{\pi}{\sin(\pi z)} \]
+		nahe $z=0$ beschränkt, hat also eine hebbare Singularität. Da $g(z+1)=-g(z)$ gilt, hat $g$ dann überhaupt 
+		keine Pole. Daher ist $g$ auf $[0,1]\times[-1,1]\subset\mathbb{C}$ beschränkt, wegen 
+    		\ref{thm:Wielandt;2} also auf $\mathbb{R}\times [-1,1]$.
+		
+		
+		%... fehlende Skizze 22.7.2019
+		
+		
+		Aus dem letzten Beweis wissen wir, dass $f(z)$ auch für $|Im\ z|\geq 1$ gleichmäßig beschränkt ist. 
+		Wegen
+		\begin{eqnarray*}
+			\sin(x+iy)&=&\sin x\cdot \underbrace{\cos(iy)}_{\cosh(-y)} +\cos x\cdot \sin(iy) \\
+			&=& \sin x\cdots \underbrace{\cosh y}_{\to \infty \text{ für }y\to \infty} -i\cos x \underbrace{\sinh y}_
+			{\to \infty \text{ für }y\to \infty}
+		\end{eqnarray*}
+		Wegen $\sin^2 +\cos^2 =1$ ist mindestens $\sin x \geq \frac{1}{\sqrt{2}}$ oder $\cos x\geq\frac{1}{\sqrt{2}}$, 
+		also $|\sin z|\to\infty$ für $y\to\infty$, d. h. $\frac{\pi}{\sin(\pi z)}$ ist beschränkt für $|Im\ z|\geq 1$. 
+		Also ist $g$ auf ganz $\mathbb{C}$ beschränkt also konstant. Außerdem gilt \ref{thm:Wielandt;2}, also ist 
+		$g=0$.
+	\end{proof}
+	
+	Setze $z=\frac{1}{2}$ ein:
+	\[ \Gamma\left(\frac{1}{2}\right)^2 = \frac{\pi}{\sin \frac{\pi}{2}}=\pi \quad \Rightarrow \quad \Gamma\left(\frac{1}
+	{2}\right)=\sqrt{\pi}.\]
+	\begin{eqnarray*}
+		\Gamma\left(\frac{1}{2}\right)^2 &=& \left( \int_0^{\infty} t^{-\frac{1}{2}}e^{-t}\mathrm{d}t \right)^2 
+		=\left(\int_0^{\infty} 2e^{-x^2}\mathrm{d}x\right)^2 \\
+		&=& \left( \int_{-\infty}^{\infty}e^{-x^2}\mathrm{d}x\right)^2 = \int_{\mathbb{R}^2} e^{-x^2-y^2}\mathrm{d}x
+		\mathrm{d}y \\
+		&=& \int_0^{2\pi}\underbrace{\int_0^{\infty}r e^{-r^2} \mathrm{d}r}_{\frac{1}{2}}\mathrm{d}\varphi =\pi.
+	\end{eqnarray*}
+	
+	
 \end{document}

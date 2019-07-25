@@ -3235,7 +3235,7 @@
 	\[ f(z)=\Gamma(z)\Gamma(1-z), \]
 	dann hat $f$ Pole an allen $z\in \mathbb{Z}$.
 	
-	\begin{theorem}[Ergänzungssatz von Euler]
+	\begin{theorem}[Ergänzungssatz von Euler]\label{thm:Euler}
 		Es gilt auf ganz $\mathbb{C}$:
 		\[ \Gamma(z)\Gamma(1-z) =\frac{\pi}{\sin(\pi z)}. \]
 	\end{theorem}
@@ -3283,5 +3283,157 @@
 		&=& \int_0^{2\pi}\underbrace{\int_0^{\infty}r e^{-r^2} \mathrm{d}r}_{\frac{1}{2}}\mathrm{d}\varphi =\pi.
 	\end{eqnarray*}
 	
+	\subsection{Die Riemannsche $\zeta$-Funktion}
+	
+	Es sei im Folgenden stets $s=\sigma+it\in\mathbb{C}$, mit $\sigma,t\in\mathbb{R}$.
+	
+	\begin{definition}
+		Für alle $s$ mit $\sigma>1$ setzen wir
+		\[ \zeta(s)=\sum_{n=1}^{\infty}n^{-s} \]
+	\end{definition}
+	
+	Aus den Übungen wissen wir:
+	\[ \zeta(2)=\frac{\pi^2}{6},\quad \zeta(4)=\frac{\pi^4}{90} .\]
+	
+	\begin{theorem}
+		Für $\sigma>1$ gilt
+		\[ \zeta(s)=\prod_{p\in P} (1-p^{-s})^{-1}, \]
+		wobei $P$ die Menge aller Primzahlen ist.
+	\end{theorem}
+	
+	\begin{proof}
+		Wir benutzen die eindeutige Primfaktorzerlegung:
+		\begin{eqnarray*}
+			\sum_{n=1}^{\infty} n^{-s} &=& \left(1+2^{-s}+2^{-2s}+\cdots\right)\left((1+3^{-s}+3^{-2s}+\cdots\right)
+			\left(1+5^{-s}+\cdots\right) \\
+			&=& \frac{1}{1-2^{-s}}\cdot\frac{1}{1-3^{-s}}\cdot\  \cdots
+		\end{eqnarray*}
+	\end{proof}
+	
+	\begin{proposition}\label{prop:Zeta}
+		Für $\sigma>1$ gilt
+		\[ \zeta(s)=\frac{1}{\Gamma(s)}\int_0^{\infty} \frac{z^{s-1}}{e^z-1}\mathrm{d}z .\]
+	\end{proposition}
+	
+	\begin{proof}
+		\[ n^{-s}\cdot \Gamma(s) =\int_0^{\infty}\left(\underbrace{\frac{t}{n}}_{z}\right)^{s-1}e^{-t}\frac{\mathrm{d}t}{n} 
+		= \int_0^{\infty} z^{s-1}e^{-nz}\mathrm{d}z. \]
+		\begin{align*}
+			\Gamma(s)\zeta(s)&=\sum_{n=1}^{\infty}\int_0^{\infty} z^{s-1}e^{-nz}\mathrm{d}z 
+			\tag{\text{Mellin-Transformation}} \\
+			&= \int_0^{\infty} z^{s-1} \frac{e^{-z}}{1-e^{-z}}\mathrm{d}z 
+			= \int_0^{\infty} z^{s-1} \frac{1}{e^z -1}\mathrm{d}z. \nonumber
+		\end{align*}
+	\end{proof}
+	
+	
+	%... fehlende Skizze 24.7.2019
+	
+	
+	\[(-z)^w =e^{w\cdot Log(-z)} \]
+	für $(-z)\in\mathbb{C}\setminus (-\infty,0]$, d. h. $z\in\mathbb{C}\setminus [0,\infty)$.
+	
+	\begin{theorem}
+		Es gibt eine eindeutige meromorphe Fortsetzung von $\zeta$ auf $\mathbb{C}$ mit einem einzigen einfachen 
+		Pol bei $s=1$, sd. für alle $s\notin\mathbb{N}$ gilt
+		\[ \zeta(s) =\frac{\Gamma(1-s)}{2\pi i} \bigintsss_{C_r} \frac{(-z)^{s-1}}{e^z -1}\mathrm{d}z. \]
+		Dazu sei $r\in (0,2\pi)$. Die zwei uneigentlichen Integrale (horizontale Halbgeraden in $C_r$) konvergieren, 
+		da $e^z\to\infty$ schneller als der Zähler geht.
+	\end{theorem}
+	
+	\begin{proof}
+		Nach dem Cauchy-Integralsatz \ref{thm:CI} dürfen wir (für $\sigma>1$) den Grenzwert $r\to0$ betrachten, 
+		da das Integral nicht von $r\in(0,2\pi)$ abhängt. \\
+		Für $\sigma>1$ konvergiert das Integral über den Halbkreis gegen $0$, denn $e^{r\cdot e^{i\varphi}}-1
+		\sim r\cdot e^{i\varphi}$ und
+		\begin{eqnarray*}
+			(-z)^{s-1} &=& e^{(\sigma -1)Log(-z)+it\cdot Log(-z)} \\ &=&
+			\underbrace{e^{(\sigma -1)\log( \underbrace{|z|}_r)}}_{\underbrace{r^{(\sigma -1)}}_{\to0}} \cdot 
+			\underbrace{e^{(\sigma -1) i\ Arg(-z)}\cdot e^{it\ \log |z|}}_{|\%|=1}\\
+			&\quad&\cdot \underbrace{e^{-t\ \underbrace{Arg(-z)}_{\in [-\frac{\pi}{2},\frac{\pi}{2}]}}}_
+			{\text{für festes $t$ beschränkt}} \int_{\underbrace{\text{Halbkreis}}_{\text{Länge $\pi r$}}} 
+			\frac{(-z)^{s-1}}{\underbrace{e^z -1}_{\sim r}}\mathrm{d}z \\
+			&\to& 0.
+		\end{eqnarray*}
+		\begin{eqnarray*}
+			\lim_{r\to 0} \bigintsss_{C_r} \frac{(-z)^{s-1}}{e^z -1}\mathrm{d}z =
+			\lim_{r\to 0} \left( \bigintsss_0^{\infty} \frac{(-ir-t)^{s-1}}{e^{ir+t}-1}\mathrm{d}t -\bigintsss_0^{\infty} 
+			\frac{(ir-t)^{s-1}}{e^{-ir+t}-1}\mathrm{d}t\right) \\
+		\end{eqnarray*}
+		\begin{align*}
+			(Fir-t)^{s-1} &=&e^{(s-1)(\underbrace{\log |t\pm ir|}_{\log t}+i\ \underbrace{Arg(Fir-t)}_{\to F\pi})} \\
+			&=& \bigintsss_0^{\infty} \frac{t^{s-1}}{e^t-1}\left(\underbrace{ e^{-\pi i(s-1)}-e^{\pi i(s-1)}}_{-2i\sin(\pi(s-1))}
+			\right)
+			\mathrm{d}t \\
+			&=& -2 i\underbrace{\underbrace{\sin(\pi(s-1))}_{\genfrac{}{}{0pt}{1}{-\sin(\pi(1-s))}{\sin(\pi s)}} \cdot 
+			\Gamma(s) }_{\frac{\pi}{\Gamma(1-s)}}\cdot \zeta(s) \tag{\text{nach \ref{prop:Zeta} und \ref{thm:Euler}}}
+		\end{align*}
+		\[ \bigintsss_{C_r}\% = 2\pi i \frac{\zeta(s)}{\Gamma(1-s)}. \]
+		
+		
+		%... fehlende Skizze 24.7.2019
+			
+		Wenn wir für $s$ eine ganze Zahl einsetzen, ist der Integrand auf  $\mathbb{C}\setminus 2\pi i\mathbb{Z}$ 
+		definiert. 
+		in diesem Fall dürfen wir die Kanten $C_r$ durch $-[S_r^1]$ ersetzen. Dann liefert der Residuensatz
+		\begin{eqnarray*}
+			\zeta(-n)&=& -\frac{\Gamma(n+1)}{2\pi i} \int_{S_r} \frac{(-z)^{-n-1}}{e^z -1}\mathrm{d}z \\
+			&=& -n!\ Res_{z=0} \left(\frac{(-z)^{-n-1}}{e^z -1}\right) \\
+			&=& (-1)^n n! \ \underbrace{Res_{z=0}\left( \frac{z^{-n-1}}{e^z -1}\right)}_{\frac{B_{n+1}}{(n+1)!}}
+		\end{eqnarray*}
+	
+	\end{proof}
+
+	\begin{definition}[Bernoulli-Zahlen]
+		Die Bernoulli-Zahlen $B_k$ sind definiert durch
+		\[ \frac{z}{e^z -1}=\sum_{k=0}^{\infty}\frac{B_k}{k!}z^k .\]
+		(Konventionen variieren)
+	\end{definition}
+	
+	\begin{example}
+		$B_0=1$, $B_1=-\frac{1}{2}$, $B_2=\frac{1}{6}$, $B_3=0$, $B_4=-\frac{1}{50}$, $B_6=\frac{1}{42}$, $\ldots$ \\
+		\textsl{Achtung:} $\lim_{k\to\infty} |B_{2k}|=\infty$.
+	\end{example}
+	
+	\begin{corollary}
+		Es gilt
+		\[ \zeta(0)=-\frac{1}{2},\quad \underbrace{\zeta(1-2n)=-\frac{B_{2n}}{2n}}_{n\in\mathbb{N}_0},\quad 
+		\underbrace{\zeta(-2n)=0}_{n\in\mathbb{N}\setminus\{0\}}. \]
+	\end{corollary}
+	
+	\begin{example}
+		\[ \zeta(-1)=-\frac{1}{12} \left( "=\sum_{n=1}^{\infty}n^1 "\right),\quad \zeta(-3)=-\frac{1}{120},\quad \zeta(-5)=
+		-\frac{1}{252}. \]
+	\end{example}
+			
+    	\begin{theorem}[Funktionalgleichung	]
+		Es gilt
+		\[ \zeta(z)=2^z \pi^{z-1} \sin\left(\frac{\pi z}{2}\right) \cdot \Gamma(1-z)\cdot \zeta(1-z) \]
+		oder äquivalent
+		\[ \pi^{\frac{z-1}{2}}\Gamma\left(\frac{1-z}{2}\right) \zeta(1-z) =\pi^{-\frac{z}{2}}\Gamma\left(\frac{z}{2}\right)
+		\zeta(z). \]
+	\end{theorem}
+	
+	\begin{proof}
+		Betrachte eine neue Kontur, den Rand eines Quadrates mit Seitenlänge $(2n+1)\cdot 2\pi$, aus dem wir 
+		das $"$Innere$"$ von $C_r$ entfernen – nenne sie $C_n$. \\
+		Der Nenner $e^z -1$ ist längt $C_n$ von $0$ weg beschränkt. Die Gesamtlänge ist ungefähr 
+		$A\cdot n$, $A>0$ und $(-z)^{s-1}$ geht für $n\to \infty$ gegen $0$ auf $C_n'$, wenn $Re(s-1)$ hinreichend 
+		negativ ist. \\
+		Dabei ist $C_n'$ der Teil der Kontur, der auf dem Rand des Quadrates verläuft und $C_n''$ der Teil, der 
+		auf $C_r$ verläuft. Dann folgt
+		\[\lim_{n\to\infty}\int_{C_n}\frac{(-z)^{s-1}}{e^z -1}\mathrm{d}z = \int_{C_r} \frac{ (-z)^{s-1}}{e^z -1}\mathrm{d}
+		z = \frac{2\pi i}{\Gamma(1-s)}\zeta(s). \]
+		Außerdem folgt aus dem Residuensatz
+		\begin{eqnarray*}
+			\lim{n\to\infty}\int_{C_n} \frac{(-z)^{s-1}}{e^z -1}\mathrm{d}z &=&\lim_{n\to\infty} \sum_{m=-n}^n (2\pi i)\cdot 
+			\underbrace{1}_{\text{vom Nenner}} \cdot (-(2\pi mi))^{s-1} \\
+			&=& \sum_{m=1}^{\infty} (2\pi i) \left( e^{(s-1)\cdot (\log(2\pi m)+i\frac{\pi}{2})}+e^{(s-1)(\log(2\pi m)-
+			i\frac{\pi}{2})}\right) \\
+			&=& \sum_{m=1}^{\infty} (2\pi i)\cdot (2\pi m)^{s-1} \cdot 2\cos\left( \frac{(s-1)\pi}{2}\right) \\
+			&=& 4\pi i\cdot (2\pi)^{s-1} \underbrace{\cos\left(\frac{(s-1)\pi}{2}\right)}_{\pm\sin(\frac{s\pi}{2})} \zeta(1-s) \\
+			&=& \ldots
+		\end{eqnarray*}
+	\end{proof}
 	
 \end{document}

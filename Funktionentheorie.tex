@@ -71,18 +71,18 @@
 		wir definieren einen Absolutbetrag $|z| = \sqrt{z\overline{z}}\in \mathbb{R}$, denn 
 		$z\cdot\overline{z} \in \mathbb{R} =\{ z\in \mathbb{C} \mid z=\overline{z} \} =
 		\{ (x,0)\mid x\in\mathbb{R} \} \subset \mathbb{C}$ \\
-		Jetzt können wir schreiben $z=(x,y)=(x,0)+(y,0)=(x,0)+i\cdot (y,0)=x+iy$ \\
+		Jetzt können wir schreiben $z=(x,y)=(x,0)+(0,y)=(x,0)+i\cdot (y,0)=x+iy$ \\
 		Graphische Darstellung ("Gaußsche Zahlenebene").
 	\end{repetition}
 	
 	\textbf{\underline{Zur Erinnerung}:}
 	
-	\begin{definition}[Topologischer Raum]
+	\begin{definition}[zusammenhängend]
 		Ein topologischer Raum heißt zusammenhängend, wenn er nicht als disjunkte Vereinigung zweier 
 		nichtleerer, offener Teilmengen geschrieben werden kann.
 	\end{definition}
 	
-	\begin{definition}[Wegzusammenhängend]
+	\begin{definition}[wegzusammenhängend]
 		Ein topologischer Raum $X$ heißt wegzusammenhängend, wenn es zu je zwei Punkten 
 		$p,q\in X$ eine stetige Abbildung $\gamma :[0,1]\to X$ mit $\gamma (0)=p$, $\gamma (1)=q$ 
 		gibt.
@@ -143,7 +143,7 @@
 	\end{remind}
 	
 	\begin{definition}[Analytische Funktion]
-		Es sei $\Omega\in\mathbb{C}$ ein Gebiet und $f:\Omega\to\mathbb{C}$ eine Abbildung. 
+		Es sei $\Omega\subset\mathbb{C}$ ein Gebiet und $f:\Omega\to\mathbb{C}$ eine Abbildung. 
 		Dann heißt $f$ eine analytische Funktion (auf $\Omega$), wenn es zu jedem Punkt 
 		$z_0 \in \Omega$ eine Potenzreihe $R(z)$ mit Konvergenzradius $\rho>0$ existiert, sd. 
 		$f(z)=R(z-z_0 )$ für alle $z\in \Omega\cap B_{\rho}(z_0)$.
@@ -505,7 +505,7 @@
 			\left|\int_{\gamma} f(z)\mathrm{d}z \right| = \left|\int_a^b f(\gamma(t))\cdot 
 			\dot{\gamma}(t)\mathrm{d}t \right| 
 			&\leq& \int_a^b |f(\gamma(t))\cdot \dot{\gamma}(t) |\mathrm{d}t \\
-			&=& \int_a^b |f(\gamma(t))|\cdot \dot{\gamma}(t)\mathrm{d}t \\
+			&=& \int_a^b |f(\gamma(t))|\cdot |\dot{\gamma}(t)|\mathrm{d}t \\
 			&\leq& \sup_{t\in [a,b]} |f(\gamma(t))| \cdot L(\gamma).
 		\end{eqnarray*}
 	\end{remark}
@@ -1262,10 +1262,10 @@
 		$f$ beschränkt, das heißt es existiert $C\in\mathbb{R}$, sd. $|f(z)|\leq C$ für alle 
 		$z\in\mathbb{C}$. Schreibe $f(z)=\sum_{n=0}^{\infty} a_n z^n$. Für $r>0$ gilt
 		\[a_n=\frac{1}{2\pi i}\int_{S_r^1}\frac{f(z)}{z^{n+1}}\mathrm{d}z =
-		\frac{1}{2\pi i}\int_0^{1\pi}\frac{f(r\cdot e^{i\varphi})}{r^{n+1}e^{i(n+1)\varphi}}ire^{i\varphi}
+		\frac{1}{2\pi i}\int_0^{2\pi}\frac{f(r\cdot e^{i\varphi})}{r^{n+1}e^{i(n+1)\varphi}}ire^{i\varphi}
 		\mathrm{d}\varphi \]
 		\[ \Rightarrow\quad |a_n|\leq \frac{1}{2\pi i}\int_0^{2\pi}\frac{|f(re^{i\varphi})|}{r^{n+1}}r 
-		\mathrm{d}\varphi\leq C\cdot \frac{1}{r_n} \]
+		\mathrm{d}\varphi\leq C\cdot \frac{1}{r^n} \]
 		Für $r\to\infty$ erhalten wir $a_n =0$ für alle $n\geq 1$. Somit ist $f(z)=a_0$ konstant.
 	\end{proof}
 	

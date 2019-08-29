@@ -649,7 +649,7 @@
 		Es sei $\Omega\subset\mathbb{C}$ ein Gebiet. $f:\Omega\to\mathbb{C}$ holomorph, 
 		$z_0\in\Omega$, $r>0$ sei so gewählt, dass $\overline{B_r (z_0)}\subset\Omega$. 
 		$\gamma$ beschreibe den Rand von $B_r (z_0)$ im mathematische Drehsinn. Dann gilt 
-		für all $z\in B_r (z_0)$, dass 
+		für alle $z\in B_r (z_0)$, dass 
 		\[ f(z)= \frac{1}{2 \pi i} \int_{\gamma} \frac{f(\zeta)}{\zeta -z}\mathrm{d}\zeta. \]
 	\end{theorem}
 	
@@ -688,7 +688,7 @@
 	\begin{example}
 		Wähle $\Omega=\mathbb{C}$, $f(z)=e^z$ $z_0 =0$, $r=1$. Dann gilt
 		\begin{eqnarray*}
-			1&=& e^0 = \int_0^1 e^{\cos(2\pi t)+i\sin (2\pi t)}\mathrm{d}t \quad \varphi=2\pi t \\
+			1&=& e^0 = \int_0^1 e^{\cos(2\pi t)+i\sin (2\pi t)}\mathrm{d}t \qquad \text{wobei}\quad \varphi=2\pi t \\
 			&=& \frac{1}{2\pi} \underbrace{\int_0^{2\pi} e^{\cos(\varphi)}\cdot \cos(\sin(\varphi)) 
 			\mathrm{d}\varphi }_{2\pi} +\frac{1}{2\pi i} \underbrace{\int_0^{2\pi}e^{\cos(\varphi)}\cdot 
 			\sin(\sin(\varphi))\mathrm{d}\varphi}_{0}
@@ -895,7 +895,7 @@
 		nach dem Integralsatz
 		\[\frac{1}{2\pi i}\int_{\partial B_r(z_0)}f(\zeta)\underbrace{(\zeta-z_0)^k}_{z_0 +re^{it}}
 		\mathrm{d}\zeta =0. \]
-		Das bedeutet, dass $"$ungefähr die Hälte$"$ der Fourierzerlegung von $t\mapsto 
+		Das bedeutet, dass $"$ungefähr die Hälfte$"$ der Fourierzerlegung von $t\mapsto 
 		g(z_0 +r\cdot e^{it})$ verschwindet.
 	\end{remark}
 	
@@ -904,7 +904,7 @@
 	Aus der reellen Analysis: Zwischenwertsatz (Bilder von Invervallen sind Intervalle) lokaler 
 	Umkehrsatz für $f:U\to\mathbb{R}^n$, $U\subset\mathbb{R}^n$ 
 	\begin{enumerate}
-		\item Funktionen auf $\Omega\subset\{z_0\}$
+		\item Funktionen auf $\Omega\setminus\{z_0\}$
 		\item Maximumprinzip \& Satz von Liouville
 		\item lokaler Umkehrsatz / Blättersatz
 	\end{enumerate}
@@ -926,7 +926,7 @@
 			\item Die Sinus-Funktion hat um $0$ die Entwicklung
 			\[ \sin(z)=\sum_{n=0}^{\infty} (-1)^n \frac{ z^{2n+1}}{(2n+1)!},\ \text{also $ord_0 (\sin)=1$.}\]
 			also $ord_0 (\sin)=1$. Da $\sin(\pi -z)=\sin(z)$ folgt $ord_{\pi}(sin)=1$. \\
-			Da $\sin(2\pi +z)=\sin(z)$ folgt $ord_{k\pi}(\sin)=1$ für alle $k\in\mathbb{Z}$ (Ansonsten 
+			Da $\sin(2\pi k +z)=\sin(z)$ folgt $ord_{k\pi}(\sin)=1$ für alle $k\in\mathbb{Z}$ (Ansonsten 
 			hat der Sinus keine Nullstellen – siehe Übung zu $\cos$).
 			\item Der Cosinus hat Nullstellen der Ordnung $1$ bei $(k+\frac{1}{\varepsilon})\cdot \pi$, 
 			$k\in\mathbb{Z}$.
@@ -939,8 +939,8 @@
 		\begin{enumerate}
 			\item Wenn sich $f$ zu einer holomorphen Funktion auf ganz  $\Omega$ forsetzen lässt, 
 			heißt $z_0$ eine hebbare Singularität.
-			\item Wenn es $m>1$ und Zahlen $a_n ,\ldots ,a_m \in\mathbb{C}$ mit $a_m \neq 0$ gibt, 
-			sd. \[f(z)=\sum_{n=1}^m \frac{a_n}{(z-z_0)^n} \] bei $z_0$ eine hebbare Singularität hat, 
+			\item Wenn es $m>1$ und Zahlen $a_1 ,\ldots ,a_m \in\mathbb{C}$ mit $a_m \neq 0$ gibt, 
+			sd. \[f(z)-\sum_{n=1}^m \frac{a_n}{(z-z_0)^n} \] bei $z_0$ eine hebbare Singularität hat, 
 			dann hat $f$ bei $z_0$ eine Polstelle der Ordnung $m$ mit Hauptteil 
 			$\sum_{n=1}^m \frac{a_n}{(z-z_0)^n}$. Wir setzen $ord_{z_0}(f)=-m$.
 			\item Wenn für alle $r>0$ mit $B_r (z_0)\subset\Omega$ das Bild 
@@ -1096,7 +1096,7 @@
 	
 	\begin{example}
 		$\cos$ hat zwar auf $\mathbb{R}$ ein lokales Maximum bei $0$, aber da 
-		$\cos (iy)=\cosh(iy)$ hat $\cos$ kein lokales Maximum in $\mathbb{C}$.
+		$\cos (iy)=\cosh(y)$ hat $\cos$ kein lokales Maximum in $\mathbb{C}$.
 	\end{example}
 	
 	\begin{corollary}[Schwarz Lemma] \label{coroll:SL}
@@ -1332,7 +1332,7 @@
 	
 	\textsl{Frage:} Was passiert mit dem Kurvenintegral über einer geschlossenen Kurve, die ein Gebiet 
 	umläuft, wenn der Integrand im Inneren isolierte Singularitäten hat?
-	\[ \int_{\gamma} f(z)\mathrm{d}z =\sum_{j=1}^k \frac{1}{2\pi i} \underbrace{n_{\gamma}(z_j)}_{\in\mathbb{Z}}
+	\[ \int_{\gamma} f(z)\mathrm{d}z =\sum_{j=1}^k 2\pi i \underbrace{n_{\gamma}(z_j)}_{\in\mathbb{Z}}
 	\cdot Res_{z_j}(f) \]
 	Mit diesem Satz lassen sich viele reelle Integrale bestimmen.
 	
@@ -1757,7 +1757,7 @@
 	\begin{theorem}
 		Es sei $\Omega\subset\mathbb{C}$ Gebiet, $z_1,\ldots ,z_k\in\Omega$, $f:\Omega\setminus
 		\{z_1,\ldots ,z_k\}\to\mathbb{C}$ holomorph. Sei $c$ Zykel in $\Omega\setminus\{z_1,\ldots,z_k\}$, 
-		der in $\Omega$ nullholomorph ist. Dann gilt
+		der in $\Omega$ nullhomolog ist. Dann gilt
 		\[ \int_c f(z)\mathrm{d}z =\sum_{j=1}^k 2\pi i Res_{z_j}(f)\cdot n_{z_j}(c) \]
 	\end{theorem}
 	

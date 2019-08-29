@@ -1378,7 +1378,7 @@
 	
 	\begin{example}
 		\begin{enumerate}
-			\item Sei $\gamma_[a,b]\to\Omega$ geschlossene Kurve, sei $[\gamma]$ die 
+			\item Sei $\gamma:[a,b]\to\Omega$ geschlossene Kurve, sei $[\gamma]$ die 
 			zugehörige Kette, damit ist $c=[\gamma]$ ein Zykel, denn 
 			$\partial c =[\gamma(b)]-[\gamma(a)]=0$. \\
 			\textsl{Beachte:} Wir rechnen hier nicht in $\mathbb{C}$, das heißt es ist z. B. 
@@ -1454,7 +1454,7 @@
 	\begin{definition}[Umlaufzahl, nullhomolog, homolog]
 		Es sei $\Omega\subset\mathbb{C}$ ein Gebiet, $c$ geschlossene Kette (Zykel) in $\Omega$ 
 		und $w\in\mathbb{C}\setminus\Omega$. Dann definiere die Umlaufzahl von $c$ um $w$ durch
-		\[ n_w = \frac{1}{2\pi i} \int_c \frac{1}{z-w}\mathrm{d}z. \]
+		\[ n_w(c) = \frac{1}{2\pi i} \int_c \frac{1}{z-w}\mathrm{d}z. \]
 		Ein Zykel $c$ heißt nullhomolog, falls $n_w(c)=0$ für alle $w\in\mathbb{C}\setminus\Omega$. \\
 		Zwei Zykel heißen homolog, wenn ihre Differenz nullhomolog ist. Die Menge aller, zu einer 
 		gegebenen Kette $c$, homologen Ketten bildet die Homologieklasse von $c$. 
@@ -1560,7 +1560,7 @@
 	\subsection{Der Cauchy-Integralsatz in der Umlaufzahlversion}
 	
 	\textsl{Ziel:} Zykel $c_1, c_2$ sind genau dann homolog in $\Omega$, wenn alle Integrale holomorpher 
-	Funktionen auf $\Omega$ über $c_1$ den gleichen Wert wir über $c_2$ haben.
+	Funktionen auf $\Omega$ über $c_1$ den gleichen Wert wie über $c_2$ haben.
 	
 	\begin{theorem}[Cauchy-Integralsatz; Umlaufzahlversion] \label{thm:CI;umlauf}
 		Es sei $f:\Omega\to\mathbb{C}$ holomorph, $c$ nullhomologer Zykel in $\Omega$, dann gilt
@@ -1658,7 +1658,7 @@
 	Es bezeichne $S_r (w)$ den Zykel zur Kurve $t\mapsto w+re^{2\pi it}$, $[0,1]\to\mathbb{C}$ 
 	(Kreis im mathematischen Sinne einmal um $w$ verschieben mit Radius $r$ in der komplexen Ebene).
 	
-	\begin{corollary}
+	\begin{corollary} \label{coroll:zykel}
 		Es sei $\Omega\subset\mathbb{C}$ ein Gebiet und $c$ ein nullhomologer Zykel in $\Omega$. 
 		Es seien $z_1,\ldots,z_k\in\Omega$ und $r_1,\ldots,r_k >0$ so, dass die abeschlossenen 
 		Bälle $\overline{B_{r_j}(z_j)}$ in $\Omega$ liegen und paarweise disjunkt sind. 
@@ -1724,7 +1724,7 @@
 		Also konvergiert $L(z)$ auf $A_{r,R}(0)$.
 	\end{proof}
 	
-	\begin{example}
+	\begin{example} \label{exp:Laurent}
 		\begin{enumerate}
 			\item \label{exp:laur;1} Wir entwickeln die Funktion $\frac{1}{z-w}$ um $0$. Dann gilt für $|z|<|w|$
 			\[ \frac{1}{z-w} = -\frac{\frac{1}{w}}{1-\frac{z}{w}}=-\frac{1}{w} \sum_{k=0}^{\infty} 
@@ -1738,19 +1738,144 @@
 			\[ \limsup_{k\to\infty}\sqrt[k]{|a_k|}=|w| \quad\Rightarrow\quad r=|w|. \]
 			(l=-k)
 			
-			\item Sei $f(z)=\frac{1}{z-w_0}+\frac{1}{z-w_1}$ mit $0<|w_0|<|w_1|$ (Skizze siehe Niklas/Kai) \\
+			\item \label{exp:Laurent;2}Sei $f(z)=\frac{1}{z-w_0}+\frac{1}{z-w_1}$ mit $0<|w_0|<|w_1|$ 
+			(Skizze siehe Niklas/Kai) \\
 			Indem wir passende Laurententwicklungen aus \ref{exp:laur;1} addieren, erhalten wir drei 
 			Laurententwicklungen auf $A_{0,|w_0|}(0)$, $A_{|w_0|,|w_1|}(0)$, $A_{|w_1|,\infty}(0)$. 
 			Auf dem mittleren Gebiet sind alle Koeffizienten null.
 		\end{enumerate}
 	\end{example}
 	
+	\begin{theorem}[Laurent-Entwicklung]
+		Es sei $\Omega\subset\mathbb{C}$ ein Gebiet, $w\in\mathbb{C}$, es seien $0\leq s<S\leq \infty$ 
+		gegeben, sd. $A_{s,S}(w)\subset\Omega$. Sei $f:\Omega\to\mathbb{C}$ holomorph, dann 
+		exisitert eine eindeutige Laurentreihe, sd.
+		\[ f(z)=\sum_{k=-\infty}^{\infty} a_k (z-w)^k \]
+		für alle $z\in A_{s,S}(w)$, mit
+		\[ a_k=\frac{1}{2\pi i} \int_{S_{\rho}(w)}\frac{f(z)}{(z-w)^{k+1}}\mathrm{d}z, \]
+		wobei $\rho\in (s,S)$. Es sei $A_{r,R}(w)$ der Konvergenzring, dann gilt
+		\begin{eqnarray*}
+			r &\leq& \inf \{\rho\in (0,S)\ \vert\ A_{\rho,S}(w)\subset\Omega\} \\
+			R &\geq& \sup\{\rho\in (s,\infty)\ \vert\ A_{s,\rho}(w)\subset\Omega\}
+		\end{eqnarray*}
+		
+		%... fehlende Skizze 19.6.2019
+		
+	\end{theorem}
 	
-	%...
+	\begin{proof}
+		Sei $z_0\in A_{s,S}(w)$, sei $\varepsilon>0$ klein genug, sd. $\overline{B_{\varepsilon}(z_0)}\subset 
+		A_{s,S}(w)$. Nach der Cauchy-Integralformel (Satz \ref{thm:CF}) gilt
+		\[ f(z_0)=\frac{1}{2\pi i} \int_{S_{\varepsilon}(z_0)} \frac{f(\zeta)}{\zeta -z_0}\mathrm{d}\zeta. \]
+		Der Zykel $S_{\varepsilon}(z_0)$ ist in $\Omega\setminus\{z_0\}$ homolog zum Zykel 
+		$S_S(w)-S_s(w)$, denn $S_{\varepsilon}(z_0)$ ist homotop zu einer Kurve, die $S_S(w)$ positiv, 
+		$S_s(w)$ negativ und eine Verbindungsstrecke dazwischen je einmal in bei Richtungen durchläuft. 
+		Gegebenfalls verkleinern wir $S$ und vergrößern $s$ so, dass $\overline{B_{\varepsilon}(z_0)}
+		\subset A_{s,S}(w)\subset \overline{A_{s,S}(w)}\subset\Omega$. 
+		Da $\frac{f(\zeta)}{\zeta -z_0}$ auf $\Omega\setminus\{z_0\}$ holomorph ist, folgt aus der 
+		Homotopie-Invarianz des Kurvenintegrals, dass
+		\[ f(z_0) =\frac{1}{2\pi i}\int_{S_s(w)}\frac{f(\zeta)}{\zeta -z_0}\mathrm{d}\zeta -
+		\frac{1}{2\pi i}\int_{S_s(w)}\frac{f(\zeta)}{\zeta -z_0}\mathrm{d}\zeta.\]
+		O. B. d. A. sei $w=0$. Schreibe jetzt
+		\[ \frac{1}{\zeta -z_0}=\frac{\frac{1}{\zeta}}{1-\frac{z_0}{\zeta}}=\sum_{k=0}^{\infty} 
+		\frac{z_0^k}{\zeta^{k+1}} \]
+		für $|\zeta|=S>|z_0|$ und
+		\[ \frac{1}{\zeta -z_0}=-\frac{\frac{1}{z_0}}{1-\frac{\zeta}{z_0}}
+		=-\sum_{l=0}^{\infty} \frac{\zeta^l}{z_0^{l+1}} =-\sum_{k=-\infty}^{-1} \frac{z_0^k}{\zeta^{k+1}}.\]
+		Da die geometrische Reihe absolut konvergiert, folgt
+		\[ f(z_0)=\frac{1}{2\pi i}\sum_{k=0}^{\infty} z_0^k \int_{S_S(w)}\frac{f(\zeta)}{\zeta^{k+1}}\mathrm{d}\zeta
+		+\frac{1}{2\pi i}\sum_{k=-\infty}^{-1} z_0^k \int_{S_s(w)}\frac{f(\zeta)}{\zeta^{k+1}}\mathrm{d}\zeta. \]
+		Da die Funktion $\frac{f(\zeta)}{\zeta^{k+1}}$ auf $\Omega\setminus\{w=0\}$ holomorph ist, hängt
+		\[ \int_{S_{\rho}} \frac{f(\zeta)}{\zeta^{k+1}}\mathrm{d}\zeta \]
+		nicht von $\rho\in [s,S]$ ab und wir erhalten die Darstellung aus dem Satz. Das funktioniert für alle 
+		$s,S$, sd. $s\leq\rho\leq S$, $\overline{A_{s,S}(w)}\subset\Omega$ und alle $z_0\in A_{s,S}(w)$, 
+		also folgt die Behauptung über den Konvergenzring. \\
+		Zur Eindeutigkeit nehmen wir an, dass
+		\[ f(z)=\sum_{k=-\infty}^{\infty} a_k z^k = \sum_{k=-\infty}^{\infty} b_k z^k \]
+		für alle $z\in A_{s,S}(w)$ und betrachten (o. B. d. A. $w=0$)
+		\[ g(z)=\sum_{k=0}^{\infty} (a_k -b_k)z^k, \qquad \qquad h(z)=\sum_{k=-\infty}^{\infty} (a_{-k}-b_{-k})z^k\]
+		sd. also $0=g(z)+h(\frac{1}{z})$ für alle $z\in A_{s,S}(w)$. Dann ist $g$ holomorph auf $B_R(0)$, 
+		$R\geq S$ und $h$ holomorph auf $B_{\frac{1}{r}}(0)$, $r\leq s$. Da $g(z)=-h(\frac{1}{z})$ auf 
+		$A_{s,S}(w)$, existiert eine holomorphe Funktion $\tilde{g}$ auf $\mathbb{C}$ mit 
+		\[ \tilde{g}(z)=\begin{dcases} g(z) & |z|\leq S \\ -h(\frac{1}{z}) & |z| \geq s \end{dcases}. \]
+		Sei $\rho\in (s,S)$, dann ist $g$ auf $\overline{B_{\rho}(w)}$ beschränkt und $h$ auf 
+		$\overline{B_{\frac{1}{\rho}}(w)}$. Also ist $\tilde{g}$ beschränkt und somit nach dem Satz von 
+		Liouville (Satz \ref{thm:LV}) konstant mit 
+		\[ g(z)=\lim_{z\to\infty}\left(h\left(\frac{1}{z}\right)\right)=h(0)=0. \]
+		Aus dem Eindeutigkeitssatz für Potenzreihen folgt $a_k =b_k$ für alle $k$.
+	\end{proof}
 	
+	\begin{remark}
+		Es sei $r=0$, das heißt wir betrachten eine Laurentreihe
+		\[ L(z)=\sum_{k=-\infty}^{\infty} a_k z^k \]
+		auf $A_{0,R}(0)=B_R^*$. Betrachte die Fälle
+		\begin{enumerate}
+			\item \textsl{Fall:} Es existiere ein $k_0\geq 0$, sd. $a_k=0$ für alle $k<k_0$ und $a_{k_0}\neq 0$. 
+			Dann ist die Singularität bei $0$ hebbar. Fall $k_0 >0$, haben wir eine Nullstelle der Ordnung 
+			$k_0$ bei $0$.
+			
+			\item \textsl{Fall:} Es existiere $k_0 <0$, $a_k=0$ für $k\leq k_0$ und $a_{k_0}\neq0$. Dann 
+			haben wir eine Polordnung $-k_0$ bei $0$.
+			
+			\item \textsl{Fall:} Wir haben eine wesentliche Singularität bei $0$.
+		\end{enumerate}
+		\textsl{Wichtig:} $r=0$ ist notwendig siehe Beispiel \ref{exp:Laurent} \ref{exp:Laurent;2}, 
+		wobei alle $a_k\neq 0$ waren, obwohl wir nur zwei einfache Polstellen hatte.
+	\end{remark}
 	
+	\begin{proposition}[Definition: Residuum] \label{prop:def:residuum}
+		Es $f:A_{r,R}(w)\to\mathbb{C}$ holomorph mit
+		\[ f(z)=\sum_{k=-\infty}^{\infty} a_k (z-w)^k \]
+		für $z\in A_{r,R}(w)$. Dann hängt das Residuum
+		\[ Res_{w,\rho}(f)=\frac{1}{2\pi i}\int_{S_{\rho}(w)}f(\zeta)\mathrm{d}\zeta =a_{-1} \]
+		von $f$ bei $w$ zum Radius $\rho$ nicht von $\rho\in (r,R)$ ab. Die Funktion $f(z)=-\frac{a}{z-w}$ 
+		besitzt auf $A_{r,R}(w)$ genau dann eine Stammfunktion, wenn $a=a_{-1}=Res_{w,\rho}(f)$.
+		Falls $r=0$, schreibe $Res_w(f)=Res_{w,\rho}(f)$.
+	\end{proposition}
 	
+	\begin{proof}
+		 Unabhängig von $\rho$ folgt aus der Homotopieinvarianz des Kurvenintegrals
+		 , falls $a\neq a_{-1}$
+		 \[ \int_{S_{\rho}(w)} \left( f(z)-\frac{a}{z-w}\right)\mathrm{d}z=2\pi i(a_{-1}-a)\neq 0,\]
+		 also existiert keine Stammfunktion (siehe Kapitel 1). Falls $a=a_{-1}$, betrachte die Funktion 
+		 \[ F(z)=\sum_{k=0}^{\infty} \frac{a_k}{k+1}(z-w)^{k+1} -\sum_{k=2}^{\infty} \frac{a_{-k}}{k-1}
+		 \underbrace{(z-w)^{1-k}}_{(\frac{1}{z-w})^{k-1}}. \]
+		 Sie konvergiert auf $A_{r,R}(w)$ und $F'(z)=f(z)-\frac{a}{z-w}$.
+	\end{proof}
 	
+	\begin{example}
+		In Beispiel \ref{exp:Laurent} \ref{exp:Laurent;2} gilt
+		\[ Res_{0,\rho}(f)=\begin{dcases} 0& \rho<|w_0| \\ 1&|w_0|<\rho<|w_1| \\ 0&\rho>|w_1| \end{dcases}\] 
+		
+		%... fehlende Skizze 19.6.2019
+		
+		Wir finden eine Stammfunktion
+		\[ F(z)=\log\left(\frac{z-w_0}{z-w_1}\right) \]
+		für alle $z$, die nicht auf der Strecke zwischen $w_0$ und $w_1$ liegen, denn für 
+		$z\in\{w_0,w_1\}$ ist der Ausdruck $\frac{z-w_0}{z-w_1}\in\{0,\infty\}$ und es ist $\frac{z-w_0}{z-w_1}$ 
+		genau dann reell und negativ, das heißt $arg\left(\frac{z-w_0}{z-w_1}\right)=\pi$  
+		$mod\  2\pi\mathbb{Z}$, wenn $z$ zwischen $w_0$ und $w_1$ liegt. Und es gibt eine 
+		Stammfunktion $log$ (auch $Log$) von $\frac{1}{x}$ auf $\mathbb{C}\setminus(-\infty,0]$ 
+		(Übungsaufgabe).
+		
+		%... fehlende Skizze 19.6.2019
+		
+	\end{example}
+	
+	\begin{proposition} \label{prop:residuum}
+		Es sei $z_0\in\Omega$ eine isolierte Singularität von $f:\Omega\setminus\{z_0\}\to\mathbb{C}$.
+		\begin{enumerate}
+			\item Wenn $f$ einen Pol der Ordnung $\leq k$ bei $z_0$ hat, gilt 
+			\[ Res_{z_0}(f)=\frac{1}{(k-1)!} \frac{\partial^{k-1}}{\partial z^{k-1}}\left((z-z_0)^kf(z)\right). \]
+			
+			\item \label{prop:residuum;2}Sei $f=\frac{g}{h}$, $h$ habe einfache Nullstelle bei $z_0$, dann gilt
+			\[ Res_{z_0} \left(\frac{g}{h}\right)=\frac{g(z_0)}{h'(z_0)}. \]
+		\end{enumerate}
+	\end{proposition}
+	
+	\begin{proof}
+		Übungsaufgabe.
+	\end{proof}
 	
 	\subsection{Residuensatz und erste Anwendungen}
 	
@@ -1763,20 +1888,9 @@
 	
 	\begin{proof}
 		Wir dürfen $c$ durch einen Zykel ersetzen, der in $\Omega\setminus\{z_1,\ldots,z_k\}$ zu $c$ 
-		homolog ist (Satz 3.11). 
-		
-		%...
-		
-		Nach Folgerung 3.14 
-		
-		%...
-		
+		homolog ist (Satz \ref{thm:CI;umlauf}). Nach Folgerung \ref{coroll:zykel} 
 		wählen wir dazu den Zykel $n_{z_1}(c)\cdot S_{\varepsilon}^1 (z_1)+\ldots+n_{z_k}(c)\cdot 
-		S_{\varepsilon}^1(z_k)$ für $\varepsilon>0$ klein genug. Mit Proposition 3.19 
-		
-		%...
-		
-		folgt
+		S_{\varepsilon}^1(z_k)$ für $\varepsilon>0$ klein genug. Mit Proposition \ref{prop:def:residuum} folgt
 		\begin{eqnarray*}
 			\int_c f(z)\mathrm{d}z &=& \sum_{j=1}^k n_{z_j}(c) \int_{S_{\varepsilon}^1(z_j)}f(z)\mathrm{d}z \\
 			&=& 2\pi i\sum_{j=1}^k n_{z_j}(c)\cdot Res_{z_j}(f).
@@ -1803,7 +1917,7 @@
 		\[ z\mapsto \frac{1}{z} \cdot R(\frac{z+z^{-1}}{2},\frac{z-z^{-1}}{2i}) \]
 		keine Pole auf $S^1(0)$ und es gilt:
 		\begin{eqnarray*}
-			\int_0^{2\pi} R(\cos x,\sin x)\mathrm{d}x &=& \frac{1}{i} \int_{S^1} \frac{R\left(\frac{z+z^{-1}}{2},
+			\int_0^{2\pi} R(\cos x,\sin x)\mathrm{d}x &=& \frac{1}{i} \bigintsss_{S^1} \frac{R\left(\frac{z+z^{-1}}{2},
 			\frac{z-z^{-1}}{2i}\right)}{z} \mathrm{d}z \\
 			&=& 2\pi \sum_{z\in B_1(0)} Res_z \left(\frac{1}{z} R\left(\frac{z+z^{-1}}{2},\frac{z-z^{-1}}{2i}\right)
 			\right).
@@ -1834,13 +1948,11 @@
 		\begin{eqnarray*}
 			 \int_0^{2\pi} \frac{1}{a+\cos x}\mathrm{d}x &=& \frac{1}{i}\int_{S^1}\frac{1}{z} 
 			 \frac{1}{a+\frac{z+z^{-1}}{2}}\mathrm{d}z \\
-			 &=& \frac{1}{i}\int_{S^1} \frac{1}{az+\frac{z^2}{2}+\frac{1}{2}}\mathrm{d}z.ds
+			 &=& \frac{1}{i}\int_{S^1} \frac{1}{az+\frac{z^2}{2}+\frac{1}{2}}\mathrm{d}z.
 		\end{eqnarray*}
 		Der Nenner hat Nullstellen bei $z_{1,2}=-a\pm \sqrt{a^2 -1}$. Da $a>1$, liegt eine davon nämlich 
-		$\sqrt{a^2 -1}-a$ im Inneren von $B_1$. Wir rechnen das Residuum mit Proposition 3.21 (2). 
-		
-		%...
-		
+		$\sqrt{a^2 -1}-a$ im Inneren von $B_1$. Wir rechnen das Residuum mit Proposition \ref{prop:residuum} 
+		\ref{prop:residuum;2}. 
 		Schreibe
 		\[ f=\frac{g}{h} =\frac{\frac{1}{z}}{a+\frac{z+z^{-1}}{2}}. \]
 		dann ist 
@@ -1901,151 +2013,6 @@
 		\[ \int_{-\infty}^{\infty} \frac{1}{1+x^2}\mathrm{d}x =\left(\lim_{x\to\infty}-\lim_{x\to\infty}\right)
 		\arctan(x) =\pi. \]
 	\end{example}
-	
-	\begin{theorem}[Laurent-Entwicklung]
-		Es sei $\Omega\subset\mathbb{C}$ ein Gebiet, $w\in\mathbb{C}$, es seien $0\leq s<S\leq \infty$ 
-		gegeben, sd. $A_{s,S}(w)\subset\Omega$. Sei $f:\Omega\to\mathbb{C}$ holomorph, dann 
-		exisitert eine eindeutige Laurentreihe, sd.
-		\[ f(z)=\sum_{k=-\infty}^{\infty} a_k (z-w)^k \]
-		für alle $z\in A_{s,S}(w)$, mit
-		\[ a_k=\frac{1}{2\pi i} \int_{S_{\rho}(w)}\frac{f(z)}{(z-w)^{k+1}}\mathrm{d}z, \]
-		wobei $\rho\in (s,S)$. Es sei $A_{r,R}(w)$ der Konvergenzring, dann gilt
-		\begin{eqnarray*}
-			r &\leq& \inf \{\rho\in (0,S)\ \vert\ A_{\rho,S}(w)\subset\Omega\} \\
-			R &\geq& \sup\{\rho\in (s,\infty)\ \vert\ A_{s,\rho}(w)\subset\Omega\}
-		\end{eqnarray*}
-		
-		%... fehlende Skizze 19.6.2019
-		
-	\end{theorem}
-	
-	\begin{proof}
-		Sei $z_0\in A_{s,S}(w)$, sei $\varepsilon>0$ klein genug, sd. $\overline{B_{\varepsilon}(z_0)}\subset 
-		A_{s,S}(w)$. Nach der Cauchy-Integralformel (Satz \ref{thm:CF}) gilt
-		\[ f(z_0)=\frac{1}{2\pi i} \int_{S_{\varepsilon}(z_0)} \frac{f(\zeta)}{\zeta -z_0}\mathrm{d}\zeta. \]
-		Der Zykel $S_{\varepsilon}(z_0)$ ist in $\Omega\setminus\{z_0\}$ homolog zum Zykel 
-		$S_S(w)-S_s(w)$, denn $S_{\varepsilon}(z_0)$ ist homotop zu einer Kurve, die $S_S(w)$ positiv, 
-		$S_s(w)$ negativ und eine Verbindungsstrecke dazwischen je einmal in bei Richtungen durchläuft. 
-		Gegebenfalls verkleinern wir $S$ und vergrößern $s$ so, dass $\overline{B_{\varepsilon}(z_0)}
-		\subset A_{s,S}(w)\subset \overline{A_{s,S}(w)}\subset\Omega$. 
-		Da $\frac{f(\zeta)}{\zeta -z_0}$ auf $\Omega\setminus\{z_0\}$ holomorph ist, folgt aus der 
-		Homotopie-Invarianz des Kurvenintegrals, dass
-		\[ f(z_0) =\frac{1}{2\pi i}\int_{S_s(w)}\frac{f(\zeta)}{\zeta -z_0}\mathrm{d}\zeta -
-		\frac{1}{2\pi i}\int_{S_s(w)}\frac{f(\zeta)}{\zeta -z_0}\mathrm{d}\zeta.\]
-		O. B. d. A. sei $w=0$. Schreibe jetzt
-		\[ \frac{1}{\zeta -z_0}=\frac{\frac{1}{\zeta}}{1-\frac{z_0}{\zeta}}=\sum_{k=0}^{\infty} 
-		\frac{z_0^k}{\zeta^{k+1}} \]
-		für $|\zeta|=S>|z_0|$ und
-		\[ \frac{1}{\zeta -z_0}=-\frac{\frac{1}{z_0}}{1-\frac{\zeta}{z_0}}
-		=-\sum_{l=0}^{\infty} \frac{\zeta^l}{z_0^{l+1}} =-\sum_{k=-\infty}^{-1} \frac{z_0^k}{\zeta^{k+1}}.\]
-		Da die geometrische Reihe absolut konvergiert, folgt
-		\[ f(z_0)=\frac{1}{2\pi i}\sum_{k=0}^{\infty} z_0^k \int_{S_S(w)}\frac{f(\zeta)}{\zeta^{k+1}}\mathrm{d}\zeta
-		+\frac{1}{2\pi i}\sum_{k=-\infty}^{-1} z_0^k \int_{S_s(w)}\frac{f(\zeta)}{\zeta^{k+1}}\mathrm{d}\zeta. \]
-		Da die Funktion $\frac{f(\zeta)}{\zeta^{k+1}}$ auf $\Omega\setminus\{w=0\}$ holomorph ist, hängt
-		\[ \int_{S_{\rho}} \frac{f(\zeta)}{\zeta^{k+1}}\mathrm{d}\zeta \]
-		nicht von $\rho\in [s,S]$ ab und wir erhalten die Darstellung aus dem Satz. Das funktioniert für alle 
-		$s,S$, sd. $s\leq\rho\leq S$, $\overline{A_{s,S}(w)}\subset\Omega$ und alle $z_0\in A_{s,S}(w)$, 
-		also folgt die Behauptung über den Konvergenzring. \\
-		Zur Eindeutigkeit nehmen wir an, dass
-		\[ f(z)=\sum_{k=-\infty}^{\infty} a_k z^k = \sum_{k=-\infty}^{\infty} b_k z^k \]
-		für alle $z\in A_{s,S}(w)$ und betrachten (o. B. d. A. $w=0$)
-		\[ g(z)=\sum_{k=0}^{\infty} (a_k -b_k)z^k, \qquad \qquad h(z)=\sum_{k=-\infty}^{\infty} (a_{-k}-b_{-k})z^k\]
-		sd. also $0=g(z)+h(\frac{1}{z})$ für alle $z\in A_{s,S}(w)$. Dann ist $g$ holomorph auf $B_R(0)$, 
-		$R\geq S$ und $h$ holomorph auf $B_{\frac{1}{r}}(0)$, $r\leq s$. Da $g(z)=-h(\frac{1}{z})$ auf 
-		$A_{s,S}(w)$, existiert eine holomorphe Funktion $\tilde{g}$ auf $\mathbb{C}$ mit 
-		\[ \tilde{g}(z)=\begin{dcases} g(z) & |z|\leq S \\ -h(\frac{1}{z}) & |z| \geq s \end{dcases}. \]
-		Sei $\rho\in (s,S)$, dann ist $g$ auf $\overline{B_{\rho}(w)}$ beschränkt und $h$ auf 
-		$\overline{B_{\frac{1}{\rho}}(w)}$. Also ist $\tilde{g}$ beschränkt und somit nach dem Satz von 
-		Liouville (Satz \ref{thm:LV}) konstant mit 
-		\[ g(z)=\lim_{z\to\infty}\left(h\left(\frac{1}{z}\right)\right)=h(0)=0. \]
-		Aus dem Eindeutigkeitssatz für Potenzreihen
-		
-		%...
-		
-		folgt $a_k =b_k$ für alle $k$.
-	\end{proof}
-	
-	\begin{remark}
-		Es sei $r=0$, dass heißt wir betrachten eine Laurentreihe
-		\[ L(z)=\sum_{k=-\infty}^{\infty} a_k z^k \]
-		auf $A_{0,R}(0)=B_R^*$. Betrachte die Fälle
-		\begin{enumerate}
-			\item \textsl{Fall:} Es existiere ein $k_0\geq 0$, sd. $a_k=0$ für alle $k<k_0$ und $a_{k_0}\neq 0$. 
-			Dann ist die Singularität bei $0$ hebbar. Fall $k_0 >0$, haben wir eine Nullstelle der Ordnung 
-			$k_0$ bei $0$.
-			
-			\item \textsl{Fall:} Es existiere $k_0 <0$, $a_k=0$ für $k\leq k_0$ und $a_{k_0}\neq0$. Dann 
-			haben wir eine Polordnung $ord_g (-k_0)$ bei $0$.
-			
-			\item \textsl{Fall:} Wir haben eine wesentliche Singularität bei $0$.
-		\end{enumerate}
-		\textsl{Wichtig:} $r=0$ ist notwendig siehe Beispiel 3.16 (2), 
-		
-		%...
-		
-		wobei alle $a_k\neq 0$ waren, obwohl wir nur zwei einfache Polstellen hatte.
-	\end{remark}
-	
-	\begin{proposition}[Definition: Residuum]
-		Es $f:A_{r,R}(w)\to\mathbb{C}$ holomorph mit
-		\[ f(z)=\sum_{k=-\infty}^{\infty} a_k (z-w)^k \]
-		für $z\in A_{r,R}(w)$. Dann hängt das Residuum
-		\[ Res_{w,\rho}(f)=\frac{1}{2\pi i}\int_{s_{\rho}(w)}f(\zeta)\mathrm{d}\zeta =a_{-1} \]
-		von $f$ bei $w$ zum Radius $\rho$ nicht von $\rho\in (r,R)$ ab. Die Funktion $f(z)=-\frac{a}{z-w}$ 
-		besitzt auf $A_{r,R}(w)$ genau dann eine Stammfunktion, wenn $a=a_{-1}=Res_{w,\rho}(f)$.
-		Falls $r=0$, schreibe $Res_w(f)=Res_{w,\rho}(f)$.
-	\end{proposition}
-	
-	\begin{proof}
-		 Unabhängig von $\rho$ folgt aus der Homotopieinvarianz des Kurvenintegrals
-		 
-		 %...
-		 
-		 , falls $a\neq a_{-1}$
-		 \[ \int_{S_{\rho}(w)} \left( f(z)-\frac{a}{z-w}\right)\mathrm{d}z=2\pi i(a_{-1}-a)\neq 0,\]
-		 also existiert keine Stammfunktion (siehe Kapitel 1). Falls $a=a_{-1}$, betrachte die Funktion 
-		 \[ F(z)=\sum_{k=0}^{\infty} \frac{a_k}{k+1}(z-w)^{k+1} -\sum_{k=2}^{\infty} \frac{a_{-k}}{k-1}
-		 \underbrace{(z-w)^{1-k}}_{(\frac{1}{z-w})^{k-1}}. \]
-		 Sie konvergiert auf $A_{r,R}(w)$ und $F'(z)=f(z)-\frac{a}{z-w}$.
-	\end{proof}
-	
-	\begin{example}
-		In Beispiel 3.16 (2)
-		
-		%...
-		
-		gilt
-		\[ Res_{0,\rho}(f)=\begin{dcases} 0& \rho<|w_0| \\ 1&|w_0|<\rho<|w_1| \\ 0&\rho>|w_1| \end{dcases}\] 
-		
-		%... fehlende Skizze 19.6.2019
-		
-		Wir finden eine Stammfunktion
-		\[ F(z)=\log\left(\frac{z-w_0}{z-w_1}\right) \]
-		für alle $z$, die nicht auf der Strecke zwischen $w_0$ und $w_1$ liegen, denn für 
-		$z\in\{w_0,w_1\}$ ist der Ausdruck $\frac{z-w_0}{z-w_1}\in\{0,\infty\}$ und es ist $\frac{z-w_0}{z-w_1}$ 
-		genau dann reell und negativ, das heißt $arg\left(\frac{z-w_0}{z-w_1}\right)=\pi$  
-		$mod\  2\pi\mathbb{Z}$, wenn $z$ zwischen $w_0$ und $w_1$ liegt. Und es gibt eine 
-		Stammfunktion $log$ (auch $Log$) von $\frac{1}{x}$ auf $\mathbb{C}\setminus(-\infty,0]$ 
-		(Übungsaufgabe).
-		
-		%... fehlende Skizze 19.6.2019
-		
-	\end{example}
-	
-	\begin{proposition}
-		Es sei $z_0\in\Omega$ eine isolierte Singularität von $f:\Omega\setminus\{z_0\}\to\mathbb{C}$.
-		\begin{enumerate}
-			\item Wenn $f$ einen Pol der $ord_g\leq k$ bei $z_0$ hat, gilt 
-			\[ Res_{z_0}(f)=\frac{1}{(k-1)!} \frac{\partial^{k-1}}{\partial z^{k-1}}\left((z-z_0)^kf(z)\right). \]
-			
-			\item Sei $f=\frac{g}{h}$, $h$ habe einfache Nullstelle bei $z_0$, dann gilt
-			\[ Res_{z_0} \left(\frac{g}{h}\right)=\frac{g(z_0)}{h'(z_0)}. \]
-		\end{enumerate}
-	\end{proposition}
-	
-	\begin{proof}
-		Übungsaufgabe.
-	\end{proof}
 	
 	\textsl{Wichtig:} Wir lernen hier lieber die Methode (über welchen Zykel integrieren wir, machen wir 
 	Koordinatentransformationen, etc...?). Oftmals kann man die Verfahren variieren (z. B. muss es unter 
@@ -2165,7 +2132,7 @@
 		\[ \bigintsss_{\varphi-\pi}^{\pi-\varphi} \underbrace{\underbrace{e^{(\lambda -1)Log(\frac{1}{S}
 		e^{i\vartheta})}}_
 		{S^{1-\lambda}\cdot e^{(\lambda -1)i\vartheta}}\cdot \underbrace{R\left(-\frac{1}{S}e^{i\vartheta}\right)}_
-		{\to R(0)} \cdot \frac{i}{S}}_{S^{-\lambda\to0}}\underbrace{e^{i\vartheta}}_{\text{Betrag $1$}}\mathrm{d}
+		{\to R(0)} \cdot \frac{i}{S}}_{S^{-\lambda}\to0}\underbrace{e^{i\vartheta}}_{\text{Betrag $1$}}\mathrm{d}
 		\vartheta \underset{S\to\infty}{\to}0. \]
 		Für die geraden Stücke erhalten wir
 		\begin{eqnarray*}
@@ -2395,7 +2362,8 @@
 	
 	\begin{example}
 		\begin{enumerate}
-			\item $A=\theta B$, $B=\begin{smallmatrix} 0&-1\\ 1&0\end{smallmatrix}$, $\theta\in\mathbb{R}$ 
+			\item $A=\theta B$, $B=\left(\begin{smallmatrix} 0&-1\\ 1&0\end{smallmatrix}\right)$, 
+			$\theta\in\mathbb{R}$ 
 			(oder $\mathbb{C}$), $f(z)=e^z =\sum_{n=0}^{\infty} \frac{z^n}{n!}$. Mit
 			\begin{eqnarray}
 				B^2=\mathds{1} \quad\Rightarrow\quad B^{2n}=(-1)^n\mathds{1},\ B^{2n+1}=B(-1)^n 
@@ -2455,7 +2423,7 @@
 	\end{example}
 	
 	\begin{example}[Jordan Normalform]
-		Sei $A\in M_n(\mathbb{C}$ mit $A=PJP^{-1}$, wobei
+		Sei $A\in M_n(\mathbb{C})$ mit $A=PJP^{-1}$, wobei
 		\[ T= \begin{pmatrix} J_1 & 0 & \cdots & 0 \\
 						0 & J_2 & \ddots & \vdots \\
 						\vdots & \ddots & \ddots & 0 \\

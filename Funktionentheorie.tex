@@ -913,7 +913,7 @@
 	\subsection{Nullstellen und isolierte Singularitäten}
 	
 	\begin{definition}[Nullstellen-Ordnung]
-		Für $z_0\in\Omega$ wende $f:\Omega\to\mathbb{C}$ in einer Umgebung $U\subset\Omega$ 
+		Für $z_0\in\Omega$ werde $f:\Omega\to\mathbb{C}$ in einer Umgebung $U\subset\Omega$ 
 		von $z_0$ dargestellt durch
 		\[ f(z)=\sum_{n=0}^{\infty} a_n (z-z_0)^n .\]
 		Die (Nullstellen-) Ordnung von $f$ bei $z_0$ ist die kleinste Natürliche $n_0 =ord_{z_0}(f)$, sd. 
@@ -1010,7 +1010,7 @@
 	\end{example}
 	
 	\begin{remark}
-		Wir können $ord_{z_0}(f)$ wie folgt charakterisieren: $n=ord_{z_0}(f)$ ist die kleinste ganze 
+		Wir können $ord_{z_0}(f)$ wie folgt charakterisieren: $n=ord_{z_0}(f)$ ist die größte ganze 
 		Zahl, sd.
 		\[ g(z)= (z-z_0)^{-n} f(z) \]
 		bei $z_0$ eine hebbare Singularität hat. 
@@ -1866,7 +1866,8 @@
 		Es sei $z_0\in\Omega$ eine isolierte Singularität von $f:\Omega\setminus\{z_0\}\to\mathbb{C}$.
 		\begin{enumerate}
 			\item Wenn $f$ einen Pol der Ordnung $\leq k$ bei $z_0$ hat, gilt 
-			\[ Res_{z_0}(f)=\frac{1}{(k-1)!} \frac{\partial^{k-1}}{\partial z^{k-1}}\left((z-z_0)^kf(z)\right). \]
+			\[ Res_{z_0}(f)=\frac{1}{(k-1)!} \frac{\partial^{k-1}}{\partial z^{k-1}}
+			\left.\left((z-z_0)^kf(z)\right)\right|_{z=z_0}. \]
 			
 			\item \label{prop:residuum;2}Sei $f=\frac{g}{h}$, $h$ habe einfache Nullstelle bei $z_0$, dann gilt
 			\[ Res_{z_0} \left(\frac{g}{h}\right)=\frac{g(z_0)}{h'(z_0)}. \]

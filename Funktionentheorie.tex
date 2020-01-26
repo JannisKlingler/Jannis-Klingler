@@ -66,7 +66,7 @@
 		Mit diesen Operationen ist $\mathbb{C}$ ein Körper.
 		\begin{eqnarray*}
 			-z=(-x,-y) \qquad \qquad \frac{1}{z}=\frac{\overline{z}}{z\cdot \overline{z}}=\left(
-			\frac{x}{x^2 +y^2}-\frac{y}{x^2 +y^2} \right)
+			\frac{x}{x^2 +y^2},-\frac{y}{x^2 +y^2} \right)
 		\end{eqnarray*}
 		wir definieren einen Absolutbetrag $|z| = \sqrt{z\overline{z}}\in \mathbb{R}$, denn 
 		$z\cdot\overline{z} \in \mathbb{R} =\{ z\in \mathbb{C} \mid z=\overline{z} \} =
@@ -167,7 +167,7 @@
 		und $|e^{iy}|^2 = e^{iy} \cdot \overline{e^{iy}} = e^{iy} \cdot e^{-iy} = e^0 = 1$. \\
 		Also definiere $e^{iy}=\cos(y)+i\sin (y)$.\\
 		Jetzt kann man komplexe Multiplikation in Polarkoordinaten verstehen. \\
-		Schreibe $z=r\cdot e^{i\varphi}$, $w=s\cdot e^{i\varphi}$ dann heißt $r=|z|$ der Absolutbetrag
+		Schreibe $z=r\cdot e^{i\varphi}$, $w=s\cdot e^{i\psi}$ dann heißt $r=|z|$ der Absolutbetrag
 		 und 
 		$\varphi\in \mathbb{R}\setminus 2\pi \mathbb{Z}$ das Argument. \\
 		Wir repräsentieren $\varphi$ durch die Funktion $arg:\mathbb{C}^{\times} =\mathbb{C}\setminus 
@@ -886,7 +886,7 @@
 	\end{example}
 	
 	\begin{remark}
-		Es sei $g$ auf $\partial B_r (z_0)$ stetig. Dan können wir 
+		Es sei $g$ auf $\partial B_r (z_0)$ stetig. Dann können wir 
 		\[ f(z)=\frac{1}{2\pi i}\int_{\partial B_r (z_0)} \frac{g(\zeta)}{\zeta -z}\mathrm{d}\zeta \]
 		für alle $z\in B_r(z_0)$ definieren. \\
 		Frage: Setzt $f$ die Funktion $g$ stetig fort? \\
@@ -1074,7 +1074,7 @@
 		Wir nehmen an, dass $\overline{B_r (z_0)}\subset\Omega$. Nach dem Mittelwertsatz gilt dann:
 		\[ f(z_0)=\int_0^1 \underbrace{f(z_0 +re^{2\pi it})}_{|\%|\leq |f(z_0)|}\mathrm{d}t \]
 		Schreibe $f(z_0)=re^{i\varphi}$, dann gilt 
-		\[ |f(z_0)|= Re(e^{i\varphi}f(z_0)) \]
+		\[ |f(z_0)|= Re(e^{-i\varphi}f(z_0)) \]
 		Aus $|\omega|\leq|f(z_0)|$ folgt also 
 		\begin{eqnarray}
 			Re(\underbrace{e^{i\varphi}\omega}_{|\%|\leq |f(z_0)|})\leq |f(z_0)| \label{stern}
@@ -1126,10 +1126,7 @@
 	\begin{definition}[biholomorphe Funktion]
 		Es seien $\Omega_0 ,\Omega_1\subset\mathbb{C}$ Gebiete. Eine holomorphe, bijektive 
 		Abbildung $f:\Omega_0\to\Omega_1$ heißt biholomorph. \\
-		Wir sehen später (Satz 2.23)
-		
-		%...
-		
+		Wir sehen später (Satz \ref{thm:lok.Umk})
 		, dass auch die Umkehrabbildung holomorph ist. Im reellen hingegen haben wir z. B. 
 		$x\mapsto x^3$, die bijektiv und differenzierbar, aber kein Diffeomorphismus ist.
 	\end{definition}
@@ -1310,7 +1307,7 @@
 		gilt $\mathrm{d}F(G(y))\cdot \mathrm{d}G(y)=E_N$ für alle $y\in W$.
 	\end{repetition}
 	
-	\begin{theorem}[lokaler Umkehrsatz]
+	\begin{theorem}[lokaler Umkehrsatz] \label{thm:lok.Umk}
 		Es sei $f:\Omega\to\mathbb{C}$, $z_0\in\Omega$ mit $f'(z_0)\neq 0$. Dann existieren 
 		Umgebungen $U\subset\Omega$ von $z_0$ und $V\subset\mathbb{C}$ von $w_0=f(z_0)$, 
 		sd. $f|_U :U\to V$ biholomorph ist.
@@ -1701,11 +1698,11 @@
 	\begin{proposition}[Definition: Laurentreihe, Hauptteil, Nebenteil]
 		Eine (komplexe) Laurentreihe ist ein Ausdruck der Form
 		\[ L(z) =\sum_{k=-\infty}^{\infty} a_k z^k \]
-		mit $a_k\in\mathbb{C}$ für alle $k\in\mathbb{Z}$. Die Summe über $k>0$ heißt Hauptteil, die Summe 
-		über $k\leq 0$ heißt Nebenteil. \\
+		mit $a_k\in\mathbb{C}$ für alle $k\in\mathbb{Z}$. Die Summe über $k<0$ heißt Hauptteil, die Summe 
+		über $k\geq 0$ heißt Nebenteil. \\
 		Wir erhalten den inneren- und den äußeren Konvergenzradius
 		\[ r=\limsup_{k\to\infty}\sqrt[k]{|a_{-k}|},\qquad R=\left(\limsup_{k\to\infty} \sqrt[k]{|a_k|}\right)^{-1} \]
-		(beiden in $[0,\infty]$), dann konvergiert $L(z)$ auf $A_{r,R}(0)$, divergiert für $|z|<r$ oder 
+		(beide in $[0,\infty]$), dann konvergiert $L(z)$ auf $A_{r,R}(0)$, divergiert für $|z|<r$ oder 
 		$|z|>R$ und für $|z|=r$ oder $|z|=R$ ist keine allgemeine Aussage möglich. \\
 		Falls $r<R$ nennen wir $L$ konvergent, sonst divergent. \\
 		Falls $r<R$, also $L$ konvergent, dann nennen wir $A_{r,R}(0)$ ihren Konvergenzring. \\
@@ -1769,12 +1766,12 @@
 		\[ f(z_0)=\frac{1}{2\pi i} \int_{S_{\varepsilon}(z_0)} \frac{f(\zeta)}{\zeta -z_0}\mathrm{d}\zeta. \]
 		Der Zykel $S_{\varepsilon}(z_0)$ ist in $\Omega\setminus\{z_0\}$ homolog zum Zykel 
 		$S_S(w)-S_s(w)$, denn $S_{\varepsilon}(z_0)$ ist homotop zu einer Kurve, die $S_S(w)$ positiv, 
-		$S_s(w)$ negativ und eine Verbindungsstrecke dazwischen je einmal in bei Richtungen durchläuft. 
-		Gegebenfalls verkleinern wir $S$ und vergrößern $s$ so, dass $\overline{B_{\varepsilon}(z_0)}
+		$S_s(w)$ negativ und eine Verbindungsstrecke dazwischen je einmal in beide Richtungen durchläuft. 
+		Gegebenenfalls verkleinern wir $S$ und vergrößern $s$ so, dass $\overline{B_{\varepsilon}(z_0)}
 		\subset A_{s,S}(w)\subset \overline{A_{s,S}(w)}\subset\Omega$. 
 		Da $\frac{f(\zeta)}{\zeta -z_0}$ auf $\Omega\setminus\{z_0\}$ holomorph ist, folgt aus der 
 		Homotopie-Invarianz des Kurvenintegrals, dass
-		\[ f(z_0) =\frac{1}{2\pi i}\int_{S_s(w)}\frac{f(\zeta)}{\zeta -z_0}\mathrm{d}\zeta -
+		\[ f(z_0) =\frac{1}{2\pi i}\int_{S_S(w)}\frac{f(\zeta)}{\zeta -z_0}\mathrm{d}\zeta -
 		\frac{1}{2\pi i}\int_{S_s(w)}\frac{f(\zeta)}{\zeta -z_0}\mathrm{d}\zeta.\]
 		O. B. d. A. sei $w=0$. Schreibe jetzt
 		\[ \frac{1}{\zeta -z_0}=\frac{\frac{1}{\zeta}}{1-\frac{z_0}{\zeta}}=\sum_{k=0}^{\infty} 
@@ -1815,7 +1812,7 @@
 			$k_0$ bei $0$.
 			
 			\item \textsl{Fall:} Es existiere $k_0 <0$, $a_k=0$ für $k\leq k_0$ und $a_{k_0}\neq0$. Dann 
-			haben wir eine Polordnung $-k_0$ bei $0$.
+			haben wir eine Polordnung $k_0$ bei $0$.
 			
 			\item \textsl{Fall:} Wir haben eine wesentliche Singularität bei $0$.
 		\end{enumerate}
@@ -2002,7 +1999,7 @@
 		\[ \left|R\left(\frac{1}{z}\right)\right|\leq C\left|\frac{1}{z}\right|^k \]
 		für alle $"$kleinen $\frac{1}{z}"$, dh. für $|z|\to \infty$. Also folgt 
 		\[ \int_c R(z)\mathrm{d}z=\int_{-S}^S R(x)\mathrm{d}x + \underbrace{\int_0^{\pi} \underbrace{
-		R(S\cdot e^{i\varphi})}_{|\cdot|\leq C\cdot S{-k}}\cdot \underbrace{iSe^{i\varphi}}_{|\cdot|=S}\mathrm{d}
+		R(S\cdot e^{i\varphi})}_{|\cdot|\leq C\cdot S^{-k}}\cdot \underbrace{iSe^{i\varphi}}_{|\cdot|=S}\mathrm{d}
 		\varphi}_{|\cdot|\leq C\cdot S^{1-k} \underset{s\to\infty}{\to}0} \]
 		Durch Grenzübergang $S\to \infty$ folgt die Behauptung.
 	\end{proof}
@@ -2011,7 +2008,7 @@
 		\[ \int_{-\infty}^{\infty} \frac{1}{1+x^2}\mathrm{d}x=2\pi i Res_i \frac{1}{1+x^2} = 
 		2\pi i\cdot \frac{1}{2i}=\pi \]
 		$\arctan'=\frac{1}{1+x^2}$ daraus folgt
-		\[ \int_{-\infty}^{\infty} \frac{1}{1+x^2}\mathrm{d}x =\left(\lim_{x\to\infty}-\lim_{x\to\infty}\right)
+		\[ \int_{-\infty}^{\infty} \frac{1}{1+x^2}\mathrm{d}x =\left(\lim_{x\to\infty}-\lim_{x\to-\infty}\right)
 		\arctan(x) =\pi. \]
 	\end{example}
 	
@@ -2061,7 +2058,7 @@
 		\[ \int_0^S R(S+ix)e^{i(S+ix)}i\mathrm{d}x = \underbrace{e^{iS}}_{\text{Betrag $1$}}
 		\int_0^S \underbrace{R(S+ix)}_{|\%|\leq\frac{C}{|S+ix|}\leq\frac{C}{S}}e^{-x}i\mathrm{d}x 
 		\overset{S\to\infty}{\to}0, \]
-		dieto für die linke Rechteck-Kante. \\
+		dito für die linke Rechteck-Kante. \\
 		\textsl{1. Fall:} $F$ hat keine reellen Polstellen.
 		\begin{eqnarray*}
 			\int_{-\infty}^{\infty} R(x)\cos x\mathrm{d}x &=& \lim_{S\to\infty} Re\left(\int_{c_S}R(z)e^{iz}
@@ -2113,7 +2110,7 @@
 	\begin{corollary}
 		Es sei $\lambda\in (0,1)$ und $R$ ein reeller rationaler Ausdruck, wohldefiniert für alle $x\geq 0$, mit 
 		Nullstelle der Ordnung $\geq 1$ bei $\infty$. Dann gilt 
-		\[ \int_0^{\infty} x^{\lambda -1}R(x)\mathrm{d}x = -\frac{\pi}{\sin(2\pi)}\sum_{z_0\in\mathbb{C}\setminus
+		\[ \int_0^{\infty} x^{\lambda -1}R(x)\mathrm{d}x = -\frac{\pi}{\sin(\lambda\pi)}\sum_{z_0\in\mathbb{C}\setminus
 		(-\infty,0]}Res_{z_0} \left(\underbrace{e^{(\lambda -1)Log(z) }}_
 		{\text{$"$}z^{\lambda -1}\text{$"$}}R(-z)\right) \]
 	\end{corollary}
@@ -2146,21 +2143,21 @@
 		\end{eqnarray*}
 		Nach Grenzübergang $S\to\infty$, $\varphi\to0$ erhalten wir
 		\begin{eqnarray*}
-			\int_0^{\infty} x^{\lambda -1}(2i\cdot \underbrace{\sin((\lambda -1)\pi)}_{-\sin(2\pi)})R(x)\mathrm{d}x
-			= 2\pi i\sum_{z_0\in\mathbb{C}\setminus (-\infty,0]}Res_{z_0}(e^{(\lambda -1)z}R(-z)) \\
+			\int_0^{\infty} x^{\lambda -1}(2i\cdot \underbrace{\sin((\lambda -1)\pi)}_{-\sin(\lambda\pi)})R(x)\mathrm{d}x
+			= 2\pi i\sum_{z_0\in\mathbb{C}\setminus (-\infty,0]}Res_{z_0}(e^{(\lambda -1)Log(z)}R(-z)) \\
 			\Rightarrow \qquad \int_0^{\infty} x^{\lambda -1}R(x)\mathrm{d}x
-			=-\frac{\pi}{\sin(2\pi)}\sum_{z_0\in\mathbb{C}\setminus (-\infty,0]} 
-			Res_{z_0}(e^{(\lambda -1)z}R(-z)).
+			=-\frac{\pi}{\sin(\lambda\pi)}\sum_{z_0\in\mathbb{C}\setminus (-\infty,0]} 
+			Res_{z_0}(e^{(\lambda -1)Log(z)}R(-z)).
 		\end{eqnarray*}
 	\end{proof}
 	
 	\begin{example}
 		Sei $\lambda\in (0,2)$, $\lambda\neq 1$.
+		\[\int_0^{\infty} \frac{x^{\lambda -1}}{(1+x)^2}\mathrm{d}x = -\frac{\pi}{\sin(\lambda\pi)}\cdot (\lambda-1)\]
 		\begin{eqnarray*} 
-			\int_0^{\infty} \frac{x^{\lambda -1}}{(1+x)^2}\mathrm{d}x &=& -\frac{\pi}{\sin(2\pi)}(\lambda -1) \\
-			&=& Res_1 \left( e^{(\lambda -1)Log(z)}\frac{1}{(1-z)^2}\right) \\
-			&=& \left( e^{(\lambda -1)Log(z)}\right)_{z=1}^{'} \\
-			&=& (\lambda -1)e^{(\lambda -1)Log(z)} \cdot \frac{1}{z}\vert_{z=1} =(\lambda -1)
+			Res_1 \left( e^{(\lambda -1)Log(z)}\frac{1}{(1-z)^2}\right)
+			= \left( e^{(\lambda -1)Log(z)}\right)_{z=1}^{'} 
+			= (\lambda -1)e^{(\lambda -1)Log(z)} \cdot \left .\frac{1}{z}\right|_{z=1} =(\lambda -1)
 		\end{eqnarray*}
 	\end{example}
 		
@@ -2257,7 +2254,7 @@
 		$c$ den Rand $(\partial \Omega)$ von $\Omega$ darstellt, wenn es eine Darstellung 
 		\[ c=\sum_{i=1}^k n_i[\gamma_i] \]
 		gibt, mit $\gamma_i(t)\in\partial\Omega =\overline{\Omega}\setminus\Omega$ für alle $i$ und alle 
-		$t_i$ und
+		$t$ und
 		\[ n_w(c)=\frac{1}{2\pi i}\int \frac{\mathrm{d}z}{z-w} =\begin{dcases}1&w\in\Omega \\ 0&w\in
 		\mathbb{C}\setminus\Omega \end{dcases} \]
 	\end{definition}
